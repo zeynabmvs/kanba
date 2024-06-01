@@ -5,7 +5,7 @@ import "@fontsource/roboto/700.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 import { createContext, useMemo, useState } from "react";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "../components/Dashboard";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 

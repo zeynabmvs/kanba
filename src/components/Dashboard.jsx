@@ -1,5 +1,3 @@
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -14,11 +12,10 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { styled, useTheme } from "@mui/material/styles";
-import { useContext, useState } from "react";
-import { ColorModeContext } from "../App";
+import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import SwitchTheme from "./SwitchTheme";
 import { mainListItems, secondaryListItems } from "./listItems";
-
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -70,10 +67,6 @@ export default function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -128,24 +121,9 @@ export default function Dashboard() {
         <List component="nav">
           {mainListItems}
           <Divider sx={{ my: 1 }} />
-          <Container >
+          <SwitchTheme />
 
-          {/* {theme.palette.mode} mode */}
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={colorMode.toggleColorMode}
-            color="inherit"
-          >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
-          
-          </Container>
-
-          {secondaryListItems}
+          {/* {secondaryListItems} */}
         </List>
       </Drawer>
       <Box
