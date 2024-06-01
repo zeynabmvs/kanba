@@ -41,7 +41,7 @@ const findSubtaskInexes = (state, subtask, task) => {
 export const boardsSlice = createSlice({
   name: "boards",
   initialState: {
-    currentBoardId: initialData.boards[0].id,
+    currentBoardId: initialData.length ? initialData.boards[0].id: 0,
     boards: initialData.boards,
   },
   reducers: {
