@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 import { createContext, useMemo, useState } from "react";
 import Dashboard from "../components/Dashboard";
-
+import BasicModal from "../components/BasicModal"
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <ScopedCssBaseline enableColorScheme>
             <Dashboard />
+            <BasicModal />
           </ScopedCssBaseline>
         </ThemeProvider>
       </ColorModeContext.Provider>
