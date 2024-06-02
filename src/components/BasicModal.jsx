@@ -7,9 +7,8 @@ import {
   AddList,
   AddTask,
   ConfirmDelete,
-
-  // EditBoard,
-  // EditList,
+  EditBoard,
+  EditList,
   // EditTask,
   TaskDetail,
 } from "./modals";
@@ -18,20 +17,14 @@ const ModalContent = ({ type, onClose, detail }) => {
   console.log(type)
 
   switch (type) {
-    // case "deleteBoard":
-    //   return <DeleteBoard onClose={onClose} />;
     case "addBoard":
       return <AddBoard onClose={onClose} />;
-    // case "editBoard":
-    //   return <EditBoard onClose={onClose} />;
+    case "editBoard":
+      return <EditBoard onClose={onClose} />;
     case "addList":
       return <AddList onClose={onClose} />;
-    // case "editList":
-    //   return <EditList onClose={onClose} detail={detail} />;
-    // case "deleteList":
-    //   return <DeleteList onClose={onClose} detail={detail} />;
-    // case "deleteTask":
-    //   return <DeleteTask onClose={onClose} detail={detail} />;
+    case "editList":
+      return <EditList onClose={onClose} detail={detail} />;
     case "addTask":
       return <AddTask onClose={onClose} />;
     // case "editTask":

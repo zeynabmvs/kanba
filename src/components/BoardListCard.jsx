@@ -6,7 +6,7 @@ import { openModal } from "../features/modalSlice";
 const BoardListCard = ({ task }) => {
   const dispatch = useDispatch();
 
-  const onShowTaksDetail = () => {
+  const onShowTasksDetail = () => {
     console.group("iii");
     dispatch(openModal({ type: "taskDetail", detail: task }));
   };
@@ -36,7 +36,7 @@ const BoardListCard = ({ task }) => {
         <Typography
           variant="body1"
           className={`${task.status === "completed" ? "line-through" : ""}`}
-          onClick={() => onShowTaksDetail()}
+          onClick={() => onShowTasksDetail()}
         >
           {task.title}
         </Typography>
