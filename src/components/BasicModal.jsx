@@ -9,7 +9,7 @@ import {
   ConfirmDelete,
   EditBoard,
   EditList,
-  // EditTask,
+  EditTask,
   TaskDetail,
 } from "./modals";
 
@@ -27,8 +27,8 @@ const ModalContent = ({ type, onClose, detail }) => {
       return <EditList onClose={onClose} detail={detail} />;
     case "addTask":
       return <AddTask onClose={onClose} />;
-    // case "editTask":
-    //   return <EditTask onClose={onClose} detail={detail} />;
+    case "editTask":
+      return <EditTask onClose={onClose} detail={detail} />;
     case "confirmDelete":
         return <ConfirmDelete onClose={onClose} message={detail.message} onDelete={detail.onDelete} />;
     case "taskDetail":
