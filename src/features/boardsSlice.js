@@ -45,7 +45,7 @@ export const boardsSlice = createSlice({
     boards: initialData.boards,
   },
   reducers: {
-    createBoard: (state, action) => {
+    addBoard: (state, action) => {
       state.boards.push({
         id: generateId(),
         title: action.payload.title,
@@ -220,7 +220,7 @@ export const selectCurrentBoard = (state) =>
 export const {
   deleteBoard,
   changeCurrentBoard,
-  createBoard,
+  addBoard,
   editBoard,
   addList,
   editList,

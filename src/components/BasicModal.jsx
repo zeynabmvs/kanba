@@ -3,13 +3,11 @@ import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, selectModal } from "../features/modalSlice";
 import {
+  AddBoard,
   AddList,
   AddTask,
   ConfirmDelete,
-  // CreateBoard,
-  // DeleteBoard,
-  // DeleteList,
-  // DeleteTask,
+
   // EditBoard,
   // EditList,
   // EditTask,
@@ -17,11 +15,13 @@ import {
 } from "./modals";
 
 const ModalContent = ({ type, onClose, detail }) => {
+  console.log(type)
+
   switch (type) {
     // case "deleteBoard":
     //   return <DeleteBoard onClose={onClose} />;
-    // case "createBoard":
-    //   return <CreateBoard onClose={onClose} />;
+    case "addBoard":
+      return <AddBoard onClose={onClose} />;
     // case "editBoard":
     //   return <EditBoard onClose={onClose} />;
     case "addList":
@@ -60,7 +60,9 @@ const style = {
 export default function BasicModal() {
   const { isOpen, type, detail } = useSelector(selectModal);
   const dispatch = useDispatch();
-  console.log(type)
+
+  console.log("BasicModal", type)
+
   const onHandleClose = () => {
     isOpen && dispatch(closeModal());
   };

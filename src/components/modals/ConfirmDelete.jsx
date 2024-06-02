@@ -1,4 +1,4 @@
-import {Button} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 
 const ConfirmDelete = ({ message, onClose, onDelete }) => {
     const onDeleteHandler =()=>{
@@ -7,12 +7,9 @@ const ConfirmDelete = ({ message, onClose, onDelete }) => {
     }
 
     return (
-        <>
-            <h1 className="text-red">Delete Confirmation</h1>
-            <p>
-                {message}
-            </p>
-
+<>
+    <Typography variant="h6">Delete Confirmation</Typography>
+    <Typography variant="body1">{message}</Typography>
             <div>
                 <Button variant="contained" color="error" onClick={onDeleteHandler}>Delete</Button>
                 <Button variant="outlined" onClick={onClose} color="secondary">Cancel</Button>

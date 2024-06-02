@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addList, selectCurrentBoard } from "../../features/boardsSlice";
 import { closeModal } from "../../features/modalSlice";
 import ListFrom from "../forms/ListFrom";
+import {Typography} from "@mui/material";
 
 const AddList = ({ onClose }) => {
     const currentBoard = useSelector(selectCurrentBoard);
@@ -14,9 +15,8 @@ const AddList = ({ onClose }) => {
 
     return (
         <>
-            <h1>Add New List</h1>
+            <Typography variant="body1">Add New List</Typography>
             <ListFrom onClose={onClose} onSubmit={onSubmit} />
-
         </>
     );
 };

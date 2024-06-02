@@ -9,7 +9,6 @@ const ListFrom = ({ onSubmit, onClose, defaultValues = {} }) => {
     } = useForm({ defaultValues: defaultValues });
 
     return (
-    <>
     <Box
         component="form"
         sx={{
@@ -41,7 +40,6 @@ const ListFrom = ({ onSubmit, onClose, defaultValues = {} }) => {
             <Button variant="outlined" onClick={onClose} color="error">Cancel</Button>
         </div>
     </Box>
-</>
     );
 };
 

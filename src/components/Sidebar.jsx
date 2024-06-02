@@ -16,7 +16,7 @@ import {
   selectBoards,
   selectCurrentBoardId,
 } from "../features/boardsSlice";
-import openModal from "../features/modalSlice";
+import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
 import {mainListItems} from "./listItems"
 import { Button } from "@mui/material";
@@ -58,8 +58,8 @@ const Sidebar = ({ open, toggleDrawer }) => {
     dispatch(changeCurrentBoard(board.id));
   };
 
-  const onCreateBoardHandler = () => {
-    dispatch(openModal({ type: "createBoard" }));
+  const onAddBoardHandler = () => {
+    dispatch(openModal({ type: "addBoard" }));
   };
 
   return (
@@ -89,7 +89,7 @@ const Sidebar = ({ open, toggleDrawer }) => {
           </Fragment>
         ))}
 
-        <Button onClick={() => onCreateBoardHandler()} variant="contained" size="large" sx={{mx: [2]}}>Create New Board</Button>
+        <Button onClick={onAddBoardHandler} variant="contained" size="large" sx={{mx: [2]}}>Create New Board</Button>
         <Divider sx={{ my: 1 }} />
         <SwitchTheme />
 
