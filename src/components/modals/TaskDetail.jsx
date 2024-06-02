@@ -6,22 +6,28 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editSubtask } from "../../features/boardsSlice";
-import { openModal } from "../../features/modalSlice";
+import { editSubtask, deleteTask } from "../../features/boardsSlice";
+import { openModal,closeModal } from "../../features/modalSlice";
 import OptionsMenu from "../OptionsMenu";
 
 const TaskDetail = ({ detail }) => {
   const dispatch = useDispatch();
   const task = detail;
-  console.log(detail);
+
   const initialCheckboxes = task?.subtasks.map((i) => i.status === "completed");
   const [subtasksStatus, setSubtasksStatus] = useState(initialCheckboxes);
 
-  const onDeleteHandler = () => {
-    dispatch(openModal({ type: "deleteTask", detail: task }));
+  const onDelete = () => {
+    dispatch(deleteTask(detail));
   };
 
-  const onEditHandler = () => {
+  const  onDeleteHandler= () => {
+    dispatch(openModal({ type: "confirmDelete", detail:
+          {type: "task", onDelete: onDelete, message: `Are you sure you want to delete task ${task.title}?`}
+    }))
+  };
+
+  const onEditHandler  = () => {
     dispatch(openModal({ type: "editTask", detail: task }));
   };
 
@@ -30,7 +36,6 @@ const TaskDetail = ({ detail }) => {
     cpy[index] = !subtasksStatus[index];
     setSubtasksStatus({ ...subtasksStatus, cpy });
 
-    console.log(subtasksStatus[index]);
     dispatch(
       editSubtask({
         task: task,
@@ -50,7 +55,7 @@ const TaskDetail = ({ detail }) => {
           <OptionsMenu
             text="task"
             onEdit={onEditHandler}
-            onelete={onDeleteHandler}
+            onDelete={onDeleteHandler}
           ></OptionsMenu>
         </Stack>
         <Typography variant="body">{task.description}</Typography>
@@ -66,17 +71,6 @@ const TaskDetail = ({ detail }) => {
                 const labelId = `checkbox-list-label-${index}`;
 
                 return (
-                  // <ListItem disablePadding key={index}>
-                  //   <ListItemButton>
-                  //   <Checkbox
-                  //       onChange={() => changeSubtaskStatus(subtask, index)}
-                  //       name={subtask.id}
-                  //       checked={subtasksStatus[index]}
-                  //     />
-                  //     <ListItemText primary="Inbox" />
-                  //   </ListItemButton>
-                  // </ListItem>
-
                   <ListItem key={index} disablePadding>
                     <ListItemButton
                       role={undefined}

@@ -2,7 +2,48 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, selectModal } from "../features/modalSlice";
-import { TaskDetail } from "./modals";
+import {
+  AddList,
+  AddTask,
+  ConfirmDelete,
+  // CreateBoard,
+  // DeleteBoard,
+  // DeleteList,
+  // DeleteTask,
+  // EditBoard,
+  // EditList,
+  // EditTask,
+  TaskDetail,
+} from "./modals";
+
+const ModalContent = ({ type, onClose, detail }) => {
+  switch (type) {
+    // case "deleteBoard":
+    //   return <DeleteBoard onClose={onClose} />;
+    // case "createBoard":
+    //   return <CreateBoard onClose={onClose} />;
+    // case "editBoard":
+    //   return <EditBoard onClose={onClose} />;
+    case "addList":
+      return <AddList onClose={onClose} />;
+    // case "editList":
+    //   return <EditList onClose={onClose} detail={detail} />;
+    // case "deleteList":
+    //   return <DeleteList onClose={onClose} detail={detail} />;
+    // case "deleteTask":
+    //   return <DeleteTask onClose={onClose} detail={detail} />;
+    case "addTask":
+      return <AddTask onClose={onClose} />;
+    // case "editTask":
+    //   return <EditTask onClose={onClose} detail={detail} />;
+    case "confirmDelete":
+        return <ConfirmDelete onClose={onClose} message={detail.message} onDelete={detail.onDelete} />;
+    case "taskDetail":
+      return <TaskDetail detail={detail} />;
+    default:
+      return null;
+  }
+};
 
 const style = {
   position: "absolute",
@@ -19,23 +60,21 @@ const style = {
 export default function BasicModal() {
   const { isOpen, type, detail } = useSelector(selectModal);
   const dispatch = useDispatch();
-
-  const onhandleClose = () => {
+  console.log(type)
+  const onHandleClose = () => {
     isOpen && dispatch(closeModal());
   };
-
-  console.log(detail)
 
   return (
     <div>
       <Modal
         open={isOpen}
-        onClose={onhandleClose}
+        onClose={onHandleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <TaskDetail detail={detail}></TaskDetail>
+          <ModalContent detail={detail} onClose={onHandleClose} type={type}></ModalContent>
         </Box>
       </Modal>
     </div>

@@ -3,18 +3,25 @@ import {
     Stack
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { openModal } from "../features/modalSlice";
+import {closeModal, openModal} from "../features/modalSlice";
 import OptionsMenu from "./OptionsMenu";
 import BoardListCard from "./BoardListCard"
+import { deleteList } from "../features/boardsSlice";
 
 const BoardList = ({ list }) => {
     const dispatch = useDispatch();
-  
+
+    const onDelete =()=> {
+        dispatch(deleteList({ list: list}));
+    }
+
     const onDeleteListHandler = () => {
-      dispatch(openModal({ type: "deleteList", detail: list }));
+        dispatch(closeModal())
+        dispatch(openModal({ type: "confirmDelete", detail:
+                {type: "list", onDelete: onDelete, message: `Are you sure you want to delete list ${list.title} and all of its tasks?`}
+        }))
     };
     const onEditListHandler = () => {
-      // dispatch(closeModal())
       dispatch(openModal({ type: "editList", detail: list }));
     };
   
@@ -25,7 +32,7 @@ const BoardList = ({ list }) => {
           <OptionsMenu
             text="list"
             onEdit={onEditListHandler}
-            onelete={onDeleteListHandler}
+            onDelete={onDeleteListHandler}
           ></OptionsMenu>
         </Stack>
   

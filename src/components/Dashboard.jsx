@@ -12,7 +12,11 @@ import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import Board from "./Board";
 import Sidebar from "./Sidebar";
-
+import {Button} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {deleteBoard, selectCurrentBoard} from "../features/boardsSlice.js";
+import { openModal } from "../features/modalSlice";
+import OptionsMenu from "./OptionsMenu.jsx";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -38,6 +42,27 @@ export default function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+    const dispatch = useDispatch();
+    const board = useSelector(selectCurrentBoard);
+
+    const onAddTaskHandler = () => {
+        dispatch(openModal({ type: "addTask" }));
+    };
+    const onDelete=()=>{
+        dispatch(deleteBoard(board));
+
+    }
+
+    const onDeleteBoardHandler = () => {
+        dispatch(openModal({ type: "confirmDelete", detail: {
+            type: "board", onDelete: onDelete, message: `Are you sure you want to delete board ${board.title} and all its data?`
+            } }));
+
+
+    };
+    const onEditBoardHandler = () => {
+        dispatch(openModal({ type: "editBoard" }));
+    };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -67,13 +92,14 @@ export default function Dashboard() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+              {board.title}
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+<Button variant="primary" onClick={onAddTaskHandler}>Add Task</Button>
+            <OptionsMenu
+                text="board"
+                onEdit={onEditBoardHandler}
+                onDelete={onDeleteBoardHandler}
+            ></OptionsMenu>
         </Toolbar>
       </AppBar>
       <Sidebar open={open} toggleDrawer={toggleDrawer} />
