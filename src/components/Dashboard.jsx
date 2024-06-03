@@ -94,7 +94,7 @@ export default function Dashboard() {
           >
               {board.title}
           </Typography>
-<Button variant="primary" onClick={onAddTaskHandler}>Add Task</Button>
+<Button variant="primary" onClick={onAddTaskHandler} disabled={board?.lists.length <= 0}>Add Task</Button>
             <OptionsMenu
                 text="board"
                 onEdit={onEditBoardHandler}

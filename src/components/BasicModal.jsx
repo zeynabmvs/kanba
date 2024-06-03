@@ -14,8 +14,6 @@ import {
 } from "./modals";
 
 const ModalContent = ({ type, onClose, detail }) => {
-  console.log(type)
-
   switch (type) {
     case "addBoard":
       return <AddBoard onClose={onClose} />;
@@ -53,8 +51,6 @@ const style = {
 export default function BasicModal() {
   const { isOpen, type, detail } = useSelector(selectModal);
   const dispatch = useDispatch();
-
-  console.log("BasicModal", type)
 
   const onHandleClose = () => {
     isOpen && dispatch(closeModal());
