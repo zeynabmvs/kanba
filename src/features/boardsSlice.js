@@ -60,8 +60,9 @@ export const boardsSlice = createSlice({
       }
     },
     deleteBoard: (state, action) => {
+      const {board} = action.payload
       const newBoards = state.boards.filter(
-        (board) => board.id !== action.payload.id
+        (item) => item.id !== board.id
       );
       return {
         boards: newBoards,

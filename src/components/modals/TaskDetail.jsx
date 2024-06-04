@@ -17,13 +17,13 @@ const TaskDetail = ({ detail }) => {
   const initialCheckboxes = task?.subtasks.map((i) => i.status === "completed");
   const [subtasksStatus, setSubtasksStatus] = useState(initialCheckboxes);
 
-  const onDelete = () => {
-    dispatch(deleteTask({detail: detail}));
-  };
+  // const onDelete = () => {
+  //   dispatch(deleteTask({task: detail}));
+  // };
 
-  const  onDeleteHandler= () => {
+  const onDeleteHandler= () => {
     dispatch(openModal({ type: "confirmDelete", detail:
-          {type: "task", onDelete: onDelete, message: `Are you sure you want to delete task ${task.title}?`}
+          {type: "task", obj: task, message: `Are you sure you want to delete task ${task.title}?`}
     }))
   };
 

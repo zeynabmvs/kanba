@@ -12,6 +12,17 @@ const OptionsMenu = ({ text, onEdit, onDelete }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const onEditHandler = ()=>{
+      onEdit()
+        handleClose()
+    }
+
+
+    const onDeleteHandler = ()=>{
+        onDelete()
+        handleClose()
+    }
   return (
     <>
       <IconButton
@@ -33,8 +44,8 @@ const OptionsMenu = ({ text, onEdit, onDelete }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={onEdit}>Edit {text}</MenuItem>
-        <MenuItem sx={{ color: "red" }} onClick={onDelete}>
+        <MenuItem onClick={onEditHandler}>Edit {text}</MenuItem>
+        <MenuItem sx={{ color: "red" }} onClick={onDeleteHandler}>
           Delete {text}
         </MenuItem>
       </Menu>

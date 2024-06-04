@@ -48,14 +48,14 @@ export default function Dashboard() {
     const onAddTaskHandler = () => {
         dispatch(openModal({ type: "addTask" }));
     };
-    const onDelete=()=>{
-        dispatch(deleteBoard({board: board}));
-
-    }
+    // const onDelete=()=>{
+    //     dispatch(deleteBoard({board: board}));
+    //
+    // }
 
     const onDeleteBoardHandler = () => {
         dispatch(openModal({ type: "confirmDelete", detail: {
-            type: "board", onDelete: onDelete, message: `Are you sure you want to delete board ${board?.title} and all its data?`
+            type: "board", obj: board, message: `Are you sure you want to delete board ${board?.title} and all its data?`
             } }));
 
 

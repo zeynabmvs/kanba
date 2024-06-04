@@ -28,7 +28,7 @@ const ModalContent = ({ type, onClose, detail }) => {
     case "editTask":
       return <EditTask onClose={onClose} detail={detail} />;
     case "confirmDelete":
-        return <ConfirmDelete onClose={onClose} message={detail.message} onDelete={detail.onDelete} />;
+        return <ConfirmDelete onClose={onClose} message={detail.message} obj={detail.obj} type={detail.type} />;
     case "taskDetail":
       return <TaskDetail detail={detail} />;
     default:

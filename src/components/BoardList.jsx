@@ -13,14 +13,14 @@ import Box from "@mui/material/Box";
 const BoardList = ({ list, index }) => {
     const dispatch = useDispatch();
 
-    const onDelete =()=> {
-        dispatch(deleteList({ list: list}));
-    }
+    // const onDelete =()=> {
+    //     dispatch(deleteList({ list: list}));
+    // }
 
     const onDeleteListHandler = () => {
-        dispatch(closeModal())
+        // dispatch(closeModal())
         dispatch(openModal({ type: "confirmDelete", detail:
-                {type: "list", onDelete: onDelete, message: `Are you sure you want to delete list ${list.title} and all of its tasks?`}
+                {type: "list", obj: list, message: `Are you sure you want to delete list ${list.title} and all of its tasks?`}
         }))
     };
     const onEditListHandler = () => {
@@ -38,7 +38,7 @@ const BoardList = ({ list, index }) => {
                        {...provided.draggableProps}
                 >
                     <Stack direction="row" justifyContent="space-between" {...provided.dragHandleProps} sx={{ '&:hover': { bgcolor: 'lightblue' } }}>
-                        <h3>{list.title} - {list.id + '-' + index.toString()}</h3>
+                        <h3>{list.title}</h3>
                         <OptionsMenu
                             text="list"
                             onEdit={onEditListHandler}
