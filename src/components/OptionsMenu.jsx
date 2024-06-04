@@ -13,16 +13,15 @@ const OptionsMenu = ({ text, onEdit, onDelete }) => {
     setAnchorEl(null);
   };
 
-  const onEditHandler = ()=>{
-      onEdit()
-        handleClose()
-    }
+  const onEditHandler = () => {
+    onEdit();
+    handleClose();
+  };
 
-
-    const onDeleteHandler = ()=>{
-        onDelete()
-        handleClose()
-    }
+  const onDeleteHandler = () => {
+    onDelete();
+    handleClose();
+  };
   return (
     <>
       <IconButton

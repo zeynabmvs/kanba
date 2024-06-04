@@ -1,5 +1,6 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -16,9 +17,8 @@ import {
   selectBoards,
   selectCurrentBoardId,
 } from "../features/boardsSlice";
-import {openModal} from "../features/modalSlice";
+import { openModal } from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
-import { Button } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -79,7 +79,10 @@ const Sidebar = ({ open, toggleDrawer }) => {
       <List component="nav">
         {boards?.map((item) => (
           <Fragment key={item.id}>
-            <ListItemButton selected={currentBoardId === item.id} onClick={() => onChangeBoardHandler(item)}>
+            <ListItemButton
+              selected={currentBoardId === item.id}
+              onClick={() => onChangeBoardHandler(item)}
+            >
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
@@ -88,11 +91,16 @@ const Sidebar = ({ open, toggleDrawer }) => {
           </Fragment>
         ))}
 
-        <Button onClick={onAddBoardHandler} variant="contained" size="large" sx={{mx: [2]}}>Create New Board</Button>
+        <Button
+          onClick={onAddBoardHandler}
+          variant="contained"
+          size="large"
+          sx={{ mx: [2] }}
+        >
+          Create New Board
+        </Button>
         <Divider sx={{ my: 1 }} />
         <SwitchTheme />
-
-        {/* {secondaryListItems} */}
       </List>
     </Drawer>
   );

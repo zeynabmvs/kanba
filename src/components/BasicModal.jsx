@@ -28,7 +28,14 @@ const ModalContent = ({ type, onClose, detail }) => {
     case "editTask":
       return <EditTask onClose={onClose} detail={detail} />;
     case "confirmDelete":
-        return <ConfirmDelete onClose={onClose} message={detail.message} obj={detail.obj} type={detail.type} />;
+      return (
+        <ConfirmDelete
+          onClose={onClose}
+          message={detail.message}
+          obj={detail.obj}
+          type={detail.type}
+        />
+      );
     case "taskDetail":
       return <TaskDetail detail={detail} />;
     default:
@@ -65,7 +72,11 @@ export default function BasicModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <ModalContent detail={detail} onClose={onHandleClose} type={type}></ModalContent>
+          <ModalContent
+            detail={detail}
+            onClose={onHandleClose}
+            type={type}
+          ></ModalContent>
         </Box>
       </Modal>
     </div>

@@ -11,7 +11,6 @@ const SwitchTheme = () => {
 
   return (
     <>
-      {/* {theme.palette.mode} mode */}
       <IconButton
         sx={{ ml: 1 }}
         onClick={colorMode.toggleColorMode}
