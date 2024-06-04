@@ -229,6 +229,24 @@ export const boardsSlice = createSlice({
       })
 
       return {...state, boards:nextState}
+    },
+    reorderTask: (state, action) => {
+      console.log(action.payload)
+      const {sourceIndex, destinationIndex, sourceListIndex, destinationListIndex, task} = action.payload
+      const currentBoardIndex = state.boards.findIndex(
+          (item) => item.id === state.currentBoardId
+      );
+      // sourceListIndex =
+
+      const nextState = produce(state.boards, (draftState) => {
+        draftState[currentBoardIndex].lists[sourceListIndex].tasks.splice(sourceIndex, 1 )
+        // console.log(x[0].content)
+
+        draftState[currentBoardIndex].lists[destinationListIndex].tasks.splice(destinationIndex, 0, task)
+
+      })
+
+      return {...state, boards:nextState}
 
     }
 
@@ -252,7 +270,8 @@ export const {
   editTask,
   addTask,
   editSubtask,
-  reorderLists
+  reorderLists,
+  reorderTask
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

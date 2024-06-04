@@ -22,6 +22,39 @@ export const initialData = {
             },
             {
               id: generateId(),
+              title: "Find new notebook2",
+              description: "Need to buy a new notebook for work.",
+              color: "red",
+              status: "notCompleted",
+              subtasks: [
+                { id: generateId(), title: "Research online", status: "completed" },
+                { id: generateId(), title: "Visit store", status: "notCompleted" },
+              ],
+            },
+            {
+              id: generateId(),
+              title: "Find new notebook3",
+              description: "Need to buy a new notebook for work.",
+              color: "red",
+              status: "notCompleted",
+              subtasks: [
+                { id: generateId(), title: "Research online", status: "completed" },
+                { id: generateId(), title: "Visit store", status: "notCompleted" },
+              ],
+            },
+            {
+              id: generateId(),
+              title: "Find new notebook4",
+              description: "Need to buy a new notebook for work.",
+              color: "red",
+              status: "notCompleted",
+              subtasks: [
+                { id: generateId(), title: "Research online", status: "completed" },
+                { id: generateId(), title: "Visit store", status: "notCompleted" },
+              ],
+            },
+            {
+              id: generateId(),
               title: "Finish presentation",
               description: "Complete slides for upcoming meeting.",
               color: "green",
@@ -37,17 +70,7 @@ export const initialData = {
           id: generateId(),
           title: "DoingList",
           tasks: [
-            {
-              id: generateId(),
-              title: "Get groceries",
-              description: "Need to buy groceries for the week.",
-              color: "#CFDFFF",
-              status: "notCompleted",
-              subtasks: [
-                { id: generateId(), title: "Make list", status: "completed" },
-                { id: generateId(), title: "Go to store", status: "notCompleted" },
-              ],
-            },
+
           ],
         },
       ],

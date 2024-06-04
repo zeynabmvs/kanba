@@ -7,7 +7,8 @@ import {closeModal, openModal} from "../features/modalSlice";
 import OptionsMenu from "./OptionsMenu";
 import BoardListCard from "./BoardListCard"
 import { deleteList } from "../features/boardsSlice";
-import {Draggable} from "@hello-pangea/dnd";
+import {Draggable, Droppable} from "@hello-pangea/dnd";
+import Box from "@mui/material/Box";
 
 const BoardList = ({ list, index }) => {
     const dispatch = useDispatch();
@@ -30,11 +31,14 @@ const BoardList = ({ list, index }) => {
     return (
         <Draggable draggableId={list.id} index={index}>
             {(provided, snapshot) => (
-                <Paper elevation={3} sx={{ padding: 1, margin: 1, width: "200px", backgroundColor: snapshot.isDragging ? 'lightblue' : 'white', }} className={`${snapshot.isDragging && "is-dragging " }`} ref={provided.innerRef}
+                <Paper elevation={3}
+                       sx={{ padding: 1, margin: 1, width: "200px", backgroundColor: snapshot.isDragging ? 'lightblue' : 'white', }}
+                       className={`${snapshot.isDragging && "is-dragging " }`}
+                       ref={provided.innerRef}
                        {...provided.draggableProps}
                 >
                     <Stack direction="row" justifyContent="space-between" {...provided.dragHandleProps} sx={{ '&:hover': { bgcolor: 'lightblue' } }}>
-                        <h3>{list.title} - {index.toString()} - {index}</h3>
+                        <h3>{list.title} - {list.id + '-' + index.toString()}</h3>
                         <OptionsMenu
                             text="list"
                             onEdit={onEditListHandler}
@@ -42,9 +46,17 @@ const BoardList = ({ list, index }) => {
                         ></OptionsMenu>
                     </Stack>
 
-                    {list.tasks?.map((item) => (
-                        <BoardListCard key={item.id} task={item}></BoardListCard>
-                    ))}
+                        <Droppable droppableId={`${list.id}-${index.toString()}`} type={"CARD"}>
+                            {(provided) => (
+                                <Box ref={provided.innerRef} {...provided.droppableProps} sx={{minHeight: "50px"}}>
+
+                                    {list.tasks?.map((item, index) => (
+                                        <BoardListCard key={item.id} task={item} index={index}/>
+                                    ))}
+                                    {provided.placeholder}
+                                </Box>
+                            )}
+                        </Droppable>
                 </Paper>
             ) }
 

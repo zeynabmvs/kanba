@@ -1,6 +1,6 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentBoard, reorderLists } from "../features/boardsSlice";
+import { selectCurrentBoard, reorderLists, reorderTask } from "../features/boardsSlice";
 import { openModal } from "../features/modalSlice";
 import BoardList from "./BoardList";
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
@@ -17,10 +17,25 @@ const Board = () => {
       const { destination, source } = dropResult
 
       if (!destination) return;
-      if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
       console.log('onDragEnd', dropResult)
-      dispatch(reorderLists({sourceIndex: source.index, destinationIndex: destination.index, sourceList: currentBoard.lists[source.index]}))
+      console.log(destination.droppableId)
+      if (dropResult.type === "LIST") {
+          console.log("reordering list")
+          if (destination.droppableId === source.droppableId && destination.index === source.index) return;
+          dispatch(reorderLists({sourceIndex: source.index, destinationIndex: destination.index, sourceList: currentBoard.lists[source.index]}))
+      } else if (dropResult.type === 'CARD') {
+          const sourceListIndex = parseInt(source.droppableId.split('-').pop(), 10)
+          const destinationListIndex = parseInt(destination.droppableId.split('-').pop(), 10)
+          dispatch(reorderTask({
+              sourceIndex: source.index,
+              destinationIndex: destination.index,
+              sourceListIndex: sourceListIndex,
+              destinationListIndex:destinationListIndex,
+              task: currentBoard.lists[sourceListIndex].tasks[source.index]
+          }))
+
+      }
   }
   return (
     <>
@@ -42,7 +57,7 @@ const Board = () => {
       <DragDropContext onDragEnd={onDragEnd}>
           <Stack direction="row">
 
-              <Droppable droppableId="lists-container" direction={"horizontal"}>
+              <Droppable droppableId="lists-container" direction={"horizontal"} type={"LIST"}>
                   {(provided) => (
                       <Stack direction={"row"} ref={provided.innerRef} {...provided.droppableProps}>
                           {currentBoard?.lists?.map((list, index) => (
@@ -51,7 +66,6 @@ const Board = () => {
                           {provided.placeholder}
                       </Stack>
                   )}
-
             </Droppable>
 
             {currentBoard?.lists.length < 5 && (
