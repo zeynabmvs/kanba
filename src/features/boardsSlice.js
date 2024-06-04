@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { produce } from "immer";
 import { initialData } from "../app/data";
-import { generateId } from "../utils/index";
+import { v4 as uuidv4 } from "uuid"
 
 const findTaskIndexById = (state, taskId) => {
   for (
@@ -46,7 +46,7 @@ export const boardsSlice = createSlice({
   reducers: {
     addBoard: (state, action) => {
       state.boards.push({
-        id: generateId(),
+        id: uuidv4(),
         title: action.payload.title,
         lists: [],
       });
@@ -80,7 +80,7 @@ export const boardsSlice = createSlice({
 
       const newState = produce(state.boards, (draftState) => {
         draftState[targetBoardIndex].lists.push({
-          id: generateId(),
+          id: uuidv4(),
           title: list.title,
           tasks: [],
         });
@@ -139,7 +139,7 @@ export const boardsSlice = createSlice({
     editTask: (state, action) => {
       const { newTask, oldTask } = action.payload;
       const taskIndexes = findTaskIndexById(state, oldTask.id);
-
+      console.log(newTask.list)
       const task = {
         id: oldTask.id,
         title: newTask?.title,
@@ -147,20 +147,31 @@ export const boardsSlice = createSlice({
         color: newTask?.color || "#FFFFFF",
         status: newTask?.status || "notCompleted",
         subtasks: newTask.subtasks.map((item) => ({
-          id: generateId(),
+          id: uuidv4(),
           title: item.title,
           status: item.status,
         })),
       };
+
       if (taskIndexes) {
         const [targetBoardIndex, targetListIndex, targetTaskIndex] =
           taskIndexes;
+
         const newState = produce(state.boards, (draftState) => {
-          draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
-            targetTaskIndex,
-            1,
-            task
-          );
+          if (newTask.list === targetListIndex) {
+            draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
+                targetTaskIndex,
+                1,
+                task
+            );
+          } else {
+            draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
+                targetTaskIndex,
+                1
+            );
+            draftState[targetBoardIndex].lists[newTask.list].tasks.push(task);
+          }
+
         });
         return { ...state, boards: newState };
       }
@@ -188,13 +199,13 @@ export const boardsSlice = createSlice({
       const taskData = action.payload;
       const listIndex = taskData?.list || 0;
       const task = {
-        id: generateId(),
+        id: uuidv4(),
         title: taskData.title,
         description: taskData.description,
         color: taskData.color,
         status: taskData.status,
         subtasks: taskData.subtasks.map((item) => ({
-          id: generateId(),
+          id: uuidv4(),
           title: item.title,
           status: item.status,
         })),

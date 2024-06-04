@@ -9,6 +9,7 @@ const EditTask = ({ onClose, detail }) => {
     const task = detail;
 
     const onSubmitHandler = (data, e) => {
+        if (data === task) return null
         dispatch(editTask({ newTask: data, oldTask: task }));
         dispatch(closeModal());
     };
