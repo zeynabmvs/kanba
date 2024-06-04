@@ -25,15 +25,15 @@ const BoardList = ({ list, index }) => {
     const onEditListHandler = () => {
       dispatch(openModal({ type: "editList", detail: list }));
     };
-  
+
+  // TODO: change lightblue color, use mui color
     return (
         <Draggable draggableId={list.id} index={index}>
             {(provided, snapshot) => (
-                <Paper elevation={3} sx={{ padding: 1, margin: 1, width: "200px" }} className={`${snapshot.isDragging} && "is-dragging "`} ref={provided.innerRef}
-                       {...provided.dragHandleProps}
+                <Paper elevation={3} sx={{ padding: 1, margin: 1, width: "200px", backgroundColor: snapshot.isDragging ? 'lightblue' : 'white', }} className={`${snapshot.isDragging && "is-dragging " }`} ref={provided.innerRef}
                        {...provided.draggableProps}
                 >
-                    <Stack direction="row" justifyContent="space-between">
+                    <Stack direction="row" justifyContent="space-between" {...provided.dragHandleProps} sx={{ '&:hover': { bgcolor: 'lightblue' } }}>
                         <h3>{list.title} - {index.toString()} - {index}</h3>
                         <OptionsMenu
                             text="list"
