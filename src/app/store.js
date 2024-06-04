@@ -13,19 +13,24 @@ const rootReducer = combineReducers({
 });
 
 
-const persistConfig = {
-  key: 'kanbanAppState',
-  storage,
-};
+// const persistConfig = {
+//   key: 'kanbanAppState',
+//   storage,
+// };
+//
+// // Create a persisted reducer
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+//
+// export const store = configureStore({
+//   reducer: persistedReducer,
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: false,
+//     }),
+// });
+// export const persistor = persistStore(store);
 
-// Create a persisted reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+  reducer: rootReducer
 });
-export const persistor = persistStore(store);
