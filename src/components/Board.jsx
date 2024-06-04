@@ -18,10 +18,7 @@ const Board = () => {
 
       if (!destination) return;
 
-      console.log('onDragEnd', dropResult)
-      console.log(destination.droppableId)
       if (dropResult.type === "LIST") {
-          console.log("reordering list")
           if (destination.droppableId === source.droppableId && destination.index === source.index) return;
           dispatch(reorderLists({sourceIndex: source.index, destinationIndex: destination.index, sourceList: currentBoard.lists[source.index]}))
       } else if (dropResult.type === 'CARD') {

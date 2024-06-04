@@ -17,7 +17,6 @@ const findTaskIndexById = (state, taskId) => {
     ) {
       const list = board.lists[targetListIndex];
       const taskIndex = list.tasks.findIndex((item) => item.id === taskId);
-      // console.log(taskIndex)
 
       if (taskIndex > -1) {
         return [targetBoardIndex, targetListIndex, taskIndex];
@@ -211,39 +210,24 @@ export const boardsSlice = createSlice({
     },
     reorderLists: (state, action) => {
       const {sourceIndex, destinationIndex, sourceList} =action.payload
-      console.log(sourceIndex, destinationIndex)
-
-      console.log(sourceList)
-
       const currentBoardIndex = state.boards.findIndex(
           (item) => item.id === state.currentBoardId
       );
-      console.log(currentBoardIndex)
-
       const nextState = produce(state.boards, (draftState) => {
         draftState[currentBoardIndex].lists.splice(sourceIndex, 1 )
-        // console.log(x[0].content)
-
         draftState[currentBoardIndex].lists.splice(destinationIndex, 0, sourceList)
-
       })
 
       return {...state, boards:nextState}
     },
     reorderTask: (state, action) => {
-      console.log(action.payload)
       const {sourceIndex, destinationIndex, sourceListIndex, destinationListIndex, task} = action.payload
       const currentBoardIndex = state.boards.findIndex(
           (item) => item.id === state.currentBoardId
       );
-      // sourceListIndex =
-
       const nextState = produce(state.boards, (draftState) => {
         draftState[currentBoardIndex].lists[sourceListIndex].tasks.splice(sourceIndex, 1 )
-        // console.log(x[0].content)
-
         draftState[currentBoardIndex].lists[destinationListIndex].tasks.splice(destinationIndex, 0, task)
-
       })
 
       return {...state, boards:nextState}

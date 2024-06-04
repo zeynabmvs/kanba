@@ -63,7 +63,6 @@ export default function Dashboard() {
     const onEditBoardHandler = () => {
         dispatch(openModal({ type: "editBoard" }));
     };
-    console.log(board)
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />

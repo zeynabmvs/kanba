@@ -8,7 +8,6 @@ const BoardListCard = ({ task, index }) => {
   const dispatch = useDispatch();
 
   const onShowTasksDetail = () => {
-    console.group("iii");
     dispatch(openModal({ type: "taskDetail", detail: task }));
   };
 
