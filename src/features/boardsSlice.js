@@ -41,7 +41,7 @@ const findSubtaskInexes = (state, subtask, task) => {
 export const boardsSlice = createSlice({
   name: "boards",
   initialState: {
-    currentBoardId: initialData.length ? initialData.boards[0].id: 0,
+    currentBoardId: initialData.boards.length ? initialData.boards[0].id : null,
     boards: initialData.boards,
   },
   reducers: {
@@ -121,7 +121,7 @@ export const boardsSlice = createSlice({
       return { ...state, boards: newState };
     },
     deleteTask: (state, action) => {
-      const task = action.payload;
+      const {task} = action.payload;
       const taskIndexes = findTaskIndexById(state, task.id);
       if (taskIndexes) {
         const [targetBoardIndex, targetListIndex, targetTaskIndex] =
@@ -257,6 +257,7 @@ export const selectBoards = (state) => state.boards.boards;
 export const selectCurrentBoardId = (state) => state.boards.currentBoardId;
 export const selectCurrentBoard = (state) =>
   state.boards.boards.find((item) => item.id === state.boards.currentBoardId);
+
 
 export const {
   deleteBoard,

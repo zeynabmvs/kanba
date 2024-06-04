@@ -18,7 +18,7 @@ const TaskDetail = ({ detail }) => {
   const [subtasksStatus, setSubtasksStatus] = useState(initialCheckboxes);
 
   const onDelete = () => {
-    dispatch(deleteTask(detail));
+    dispatch(deleteTask({detail: detail}));
   };
 
   const  onDeleteHandler= () => {

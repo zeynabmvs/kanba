@@ -32,7 +32,7 @@ const BoardList = ({ list, index }) => {
         <Draggable draggableId={list.id} index={index}>
             {(provided, snapshot) => (
                 <Paper elevation={3}
-                       sx={{ padding: 1, margin: 1, width: "200px", backgroundColor: snapshot.isDragging ? 'lightblue' : 'white', }}
+                       sx={{ padding: 1, margin: 1, width: "200px", backgroundColor: snapshot.isDragging ? 'lightblue' : 'white', alignSelf: "flex-start"}}
                        className={`${snapshot.isDragging && "is-dragging " }`}
                        ref={provided.innerRef}
                        {...provided.draggableProps}

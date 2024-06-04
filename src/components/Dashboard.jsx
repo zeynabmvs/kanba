@@ -49,13 +49,13 @@ export default function Dashboard() {
         dispatch(openModal({ type: "addTask" }));
     };
     const onDelete=()=>{
-        dispatch(deleteBoard(board));
+        dispatch(deleteBoard({board: board}));
 
     }
 
     const onDeleteBoardHandler = () => {
         dispatch(openModal({ type: "confirmDelete", detail: {
-            type: "board", onDelete: onDelete, message: `Are you sure you want to delete board ${board.title} and all its data?`
+            type: "board", onDelete: onDelete, message: `Are you sure you want to delete board ${board?.title} and all its data?`
             } }));
 
 
@@ -63,7 +63,7 @@ export default function Dashboard() {
     const onEditBoardHandler = () => {
         dispatch(openModal({ type: "editBoard" }));
     };
-
+    console.log(board)
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -92,9 +92,9 @@ export default function Dashboard() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-              {board.title}
+              {board?.title}
           </Typography>
-<Button variant="primary" onClick={onAddTaskHandler} disabled={board?.lists.length <= 0}>Add Task</Button>
+            <Button variant="primary" onClick={onAddTaskHandler} disabled={!board || board?.lists.length === 0}>Add Task</Button>
             <OptionsMenu
                 text="board"
                 onEdit={onEditBoardHandler}
@@ -119,7 +119,7 @@ export default function Dashboard() {
         <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Board></Board>
-        </Container>{" "}
+        </Container>
       </Box>
     </Box>
   );

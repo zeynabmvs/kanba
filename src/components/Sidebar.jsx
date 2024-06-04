@@ -18,7 +18,6 @@ import {
 } from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
-import {mainListItems} from "./listItems"
 import { Button } from "@mui/material";
 
 const drawerWidth = 240;
@@ -78,7 +77,7 @@ const Sidebar = ({ open, toggleDrawer }) => {
       </Toolbar>
       <Divider />
       <List component="nav">
-        {boards.map((item) => (
+        {boards?.map((item) => (
           <Fragment key={item.id}>
             <ListItemButton selected={currentBoardId === item.id} onClick={() => onChangeBoardHandler(item)}>
               <ListItemIcon>
