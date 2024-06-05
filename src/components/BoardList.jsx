@@ -4,7 +4,8 @@ import Box from "@mui/material/Box";
 import {useDispatch} from "react-redux";
 import {openModal} from "../features/modalSlice";
 import BoardListCard from "./BoardListCard";
-import {DragIndicator} from "@mui/icons-material";
+import OptionsMenu from "./OptionsMenu.jsx";
+// import {DragIndicator} from "@mui/icons-material";
 
 const BoardList = ({list, index}) => {
 	const dispatch = useDispatch();
@@ -50,17 +51,17 @@ const BoardList = ({list, index}) => {
 						justifyContent="space-between"
 						// sx={{"&:hover": {bgcolor: "lightblue"},}}
 					>
-						<Typography variant={"h6"}>
+						<Typography component="h3" variant={"h6"} {...provided.dragHandleProps}>
 							{list.title}
 						</Typography>
-						<Box  {...provided.dragHandleProps}>
-							<DragIndicator color={"primary"}/>
-						</Box>
-						{/*<OptionsMenu*/}
-						{/*	text="list"*/}
-						{/*	onEdit={onEditListHandler}*/}
-						{/*	onDelete={onDeleteListHandler}*/}
-						{/*></OptionsMenu>*/}
+						{/*<Box  >*/}
+						{/*	<DragIndicator color={"primary"}/>*/}
+						{/*</Box>*/}
+						<OptionsMenu
+							text="list"
+							onEdit={onEditListHandler}
+							onDelete={onDeleteListHandler}
+						></OptionsMenu>
 					</Stack>
 					
 					<Droppable
@@ -72,7 +73,7 @@ const BoardList = ({list, index}) => {
 							<Box
 								ref={provided.innerRef}
 								{...provided.droppableProps}
-								sx={{overflow: "auto"}}
+								sx={{minHeight: "60px"}}
 							>
 								{list.tasks?.map((item, index) => (
 									<BoardListCard key={item.id} task={item} index={index}/>

@@ -84,7 +84,7 @@ export default function Dashboard() {
 					</IconButton>
 					<Typography
 						component="h1"
-						variant="h6"
+						variant="h5"
 						color="inherit"
 						noWrap
 						sx={{flexGrow: 1}}
@@ -92,11 +92,12 @@ export default function Dashboard() {
 						{board?.title}
 					</Typography>
 					<Button
-						variant="primary"
+						variant="outlined"
 						onClick={onAddTaskHandler}
 						disabled={!board || board?.lists.length === 0}
+						sx={{color: "primary.contrastText"}}
 					>
-						Add Task
+						+ Add Task
 					</Button>
 					<OptionsMenu
 						text="board"

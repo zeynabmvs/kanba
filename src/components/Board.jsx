@@ -88,8 +88,8 @@ const Board = () => {
 					</Droppable>
 					
 					{currentBoard?.lists.length < 5 && (
-						<Button onClick={() => onAddListHandler()} variant={"contained"} sx={{margin: "8px", width: "250px"}}>Add
-							new List</Button>
+						<Button onClick={() => onAddListHandler()} variant={"outlined"} sx={{margin: "8px", width: "250px"}}
+										color="secondary">+ new List</Button>
 					)}
 				</Stack>
 			</DragDropContext>
