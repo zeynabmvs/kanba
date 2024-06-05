@@ -116,7 +116,7 @@ export default function Dashboard() {
 							: theme.palette.grey[900],
 					flexGrow: 1,
 					height: "100vh",
-					overflow: "hidden",
+					overflow: "auto"
 				}}
 			>
 				<Toolbar/>

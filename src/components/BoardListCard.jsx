@@ -3,6 +3,8 @@ import {Checkbox, Paper, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {editTask} from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
+import Box from "@mui/material/Box";
+import {useMemo} from "react";
 
 const BoardListCard = ({task, index}) => {
 	const dispatch = useDispatch();
@@ -19,6 +21,11 @@ const BoardListCard = ({task, index}) => {
 		);
 	};
 	
+	const subtasksCount = task?.subtasks.length
+	const subtasksCompletedCount = useMemo(() => {
+		return task?.subtasks.filter(i => i.status === 'completed').length
+	}, [task.subtasks])
+	
 	return (
 		<Draggable draggableId={task.id} index={index}>
 			{(provided, snapshot) => (
@@ -29,8 +36,8 @@ const BoardListCard = ({task, index}) => {
 						// margin: 5,
 						border: "1px solid #ddd",
 						borderRadius: 2,
-						minHeight: "100px",
 						mb: "8px",
+						cursor: "pointer"
 					}}
 					className={`${snapshot.isDragging && "is-dragging-card "}`}
 					ref={provided.innerRef}
@@ -42,14 +49,22 @@ const BoardListCard = ({task, index}) => {
 							checked={task.status === "completed"}
 							onChange={handleStatusChange}
 						/>
-						<Typography
-							variant="body1"
-							className={`${task.status === "completed" ? "line-through" : ""}`}
-							onClick={() => onShowTasksDetail()}
-							sx={{paddingTop: "9px"}}
-						>
-							{task.title} - {index}
-						</Typography>
+						
+						<Box onClick={() => onShowTasksDetail()} sx={{flexGrow: 1, minHeight: "70px",}}>
+							<Typography
+								variant="body1"
+								className={`${task.status === "completed" ? "line-through" : ""}`}
+								sx={{paddingTop: "9px"}}
+							>
+								{task.title}
+							</Typography>
+							<Box>
+								<Typography variant={"body2"}>
+									{`${subtasksCompletedCount} of ${subtasksCount} is completed`}
+								</Typography>
+							</Box>
+						</Box>
+					
 					</Stack>
 				</Paper>
 			)}
