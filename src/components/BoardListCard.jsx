@@ -23,7 +23,7 @@ const BoardListCard = ({task, index}) => {
 		<Draggable draggableId={task.id} index={index}>
 			{(provided, snapshot) => (
 				<Paper
-					elevation={0}
+					elevation={1}
 					sx={{
 						padding: 1,
 						// margin: 5,
