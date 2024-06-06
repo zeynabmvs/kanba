@@ -1,18 +1,18 @@
 import {Draggable} from "@hello-pangea/dnd";
-import {Card, Checkbox, Typography} from "@mui/material";
+import {Card, Checkbox, Chip, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {editTask} from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
 import {useMemo, useState} from "react";
 import {styled} from '@mui/material/styles';
 // import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Box from "@mui/material/Box";
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -56,26 +56,40 @@ const BoardListCard = ({task, index}) => {
 	return (
 		<Draggable draggableId={task.id} index={index}>
 			{(provided, snapshot) => (
-				<Card sx={{maxWidth: 345, mb: "8px",}}
+				<Card sx={{maxWidth: 345, mb: "16px",}}
+							variant="outlined"
 							className={`${snapshot.isDragging && "is-dragging-card "}`}
 							ref={provided.innerRef}
 							{...provided.draggableProps}
 				
 				>
-					<CardHeader
-						onClick={onShowTasksDetail}
-						{...provided.dragHandleProps}
-						action={
-							<Checkbox
-								checked={task.status === "completed"}
-								onChange={handleStatusChange}
-							/>
-						}
-						title={<Typography component={"h4"} variant={"body1"} sx={{fontWeight: "600"}}>{task.title}</Typography>}
-						subheader={<Typography
-							variant="caption">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
-					/>
+					
+					<Stack direction="row" justifyContent="space-between" alignItems="flex-start" padding="8px">
+						<Box
+							{...provided.dragHandleProps}
+							onClick={onShowTasksDetail}
+							sx={{cursor: "pointer"}}
+						>
+							{<Typography component={"h4"} variant={"body1"} sx={{fontWeight: "600"}}>{task.title}</Typography>}
+							{<Typography
+								variant="caption">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
+						</Box>
+						
+						<Checkbox
+							checked={task.status === "completed"}
+							onChange={handleStatusChange}
+						/>
+					
+					</Stack>
+					
+					
 					<CardActions disableSpacing>
+						{task.priority === 'low' && <Chip variant="outlined" label={task?.priority} color="success" size="small"/>}
+						{task.priority === 'medium' &&
+							<Chip variant="outlined" label={task?.priority} color="warning" size="small"/>}
+						{task.priority === 'high' && <Chip variant="outlined" label={task?.priority} color="error" size="small"/>}
+						
+						
 						<ExpandMore
 							expand={expanded}
 							onClick={handleExpandClick}
@@ -91,34 +105,6 @@ const BoardListCard = ({task, index}) => {
 								{task.description}
 							</Typography>
 						</CardContent>
-						
-						{/*<CardContent>*/}
-						{/*	<Typography paragraph>Method:</Typography>*/}
-						{/*	<Typography paragraph>*/}
-						{/*		Heat 1/2 cup of the broth in a pot until simmering, add saffron and set*/}
-						{/*		aside for 10 minutes.*/}
-						{/*	</Typography>*/}
-						{/*	<Typography paragraph>*/}
-						{/*		Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over*/}
-						{/*		medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring*/}
-						{/*		occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a*/}
-						{/*		large plate and set aside, leaving chicken and chorizo in the pan. Add*/}
-						{/*		pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,*/}
-						{/*		stirring often until thickened and fragrant, about 10 minutes. Add*/}
-						{/*		saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.*/}
-						{/*	</Typography>*/}
-						{/*	<Typography paragraph>*/}
-						{/*		Add rice and stir very gently to distribute. Top with artichokes and*/}
-						{/*		peppers, and cook without stirring, until most of the liquid is absorbed,*/}
-						{/*		15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and*/}
-						{/*		mussels, tucking them down into the rice, and cook again without*/}
-						{/*		stirring, until mussels have opened and rice is just tender, 5 to 7*/}
-						{/*		minutes more. (Discard any mussels that don&apos;t open.)*/}
-						{/*	</Typography>*/}
-						{/*	<Typography>*/}
-						{/*		Set aside off of the heat to let rest for 10 minutes, and then serve.*/}
-						{/*	</Typography>*/}
-						{/*</CardContent>*/}
 					</Collapse>
 				</Card>
 			)}

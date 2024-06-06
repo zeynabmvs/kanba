@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const drawerWidth = 240;
 
@@ -90,7 +91,7 @@ const Sidebar = ({open, toggleDrawer}) => {
 						onClick={onAddBoardHandler}
 					>
 						<ListItemIcon>
-							<DashboardIcon/>
+							<AddCircleIcon/>
 						</ListItemIcon>
 						<ListItemText primary="+ Create New Board" primaryTypographyProps={{
 							color: "primary"

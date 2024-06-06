@@ -32,9 +32,12 @@ const BoardList = ({list, index}) => {
 			{(provided, snapshot) => (
 				<Paper
 					// component={"li"}
-					elevation={3}
+					// elevation={3}
+					// variant={""}
 					sx={{
-						padding: 1,
+						borderRadius: "8px",
+						// paddingLeft: "16px",
+						// paddingRight: "16px",
 						margin: 1,
 						width: "250px",
 						// backgroundColor: snapshot.isDragging ? "lightblue" : theme.backgroundColor,
@@ -49,9 +52,22 @@ const BoardList = ({list, index}) => {
 					<Stack
 						direction="row"
 						justifyContent="space-between"
-						// sx={{"&:hover": {bgcolor: "lightblue"},}}
+						sx={{
+							pt: "16px",
+							pl: "16px",
+							transition: "all 300ms ease-in-out",
+							"&:hover": {
+								bgcolor: (theme) =>
+									theme.palette.mode === "light"
+										? theme.palette.grey[100]
+										: theme.palette.grey[800]
+							},
+							borderTopRightRadius: "8px",
+							borderTopLeftRadius: "8px"
+						}}
 					>
-						<Typography component="h3" variant={"h6"} {...provided.dragHandleProps}>
+						<Typography component="h3" variant={"h6"}
+												sx={{'&:hover': {color: 'primary'}, width: "100%"}} {...provided.dragHandleProps}>
 							{list.title}
 						</Typography>
 						{/*<Box  >*/}
@@ -73,7 +89,10 @@ const BoardList = ({list, index}) => {
 							<Box
 								ref={provided.innerRef}
 								{...provided.droppableProps}
-								sx={{minHeight: "60px"}}
+								sx={{
+									minHeight: "60px", mx: "16px"
+								}}
+							
 							>
 								{list.tasks?.map((item, index) => (
 									<BoardListCard key={item.id} task={item} index={index}/>
