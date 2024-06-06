@@ -82,7 +82,7 @@ const Sidebar = ({open, toggleDrawer}) => {
 							<ListItemIcon>
 								<DashboardIcon/>
 							</ListItemIcon>
-							<ListItemText primary={item.title}/>
+							<ListItemText primary={item.title} primaryTypographyProps={{fontSize: '16px', fontWeight: 'medium'}}/>
 						</ListItemButton>
 					</Fragment>
 				))}
@@ -94,6 +94,8 @@ const Sidebar = ({open, toggleDrawer}) => {
 							<AddCircleIcon/>
 						</ListItemIcon>
 						<ListItemText primary="+ Create New Board" primaryTypographyProps={{
+							fontSize: '16px',
+							fontWeight: 'medium',
 							color: "primary"
 						}}/>
 					</ListItemButton>

@@ -60,7 +60,7 @@ const TaskDetail = ({detail}) => {
 						onDelete={onDeleteHandler}
 					></OptionsMenu>
 				</Stack>
-				<Typography variant="body1" sx={{mb: "16px"}}>{task.description}</Typography>
+				<Typography variant="body1" color="text.secondary" sx={{mb: "16px"}}>{task.description}</Typography>
 				
 				{task?.subtasks.length > 0 && (
 					<Box

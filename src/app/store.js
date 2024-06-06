@@ -1,14 +1,14 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import boardsReducer from "../features/boardsSlice";
 import modalReducer from "../features/modalSlice";
-import themeReducer from "../features/themeSlice";
+import colorModeReducer from "../features/colorModeSlice";
 import storage from "redux-persist/lib/storage";
 import {persistReducer, persistStore} from "redux-persist";
 
 const rootReducer = combineReducers({
 	boards: boardsReducer,
 	modal: modalReducer,
-	theme: themeReducer,
+	colorMode: colorModeReducer,
 });
 
 

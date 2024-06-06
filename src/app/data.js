@@ -357,7 +357,7 @@ export const initialData = {
 					tasks: [
 						{
 							id: uuidv4(),
-							title: "Find new notebook Find new notebook Find new notebook",
+							title: "Find new notebook",
 							description: "Need to buy a new notebook for work.",
 							color: "red",
 							status: "notCompleted",

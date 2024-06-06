@@ -73,16 +73,15 @@ const BoardListCard = ({task, index}) => {
 						>
 							{<Typography component={"h4"} variant={"body1"} sx={{fontWeight: "600"}}>{task.title}</Typography>}
 							{<Typography
-								variant="caption">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
+								variant="caption"
+								color="text.secondary">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
 						</Box>
 						
 						<Checkbox
 							checked={task.status === "completed"}
 							onChange={handleStatusChange}
 						/>
-					
 					</Stack>
-					
 					
 					<CardActions disableSpacing>
 						<PriorityChip priority={task?.priority}/>

@@ -40,7 +40,7 @@ const BoardList = ({list, index}) => {
 						margin: 1,
 						width: "250px",
 						backgroundColor: snapshot.isDragging && onHoverBg,
-						transition: "all 300ms ease-in-out",
+						// transition: "all 300ms ease-in-out",
 						alignSelf: "flex-start",
 						listStyleType: "none",
 					}}
@@ -56,7 +56,7 @@ const BoardList = ({list, index}) => {
 							pt: "16px",
 							pl: "16px",
 							mb: "8px",
-							transition: "all 300ms ease-in-out",
+							// transition: "all 300ms ease-in-out",
 							alignItems: "center",
 							"&:hover": {
 								bgcolor: onHoverBg
