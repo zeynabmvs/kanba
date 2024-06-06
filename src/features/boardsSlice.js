@@ -203,6 +203,7 @@ export const boardsSlice = createSlice({
 				description: taskData.description,
 				color: taskData.color,
 				status: taskData.status,
+				priority: "low",  //TODO get it from form
 				subtasks: taskData.subtasks.map((item) => ({
 					id: uuidv4(),
 					title: item.title,

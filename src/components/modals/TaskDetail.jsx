@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 import {editSubtask} from "../../features/boardsSlice";
 import {openModal} from "../../features/modalSlice";
 import OptionsMenu from "../OptionsMenu";
+import PriorityChip from "../PriorityChip.jsx";
 
 const TaskDetail = ({detail}) => {
 	const dispatch = useDispatch();
@@ -51,22 +52,25 @@ const TaskDetail = ({detail}) => {
 	return (
 		<>
 			<Box>
-				<Stack direction="row" justifyContent="space-between">
-					<Typography variant="h3">{task.title}</Typography>
+				<Stack direction="row" justifyContent="space-between" alignItems='flex-start' sx={{mb: "16px",}}>
+					<Typography variant="h5" component="h3">{task.title}</Typography>
 					<OptionsMenu
 						text="task"
 						onEdit={onEditHandler}
 						onDelete={onDeleteHandler}
 					></OptionsMenu>
 				</Stack>
-				<Typography variant="body">{task.description}</Typography>
+				<Typography variant="body1" sx={{mb: "16px"}}>{task.description}</Typography>
 				
 				{task?.subtasks.length > 0 && (
 					<Box
-						sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
+						// sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
 					>
+						<Typography variant="body2">Subtasks: </Typography>
+						
 						<List
-							sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
+							sx={{mb: "32px"}}
+							// sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
 						>
 							{task?.subtasks.map((subtask, index) => {
 								const labelId = `checkbox-list-label-${index}`;
@@ -93,6 +97,13 @@ const TaskDetail = ({detail}) => {
 								);
 							})}
 						</List>
+						
+						<Stack direction="row" alignItems="center">
+							<Typography variant="body2" sx={{mr: "16px"}}>Priority: </Typography>
+							<PriorityChip priority={detail?.priority}/>
+						
+						</Stack>
+					
 					</Box>
 				)}
 			</Box>

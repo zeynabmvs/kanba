@@ -5,10 +5,15 @@ import {useDispatch} from "react-redux";
 import {openModal} from "../features/modalSlice";
 import BoardListCard from "./BoardListCard";
 import OptionsMenu from "./OptionsMenu.jsx";
-// import {DragIndicator} from "@mui/icons-material";
+import {useTheme} from '@mui/material/styles';
 
 const BoardList = ({list, index}) => {
 	const dispatch = useDispatch();
+	const theme = useTheme();
+	
+	const onHoverBg = theme.palette.mode === "light"
+		? theme.palette.grey[100]
+		: theme.palette.grey[800]
 	
 	const onDeleteListHandler = () => {
 		dispatch(
@@ -26,21 +31,16 @@ const BoardList = ({list, index}) => {
 		dispatch(openModal({type: "editList", detail: list}));
 	};
 	
-	// TODO: change lightblue color, use mui color
 	return (
 		<Draggable draggableId={list.id} index={index}>
 			{(provided, snapshot) => (
 				<Paper
-					// component={"li"}
-					// elevation={3}
-					// variant={""}
 					sx={{
 						borderRadius: "8px",
-						// paddingLeft: "16px",
-						// paddingRight: "16px",
 						margin: 1,
 						width: "250px",
-						// backgroundColor: snapshot.isDragging ? "lightblue" : theme.backgroundColor,
+						backgroundColor: snapshot.isDragging && onHoverBg,
+						transition: "all 300ms ease-in-out",
 						alignSelf: "flex-start",
 						listStyleType: "none",
 					}}
@@ -55,12 +55,11 @@ const BoardList = ({list, index}) => {
 						sx={{
 							pt: "16px",
 							pl: "16px",
+							mb: "8px",
 							transition: "all 300ms ease-in-out",
+							alignItems: "center",
 							"&:hover": {
-								bgcolor: (theme) =>
-									theme.palette.mode === "light"
-										? theme.palette.grey[100]
-										: theme.palette.grey[800]
+								bgcolor: onHoverBg
 							},
 							borderTopRightRadius: "8px",
 							borderTopLeftRadius: "8px"
@@ -70,9 +69,6 @@ const BoardList = ({list, index}) => {
 												sx={{'&:hover': {color: 'primary'}, width: "100%"}} {...provided.dragHandleProps}>
 							{list.title}
 						</Typography>
-						{/*<Box  >*/}
-						{/*	<DragIndicator color={"primary"}/>*/}
-						{/*</Box>*/}
 						<OptionsMenu
 							text="list"
 							onEdit={onEditListHandler}
@@ -90,9 +86,9 @@ const BoardList = ({list, index}) => {
 								ref={provided.innerRef}
 								{...provided.droppableProps}
 								sx={{
-									minHeight: "60px", mx: "16px"
+									minHeight: "60px",
+									mx: "16px",
 								}}
-							
 							>
 								{list.tasks?.map((item, index) => (
 									<BoardListCard key={item.id} task={item} index={index}/>

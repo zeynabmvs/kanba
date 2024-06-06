@@ -1,5 +1,5 @@
 import {Draggable} from "@hello-pangea/dnd";
-import {Card, Checkbox, Chip, Stack, Typography} from "@mui/material";
+import {Card, Checkbox, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {editTask} from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from "@mui/material/Box";
+import PriorityChip from "./PriorityChip.jsx";
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -84,12 +85,7 @@ const BoardListCard = ({task, index}) => {
 					
 					
 					<CardActions disableSpacing>
-						{task.priority === 'low' && <Chip variant="outlined" label={task?.priority} color="success" size="small"/>}
-						{task.priority === 'medium' &&
-							<Chip variant="outlined" label={task?.priority} color="warning" size="small"/>}
-						{task.priority === 'high' && <Chip variant="outlined" label={task?.priority} color="error" size="small"/>}
-						
-						
+						<PriorityChip priority={task?.priority}/>
 						<ExpandMore
 							expand={expanded}
 							onClick={handleExpandClick}
