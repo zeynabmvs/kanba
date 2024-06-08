@@ -12,8 +12,8 @@ const BoardList = ({list, index}) => {
 	const theme = useTheme();
 	
 	const onHoverBg = theme.palette.mode === "light"
-		? theme.palette.grey[100]
-		: theme.palette.grey[800]
+		? theme.palette.primary.light
+		: theme.palette.primary.dark
 	
 	const onDeleteListHandler = () => {
 		dispatch(
@@ -40,7 +40,6 @@ const BoardList = ({list, index}) => {
 						margin: 1,
 						width: "250px",
 						backgroundColor: snapshot.isDragging && onHoverBg,
-						// transition: "all 300ms ease-in-out",
 						alignSelf: "flex-start",
 						listStyleType: "none",
 					}}

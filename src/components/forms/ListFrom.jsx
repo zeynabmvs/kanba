@@ -1,4 +1,4 @@
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, Stack, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
 
 const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
@@ -12,13 +12,13 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 		<Box
 			component="form"
 			sx={{
-				"& .MuiTextField-root": {m: 1, width: "25ch"},
+				"& .MuiTextField-root": {mb: 1, width: "100%"},
 			}}
 			noValidate
 			autoComplete="off"
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<div>
+			<div style={{marginBottom: "24px"}}>
 				<TextField
 					{...register("title", {
 						required: "Required",
@@ -33,18 +33,18 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 					variant="outlined"
 					type="text"
 					helperText={
-						errors?.title ? errors?.title?.message : "Max. length is 50"
+						errors?.title && errors?.title?.message
 					}
 				/>
 			</div>
-			<div>
-				<Button variant="contained" type="submit">
+			<Stack direction="row" sx={{gap: "16px"}}>
+				<Button variant="contained" type="submit" sx={{flexGrow: 1}}>
 					Save
 				</Button>
-				<Button variant="outlined" onClick={onClose} color="error">
+				<Button variant="outlined" onClick={onClose} color="error" sx={{flexGrow: 1}}>
 					Cancel
 				</Button>
-			</div>
+			</Stack>
 		</Box>
 	);
 };

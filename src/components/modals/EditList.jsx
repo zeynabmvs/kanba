@@ -1,9 +1,8 @@
 import {useDispatch} from "react-redux";
 import {editList} from "../../features/boardsSlice";
 import {closeModal} from "../../features/modalSlice";
-
-import {Typography} from "@mui/material";
 import ListFrom from "../forms/ListFrom.jsx";
+import ModalTitle from "./partials/modalTitle.jsx";
 
 const EditList = ({onClose, detail}) => {
 	const dispatch = useDispatch();
@@ -16,7 +15,8 @@ const EditList = ({onClose, detail}) => {
 	
 	return (
 		<>
-			<Typography variant="body1">Edit List {detail.title}</Typography>
+			<ModalTitle text={`Edit List ${detail.title}`}/>
+			
 			<ListFrom
 				onClose={onClose}
 				onSubmit={onSubmit}

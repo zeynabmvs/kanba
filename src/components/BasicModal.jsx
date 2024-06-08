@@ -1,8 +1,8 @@
-import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {closeModal, selectModal} from "../features/modalSlice";
 import {AddBoard, AddList, AddTask, ConfirmDelete, EditBoard, EditList, EditTask, TaskDetail,} from "./modals";
+import {Paper} from "@mui/material";
 
 const ModalContent = ({type, onClose, detail}) => {
 	switch (type) {
@@ -41,8 +41,6 @@ const style = {
 	transform: "translate(-50%, -50%)",
 	width: 600,
 	borderRadius: "16px",
-	bgcolor: "background.paper",
-	// border: "2px solid #000",
 	boxShadow: 24,
 	p: 4,
 };
@@ -63,14 +61,13 @@ export default function BasicModal() {
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
 			>
-				{/*<CssBaseline/>*/}
-				<Box sx={style}>
+				<Paper sx={style}>
 					<ModalContent
 						detail={detail}
 						onClose={onHandleClose}
 						type={type}
 					></ModalContent>
-				</Box>
+				</Paper>
 			</Modal>
 		</div>
 	);

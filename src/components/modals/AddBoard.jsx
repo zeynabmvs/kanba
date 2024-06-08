@@ -1,8 +1,8 @@
-import {Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {addBoard} from "../../features/boardsSlice";
 import {closeModal} from "../../features/modalSlice";
 import BoardFrom from "../forms/BoardFrom";
+import ModalTitle from "./partials/modalTitle.jsx";
 
 const AddBoard = ({onClose}) => {
 	const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const AddBoard = ({onClose}) => {
 	
 	return (
 		<>
-			<Typography variant="h6">Add New Board</Typography>
+			<ModalTitle text="Add New Board"/>
 			<BoardFrom onClose={onClose} onSubmit={onSubmit}/>
 		</>
 	);
