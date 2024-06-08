@@ -1,18 +1,19 @@
 import {Box, Button, TextField} from "@mui/material";
 import {useFieldArray, useForm} from "react-hook-form";
-import {useSelector} from "react-redux";
-import {selectCurrentBoard} from "../../features/boardsSlice.js";
+import {useDispatch} from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
+import {closeModal} from "../../features/modalSlice.js";
 
 const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
-	const currentBoard = useSelector(selectCurrentBoard);
+	// const currentBoard = useSelector(selectCurrentBoard);
+	const dispatch = useDispatch()
 	
 	const {
 		register,
 		handleSubmit,
 		control,
-		formState: {errors},
+		formState: {errors, isDirty},
 	} = useForm({defaultValues: defaultValues});
 	const {fields, append, remove} = useFieldArray({
 		control,
@@ -25,8 +26,12 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 	};
 	
 	const onSubmithandle = (data, e) => {
-		e.target.reset();
-		onSubmit(data);
+		if (isDirty) {
+			onSubmit(data);
+		} else {
+			e.target.reset()
+			dispatch(closeModal())
+		}
 	};
 	
 	return (
@@ -126,18 +131,30 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 						)}
 					</div>
 					
-					<div>
-						<label htmlFor="list">
-							List
-							<select {...register("list", {required: true})}>
-								{currentBoard.lists?.map((list, index) => (
-									<option value={index} key={index}>
-										{list.title}
-									</option>
-								))}
-							</select>
-						</label>
-					</div>
+					{/*<div>*/}
+					{/*	<label htmlFor="list">*/}
+					{/*		List*/}
+					{/*		<select {...register("list", {required: true})}>*/}
+					{/*			{currentBoard.lists?.map((list, index) => (*/}
+					{/*				<option value={index} key={index}>*/}
+					{/*					{list.title}*/}
+					{/*				</option>*/}
+					{/*			))}*/}
+					{/*		</select>*/}
+					{/*	</label>*/}
+					{/*</div>*/}
+					
+					<label htmlFor="priority">
+						priority
+						<select {...register("priority")}>
+							
+							<option value='' key='-'>-</option>
+							<option value='low' key='low'>Low</option>
+							<option value='medium' key='medium'>Medium</option>
+							<option value='high' key='high'>High</option>
+						
+						</select>
+					</label>
 				
 				</div>
 				<div>

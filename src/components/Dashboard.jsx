@@ -92,10 +92,10 @@ export default function Dashboard() {
 						{board?.title}
 					</Typography>
 					<Button
-						variant="outlined"
+						variant="contained"
 						onClick={onAddTaskHandler}
 						disabled={!board || board?.lists.length === 0}
-						sx={{color: "primary.contrastText"}}
+						// sx={{color: "primary.contrastText"}}
 					>
 						+ Add Task
 					</Button>
@@ -107,14 +107,13 @@ export default function Dashboard() {
 				</Toolbar>
 			</AppBar>
 			<Sidebar open={open} toggleDrawer={toggleDrawer}/>
-			
 			<Box
 				component="main"
 				sx={{
-					// backgroundColor: (theme) =>
-					// 	theme.palette.mode === "light"
-					// 		? theme.palette.grey[50]
-					// 		: theme.palette.grey[900],
+					backgroundColor: (theme) =>
+						theme.palette.mode === "light"
+							? theme.palette.customGrey.light
+							: theme.palette.customGrey.darker,
 					flexGrow: 1,
 					height: "100vh",
 					overflow: "auto"

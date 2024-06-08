@@ -5,12 +5,10 @@ import {editTask} from "../features/boardsSlice";
 import {openModal} from "../features/modalSlice";
 import {useMemo, useState} from "react";
 import {styled} from '@mui/material/styles';
-// import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from "@mui/material/Box";
 import PriorityChip from "./PriorityChip.jsx";
@@ -71,7 +69,10 @@ const BoardListCard = ({task, index}) => {
 							onClick={onShowTasksDetail}
 							sx={{cursor: "pointer"}}
 						>
-							{<Typography component={"h4"} variant={"body1"} sx={{fontWeight: "600"}}>{task.title}</Typography>}
+							{<Typography component={"h4"} variant={"body1"} sx={{
+								fontWeight: "600",
+								textDecoration: (task.status === 'completed' ? 'line-through' : 'none')
+							}}>{task.title}</Typography>}
 							{<Typography
 								variant="caption"
 								color="text.secondary">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
@@ -85,14 +86,16 @@ const BoardListCard = ({task, index}) => {
 					
 					<CardActions disableSpacing>
 						<PriorityChip priority={task?.priority}/>
-						<ExpandMore
+						
+						{task.description ? <ExpandMore
 							expand={expanded}
 							onClick={handleExpandClick}
 							aria-expanded={expanded}
 							aria-label="show more"
 						>
 							<ExpandMoreIcon/>
-						</ExpandMore>
+						</ExpandMore> : null}
+					
 					</CardActions>
 					<Collapse in={expanded} timeout="auto" unmountOnExit>
 						<CardContent>

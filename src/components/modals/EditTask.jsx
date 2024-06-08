@@ -20,6 +20,7 @@ const EditTask = ({onClose, detail}) => {
 		description: task.description,
 		color: task.color,
 		status: task.status,
+		priority: task.priority,
 		subtasks: task?.subtasks.map((item) => ({
 			title: item.title,
 			status: item.status,

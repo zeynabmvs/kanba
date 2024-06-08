@@ -144,6 +144,7 @@ export const boardsSlice = createSlice({
 				description: newTask?.description,
 				color: newTask?.color || "#FFFFFF",
 				status: newTask?.status || "notCompleted",
+				priority: newTask?.priority,
 				subtasks: newTask.subtasks.map((item) => ({
 					id: uuidv4(),
 					title: item.title,
@@ -158,6 +159,8 @@ export const boardsSlice = createSlice({
 				console.log(taskIndexes)
 				
 				const newState = produce(state.boards, (draftState) => {
+					
+					// TODO: remove list stuff
 					if (!newTask.list) {
 						draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
 							targetTaskIndex,
@@ -202,8 +205,8 @@ export const boardsSlice = createSlice({
 				title: taskData.title,
 				description: taskData.description,
 				color: taskData.color,
-				status: taskData.status,
-				priority: "low",  //TODO get it from form
+				status: taskData.status ? 'completed' : 'notCompleted',
+				priority: taskData.priority,
 				subtasks: taskData.subtasks.map((item) => ({
 					id: uuidv4(),
 					title: item.title,

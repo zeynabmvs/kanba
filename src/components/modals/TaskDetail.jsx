@@ -18,10 +18,6 @@ const TaskDetail = ({detail}) => {
 	const initialCheckboxes = task?.subtasks.map((i) => i.status === "completed");
 	const [subtasksStatus, setSubtasksStatus] = useState(initialCheckboxes);
 	
-	// const onDelete = () => {
-	//   dispatch(deleteTask({task: detail}));
-	// };
-	
 	const onDeleteHandler = () => {
 		dispatch(openModal({
 			type: "confirmDelete", detail:
@@ -97,15 +93,19 @@ const TaskDetail = ({detail}) => {
 								);
 							})}
 						</List>
-						
-						<Stack direction="row" alignItems="center">
-							<Typography variant="body2" sx={{mr: "16px"}}>Priority: </Typography>
-							<PriorityChip priority={detail?.priority}/>
-						
-						</Stack>
 					
 					</Box>
+				
 				)}
+				
+				<Stack direction="row" alignItems="center" sx={{mb: "8px"}}>
+					<Typography variant="body2" sx={{mr: "16px"}}>Status: {detail.status}</Typography>
+				</Stack>
+				
+				{detail?.priority ? <Stack direction="row" alignItems="center">
+					<Typography variant="body2" sx={{mr: "16px"}}>Priority: </Typography>
+					<PriorityChip priority={detail?.priority}/>
+				</Stack> : null}
 			</Box>
 		</>
 	);

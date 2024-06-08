@@ -361,7 +361,7 @@ export const initialData = {
 							description: "Need to buy a new notebook for work.",
 							color: "red",
 							status: "notCompleted",
-							priority: "high",
+							priority: "",
 							tags: ["urgent", "work", "office", "shopping"],
 							subtasks: [
 								{id: uuidv4(), title: "Research online", status: "completed"},
@@ -426,7 +426,7 @@ export const initialData = {
 							description: "Complete slides for upcoming meeting.",
 							color: "green",
 							status: "notCompleted",
-							priority: "high",
+							priority: "",
 							tags: ["presentation", "meeting", "work"],
 							subtasks: [
 								{id: uuidv4(), title: "Gather data", status: "completed"},

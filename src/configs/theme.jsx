@@ -83,10 +83,13 @@ export const getDesignTokens = (mode) => ({
 			styleOverrides: {
 				root: ({theme}) => ({
 					boxShadow: "none",
-					"& .MuiToolbar-root": {
-						backgroundColor:
-							mode === "dark" ? theme.palette.customGrey.dark : "#fff",
-					},
+					borderBottomWidth: "1px",
+					borderBottomStyle: "solid",
+					borderBottomColor: theme.palette.divider,
+					// "& .MuiToolbar-root": {
+					// 	backgroundColor:
+					// 		mode === "dark" ? theme.palette.customGrey.dark : "#fff",
+					// },
 				}),
 			},
 		},
@@ -97,7 +100,7 @@ export const getDesignTokens = (mode) => ({
 						mode === "dark" ? theme.palette.customGrey.dark : "#fff",
 					backgroundImage: "none",
 					boxShadow: "0px .25rem .375rem rgba(54, 78, 126, 0.101545)",
-					borderRadius: ".5rem",
+					// borderRadius: ".5rem",
 				}),
 			},
 		},
@@ -224,5 +227,5 @@ export const getDesignTokens = (mode) => ({
 			fontWeight: 500,
 		},
 	},
-	spacing: (factor) => `${0.25 * factor}rem`,
+	// spacing: (factor) => `${0.25 * factor}rem`,
 });
