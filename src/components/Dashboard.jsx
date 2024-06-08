@@ -121,7 +121,7 @@ export default function Dashboard() {
 			>
 				<Toolbar/>
 				<Stack>
-					<Board></Board>
+					<Board/>
 				</Stack>
 			</Box>
 		</Box>

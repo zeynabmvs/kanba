@@ -1,6 +1,7 @@
-import {Button, Typography} from "@mui/material";
+import {Button, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {deleteBoard, deleteList, deleteTask,} from "../../features/boardsSlice.js";
+import ModalTitle from "./partials/modalTitle.jsx";
 
 const ConfirmDelete = ({type, obj, message, onClose}) => {
 	console.log(obj);
@@ -30,16 +31,18 @@ const ConfirmDelete = ({type, obj, message, onClose}) => {
 	
 	return (
 		<>
-			<Typography variant="h6">Delete Confirmation</Typography>
-			<Typography variant="body1">{message}</Typography>
-			<div>
-				<Button variant="contained" color="error" onClick={onDeleteHandler}>
+			<ModalTitle text="Delete Confirmation"/>
+			<Typography variant="body1" sx={{mb: "32px"}}>{message}</Typography>
+			
+			<Stack direction="row" sx={{gap: "16px"}}>
+				<Button color="error" variant="contained" onClick={onDeleteHandler} sx={{flexGrow: 1}}>
 					Delete
 				</Button>
-				<Button variant="outlined" onClick={onClose} color="secondary">
+				<Button variant="contained" onClick={onClose} color="secondary" sx={{flexGrow: 1}}>
 					Cancel
 				</Button>
-			</div>
+			</Stack>
+		
 		</>
 	);
 };

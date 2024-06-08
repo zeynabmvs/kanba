@@ -59,15 +59,10 @@ const TaskDetail = ({detail}) => {
 				<Typography variant="body1" color="text.secondary" sx={{mb: "16px"}}>{task.description}</Typography>
 				
 				{task?.subtasks.length > 0 && (
-					<Box
-						// sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
-					>
+					<Box>
 						<Typography variant="body2">Subtasks: </Typography>
 						
-						<List
-							sx={{mb: "32px"}}
-							// sx={{width: "100%", maxWidth: 360, bgcolor: "background.paper"}}
-						>
+						<List sx={{mb: "32px"}}>
 							{task?.subtasks.map((subtask, index) => {
 								const labelId = `checkbox-list-label-${index}`;
 								
@@ -99,7 +94,8 @@ const TaskDetail = ({detail}) => {
 				)}
 				
 				<Stack direction="row" alignItems="center" sx={{mb: "8px"}}>
-					<Typography variant="body2" sx={{mr: "16px"}}>Status: {detail.status}</Typography>
+					<Typography variant="body2"
+											sx={{mr: "16px"}}>Status: {detail.status === 'completed' ? 'Completed' : 'Not completed'}</Typography>
 				</Stack>
 				
 				{detail?.priority ? <Stack direction="row" alignItems="center">

@@ -1,4 +1,4 @@
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {useFieldArray, useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import IconButton from "@mui/material/IconButton";
@@ -8,7 +8,7 @@ import {closeModal} from "../../features/modalSlice.js";
 const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 	// const currentBoard = useSelector(selectCurrentBoard);
 	const dispatch = useDispatch()
-	
+	console.log(defaultValues)
 	const {
 		register,
 		handleSubmit,
@@ -25,7 +25,7 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 		append({title: "", status: "notCompleted"});
 	};
 	
-	const onSubmithandle = (data, e) => {
+	const onSubmitHandle = (data, e) => {
 		if (isDirty) {
 			onSubmit(data);
 		} else {
@@ -39,13 +39,13 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 			<Box
 				component="form"
 				sx={{
-					"& .MuiTextField-root": {m: 1, width: "25ch"},
+					"& .MuiTextField-root": {width: "100%"},
 				}}
 				noValidate
 				autoComplete="off"
-				onSubmit={handleSubmit(onSubmithandle)}
+				onSubmit={handleSubmit(onSubmitHandle)}
 			>
-				<div>
+				<div style={{marginBottom: "24px", display: "flex", flexDirection: "column", gap: "32px"}}>
 					<TextField
 						{...register("title", {
 							required: "Required",
@@ -60,7 +60,7 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 						variant="outlined"
 						type="text"
 						helperText={
-							errors?.title ? errors?.title?.message : "Max. length is 50"
+							errors?.title && errors?.title?.message
 						}
 					/>
 					
@@ -77,59 +77,63 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 						error={errors?.description}
 						id="outlined-helperText"
 						label="Description"
-						// variant="outlined"
-						// type="text"
 						helperText={
 							errors?.description && errors?.description?.message
 						}
 					/>
 					
-					<label htmlFor="status">
-						Completed
-						<input
-							type="checkbox"
-							value="completed"
-							{...register("status")}
-							className="form-checkbox form-basic-checkbox"
-						/>
-					</label>
+					{/*<label htmlFor="status">*/}
+					{/*	Completed*/}
+					{/*	<input*/}
+					{/*		type="checkbox"*/}
+					{/*		value="completed"*/}
+					{/*		{...register("status")}*/}
+					{/*		className="form-checkbox form-basic-checkbox"*/}
+					{/*	/>*/}
+					{/*</label>*/}
+					
+					{/*<div>*/}
 					
 					<div>
-						<label htmlFor="subtasks">Subtasks</label>
-						<ul className="flex flex-col gap-1 my-1">
+						<InputLabel id="subtasks-label" sx={{mb: "16px"}}>Subtasks</InputLabel>
+						<div style={{display: "flex", gap: "16px", flexDirection: "column"}} aria-label={"subtasks-label"}>
 							{fields.map((item, index) => {
 								return (
-									<li key={index} className="flex items-center">
-										<label className="w-full">
-											{errors?.subtasks?.[index]?.title && (
-												<span className="form-basic-err">
-                      {errors?.subtasks?.[index]?.title.message}
-                    </span>
-											)}
-											<input
-												type="text"
-												className={`form-input form-basic-input ${
-													errors?.subtasks?.[index]?.title && "border border-red"
-												} `}
-												defaultValue={`${item.title}`}
+									<>
+										<div style={{display: "flex", alignItems: "center"}} key={index}>
+											<TextField
 												{...register(`subtasks.${index}.title`, {
 													required: "Required",
 												})}
-											></input>
-										</label>
-										<IconButton onClick={() => remove(index)} aria-label="close">
-											<Close/>
-										</IconButton>
-									</li>
+												error={errors?.title}
+												id="outlined-helperText"
+												variant="outlined"
+												type="text"
+												label={`Subtask ${index + 1}`}
+												helperText={
+													errors?.subtasks?.[index]?.title && errors?.subtasks?.[index]?.title.message
+												}
+											
+											/>
+											<IconButton onClick={() => remove(index)} aria-label="close">
+												<Close/>
+											</IconButton>
+										</div>
+									</>
 								);
 							})}
-						</ul>
-						{fields.length < 7 && (
-							<Button variant="secondary" onClick={handleAddNewSubTask}>
-								+ Add New Subtask
-							</Button>
-						)}
+							
+							{fields.length < 7 && (
+								<Button color="secondary" variant="contained" onClick={handleAddNewSubTask} sx={{width: "100%"}}>
+									+ Add New Subtask
+								</Button>
+							)}
+						
+						</div>
+					
 					</div>
+					
+					{/*</div>*/}
 					
 					{/*<div>*/}
 					{/*	<label htmlFor="list">*/}
@@ -144,27 +148,33 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 					{/*	</label>*/}
 					{/*</div>*/}
 					
-					<label htmlFor="priority">
-						priority
-						<select {...register("priority")}>
-							
-							<option value='' key='-'>-</option>
-							<option value='low' key='low'>Low</option>
-							<option value='medium' key='medium'>Medium</option>
-							<option value='high' key='high'>High</option>
-						
-						</select>
-					</label>
+					<div>
+						<InputLabel id="priority-label" sx={{mb: "16px"}}>Priority</InputLabel>
+						<Select
+							{...register("priority")}
+							labelId="priority-label"
+							displayEmpty
+							defaultValue=""
+							fullWidth
+						>
+							<MenuItem value="" sx={{fontSize: "0.875rem"}} key="none">--</MenuItem>
+							<MenuItem value="low" sx={{fontSize: "0.875rem"}} key={"low"}>Low</MenuItem>
+							<MenuItem value="medium" sx={{fontSize: "0.875rem"}} key={"medium"}>Medium</MenuItem>
+							<MenuItem value="high" sx={{fontSize: "0.875rem"}} key={"high"}>High</MenuItem>
+						</Select>
+					</div>
 				
 				</div>
-				<div>
-					<Button variant="contained" type="submit">
+				
+				<Stack direction="row" sx={{gap: "16px"}}>
+					<Button variant="contained" type="submit" sx={{flexGrow: 1}}>
 						Save
 					</Button>
-					<Button variant="outlined" onClick={onCancel} color="error">
+					<Button variant="outlined" onClick={onCancel} color="error" sx={{flexGrow: 1}}>
 						Cancel
 					</Button>
-				</div>
+				</Stack>
+			
 			</Box>
 		
 		

@@ -1,8 +1,8 @@
-import {Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {editTask} from "../../features/boardsSlice.js";
 import {closeModal} from "../../features/modalSlice";
 import TaskForm from "../forms/TaskForm.jsx";
+import ModalTitle from "./partials/modalTitle.jsx";
 
 const EditTask = ({onClose, detail}) => {
 	const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const EditTask = ({onClose, detail}) => {
 		description: task.description,
 		color: task.color,
 		status: task.status,
-		priority: task.priority,
+		priority: task.priority || "",
 		subtasks: task?.subtasks.map((item) => ({
 			title: item.title,
 			status: item.status,
@@ -29,8 +29,7 @@ const EditTask = ({onClose, detail}) => {
 	
 	return (
 		<>
-			<Typography variant="h6">Edit Task {task.title}</Typography>
-			
+			<ModalTitle text={`Edit Task: ${task.title}`}/>
 			<TaskForm
 				onSubmit={onSubmitHandler}
 				onCancel={onClose}

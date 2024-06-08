@@ -156,8 +156,6 @@ export const boardsSlice = createSlice({
 				const [targetBoardIndex, targetListIndex, targetTaskIndex] =
 					taskIndexes;
 				
-				console.log(taskIndexes)
-				
 				const newState = produce(state.boards, (draftState) => {
 					
 					// TODO: remove list stuff

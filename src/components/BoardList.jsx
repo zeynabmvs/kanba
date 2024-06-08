@@ -12,7 +12,7 @@ const BoardList = ({list, index}) => {
 	const theme = useTheme();
 	
 	const onHoverBg = theme.palette.mode === "light"
-		? theme.palette.primary.light
+		? theme.palette.secondary.light
 		: theme.palette.primary.dark
 	
 	const onDeleteListHandler = () => {
