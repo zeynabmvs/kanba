@@ -49,7 +49,8 @@ const TaskDetail = ({detail}) => {
 		<>
 			<Box>
 				<Stack direction="row" justifyContent="space-between" alignItems='flex-start' sx={{mb: "16px",}}>
-					<Typography variant="h5" component="h3">{task.title}</Typography>
+					<Typography variant="h5" component="h3"
+											sx={{textDecoration: (task.status === 'completed' ? 'line-through' : 'none')}}>{task.title}</Typography>
 					<OptionsMenu
 						text="task"
 						onEdit={onEditHandler}

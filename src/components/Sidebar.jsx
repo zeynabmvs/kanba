@@ -44,6 +44,8 @@ const Drawer = styled(MuiDrawer, {
 	},
 }));
 
+const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '600'}
+
 const Sidebar = ({open, toggleDrawer}) => {
 	const boards = useSelector(selectBoards);
 	const currentBoardId = useSelector(selectCurrentBoardId);
@@ -82,7 +84,7 @@ const Sidebar = ({open, toggleDrawer}) => {
 							<ListItemIcon>
 								<DashboardIcon/>
 							</ListItemIcon>
-							<ListItemText primary={item.title} primaryTypographyProps={{fontSize: '16px', fontWeight: 'medium'}}/>
+							<ListItemText primary={item.title} primaryTypographyProps={sidebarMenuItemStyles}/>
 						</ListItemButton>
 					</Fragment>
 				))}
@@ -93,11 +95,8 @@ const Sidebar = ({open, toggleDrawer}) => {
 						<ListItemIcon>
 							<AddCircleIcon/>
 						</ListItemIcon>
-						<ListItemText primary="+ Create New Board" primaryTypographyProps={{
-							fontSize: '16px',
-							fontWeight: 'medium',
-							color: "primary"
-						}}/>
+						<ListItemText primary="Create New Board"
+													primaryTypographyProps={{...sidebarMenuItemStyles, color: "primary"}}/>
 					</ListItemButton>
 				</Fragment>
 				<Divider sx={{my: 1}}/>

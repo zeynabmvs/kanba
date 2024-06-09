@@ -13,7 +13,7 @@ const BoardList = ({list, index}) => {
 	
 	const onHoverBg = theme.palette.mode === "light"
 		? theme.palette.secondary.light
-		: theme.palette.primary.dark
+		: theme.palette.customGrey.darkest
 	
 	const onDeleteListHandler = () => {
 		dispatch(
@@ -36,12 +36,13 @@ const BoardList = ({list, index}) => {
 			{(provided, snapshot) => (
 				<Paper
 					sx={{
-						borderRadius: "8px",
+						borderRadius: "16px",
 						margin: 1,
 						width: "250px",
 						backgroundColor: snapshot.isDragging && onHoverBg,
 						alignSelf: "flex-start",
 						listStyleType: "none",
+						boxShadow: "none"
 					}}
 					className={`${snapshot.isDragging && "is-dragging "}`}
 					ref={provided.innerRef}
@@ -65,7 +66,11 @@ const BoardList = ({list, index}) => {
 						}}
 					>
 						<Typography component="h3" variant={"h6"}
-												sx={{'&:hover': {color: 'primary'}, width: "100%"}} {...provided.dragHandleProps}>
+												sx={{
+													'&:hover': {color: 'primary'},
+													width: "100%",
+													fontWeight: "600"
+												}} {...provided.dragHandleProps}>
 							{list.title}
 						</Typography>
 						<OptionsMenu

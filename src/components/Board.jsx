@@ -51,16 +51,16 @@ const Board = () => {
 	return (
 		<>
 			{!currentBoard && (
-				<Container>
-					<Typography variant="h6" textAlign="center">
+				<Container sx={{py: "64px"}}>
+					<Typography component="p" variant="h6" textAlign="center">
 						There is no board yet, create one from sidebar
 					</Typography>
 				</Container>
 			)}
 			
 			{currentBoard?.lists?.length < 1 && (
-				<Container>
-					<Typography variant="h6" textAlign="center">
+				<Container sx={{py: "64px"}}>
+					<Typography component="p" variant="h6" textAlign="center">
 						This Board is empty, create a new List to get started
 					</Typography>
 				</Container>

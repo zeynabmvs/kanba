@@ -8,7 +8,7 @@ import {closeModal} from "../../features/modalSlice.js";
 const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 	// const currentBoard = useSelector(selectCurrentBoard);
 	const dispatch = useDispatch()
-	console.log(defaultValues)
+	
 	const {
 		register,
 		handleSubmit,
@@ -99,27 +99,26 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 						<div style={{display: "flex", gap: "16px", flexDirection: "column"}} aria-label={"subtasks-label"}>
 							{fields.map((item, index) => {
 								return (
-									<>
-										<div style={{display: "flex", alignItems: "center"}} key={index}>
-											<TextField
-												{...register(`subtasks.${index}.title`, {
-													required: "Required",
-												})}
-												error={errors?.title}
-												id="outlined-helperText"
-												variant="outlined"
-												type="text"
-												label={`Subtask ${index + 1}`}
-												helperText={
-													errors?.subtasks?.[index]?.title && errors?.subtasks?.[index]?.title.message
-												}
-											
-											/>
-											<IconButton onClick={() => remove(index)} aria-label="close">
-												<Close/>
-											</IconButton>
-										</div>
-									</>
+									<div style={{display: "flex", alignItems: "center"}} key={index}>
+										<TextField
+											{...register(`subtasks.${index}.title`, {
+												required: "Required",
+											})}
+											error={errors?.title}
+											id="outlined-helperText"
+											variant="outlined"
+											type="text"
+											label={`Subtask ${index + 1}`}
+											helperText={
+												errors?.subtasks?.[index]?.title && errors?.subtasks?.[index]?.title.message
+											}
+										
+										/>
+										<IconButton onClick={() => remove(index)} aria-label="close">
+											<Close/>
+										</IconButton>
+									</div>
+								
 								);
 							})}
 							

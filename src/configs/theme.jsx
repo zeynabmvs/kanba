@@ -30,6 +30,7 @@ export const getDesignTokens = (mode) => ({
 			main: "#828FA3",
 			light: "#F4F7FD",
 			darker: "#20212C",
+			darkest: darken("#20212C", 0.2)
 		},
 		lines: {
 			dark: "#3E3F4E",
@@ -220,11 +221,21 @@ export const getDesignTokens = (mode) => ({
 				},
 			},
 		},
+		// MuiIcon: {
+		// 	styleOverrides: {
+		// 		root: ({theme}) => ({
+		// 			color: mode === 'dark' ? '#fff' : theme.palette.customGrey.main,
+		// 			'& .MuiSvgIcon-root': {
+		// 				color: 'red'
+		// 			}
+		// 		})
+		// 	}
+		// },
 	},
 	typography: {
 		fontFamily: ["Plus Jakarta Sans", "sans-serif"].join(","),
 		allVariants: {
-			color: mode === "dark" ? "#fff" : "#000",
+			color: mode === "dark" ? "#fff" : "#2F2E2E",
 		},
 		subtitle2: {
 			color: mode === "dark" ? "#fff" : "#828FA3",

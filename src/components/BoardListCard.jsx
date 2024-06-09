@@ -55,7 +55,7 @@ const BoardListCard = ({task, index}) => {
 	return (
 		<Draggable draggableId={task.id} index={index}>
 			{(provided, snapshot) => (
-				<Card sx={{maxWidth: 345, mb: "16px",}}
+				<Card sx={{maxWidth: 345, mb: "16px", borderRadius: "12px", boxShadow: "none"}}
 							variant="outlined"
 							className={`${snapshot.isDragging && "is-dragging-card "}`}
 							ref={provided.innerRef}
