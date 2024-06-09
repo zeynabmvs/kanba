@@ -29,6 +29,7 @@ const Drawer = styled(MuiDrawer, {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen,
 		}),
+		boxShadow: "none",
 		boxSizing: "border-box",
 		...(!open && {
 			overflowX: "hidden",

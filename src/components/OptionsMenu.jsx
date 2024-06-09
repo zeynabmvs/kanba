@@ -31,7 +31,7 @@ const OptionsMenu = ({text, onEdit, onDelete}) => {
 				aria-expanded={open ? "true" : undefined}
 				onClick={handleClick}
 			>
-				<MoreVertIcon/>
+				<MoreVertIcon sx={{color: '#fff'}}/>
 			</IconButton>
 			
 			<Menu

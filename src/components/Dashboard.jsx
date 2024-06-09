@@ -93,6 +93,7 @@ export default function Dashboard() {
 					</Typography>
 					<Button
 						variant="contained"
+						color="secondary"
 						onClick={onAddTaskHandler}
 						disabled={!board || board?.lists.length === 0}
 						// sx={{color: "primary.contrastText"}}

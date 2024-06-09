@@ -61,10 +61,11 @@ const SwitchTheme = () => {
 	
 	return (
 		<>
-			<FormGroup>
+			<FormGroup sx={{p: "0", pt: "16px"}}>
 				<FormControlLabel
-					control={<MaterialUISwitch sx={{m: 1}} onClick={onToggleTheme}/>}
+					control={<MaterialUISwitch onClick={onToggleTheme}/>}
 					label={""}
+					sx={{my: 0, mx: "auto"}}
 				/>
 			</FormGroup>
 		</>
