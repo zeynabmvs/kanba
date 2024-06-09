@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {editTask} from "../../features/boardsSlice.js";
+import {editTask} from "../../features/boards/boardsSlice.js";
 import {closeModal} from "../../features/modalSlice";
 import TaskForm from "../forms/TaskForm.jsx";
 import ModalTitle from "./partials/modalTitle.jsx";

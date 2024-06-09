@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {addList, selectCurrentBoard} from "../../features/boardsSlice";
+import {addList, selectCurrentBoard} from "../../features/boards/boardsSlice.js";
 import {closeModal} from "../../features/modalSlice";
 import ListFrom from "../forms/ListFrom";
 import ModalTitle from "./partials/modalTitle.jsx";

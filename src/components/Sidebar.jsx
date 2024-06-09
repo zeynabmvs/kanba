@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import {styled} from "@mui/material/styles";
 import {Fragment} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "../features/boardsSlice";
+import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';

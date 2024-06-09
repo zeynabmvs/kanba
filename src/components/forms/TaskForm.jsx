@@ -82,18 +82,6 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 						}
 					/>
 					
-					{/*<label htmlFor="status">*/}
-					{/*	Completed*/}
-					{/*	<input*/}
-					{/*		type="checkbox"*/}
-					{/*		value="completed"*/}
-					{/*		{...register("status")}*/}
-					{/*		className="form-checkbox form-basic-checkbox"*/}
-					{/*	/>*/}
-					{/*</label>*/}
-					
-					{/*<div>*/}
-					
 					<div>
 						<InputLabel id="subtasks-label" sx={{mb: "16px"}}>Subtasks</InputLabel>
 						<div style={{display: "flex", gap: "16px", flexDirection: "column"}} aria-label={"subtasks-label"}>
@@ -132,22 +120,8 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 					
 					</div>
 					
-					{/*</div>*/}
-					
-					{/*<div>*/}
-					{/*	<label htmlFor="list">*/}
-					{/*		List*/}
-					{/*		<select {...register("list", {required: true})}>*/}
-					{/*			{currentBoard.lists?.map((list, index) => (*/}
-					{/*				<option value={index} key={index}>*/}
-					{/*					{list.title}*/}
-					{/*				</option>*/}
-					{/*			))}*/}
-					{/*		</select>*/}
-					{/*	</label>*/}
-					{/*</div>*/}
-					
 					<div>
+						{/*TODO it's not getting default value */}
 						<InputLabel id="priority-label" sx={{mb: "16px"}}>Priority</InputLabel>
 						<Select
 							{...register("priority")}

@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import boardsReducer from "../features/boardsSlice";
+import boardsReducer from "../features/boards/boardsSlice.js";
 import modalReducer from "../features/modalSlice";
 import colorModeReducer from "../features/colorModeSlice";
 import storage from "redux-persist/lib/storage";

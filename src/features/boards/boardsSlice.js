@@ -1,41 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {produce} from "immer";
 import {v4 as uuidv4} from "uuid";
-import {initialData} from "../configs/data.js";
+import {initialData} from "../../configs/data.js";
+import {createTask, findSubtaskIndexes, findTaskIndexById} from "./halpers.js";
 
-const findTaskIndexById = (state, taskId) => {
-	for (
-		let targetBoardIndex = 0;
-		targetBoardIndex < state.boards.length;
-		targetBoardIndex++
-	) {
-		const board = state.boards[targetBoardIndex];
-		for (
-			let targetListIndex = 0;
-			targetListIndex < board.lists.length;
-			targetListIndex++
-		) {
-			const list = board.lists[targetListIndex];
-			const taskIndex = list.tasks.findIndex((item) => item.id === taskId);
-			
-			if (taskIndex > -1) {
-				return [targetBoardIndex, targetListIndex, taskIndex];
-			}
-		}
-	}
-	return null;
-};
-
-const findSubtaskInexes = (state, subtask, task) => {
-	const taskIndexes = findTaskIndexById(state, task.id);
-	
-	if (taskIndexes) {
-		const subtaskIndex = task.subtasks.findIndex(
-			(item) => item.id === subtask.id
-		);
-		return [...taskIndexes, subtaskIndex];
-	}
-};
 
 export const boardsSlice = createSlice({
 	name: "boards",
@@ -138,19 +106,8 @@ export const boardsSlice = createSlice({
 			const {newTask, oldTask} = action.payload;
 			const taskIndexes = findTaskIndexById(state, oldTask.id);
 			
-			const task = {
-				id: oldTask.id,
-				title: newTask?.title,
-				description: newTask?.description,
-				color: newTask?.color || "#FFFFFF",
-				status: newTask?.status || "notCompleted",
-				priority: newTask?.priority,
-				subtasks: newTask.subtasks.map((item) => ({
-					id: uuidv4(),
-					title: item.title,
-					status: item.status,
-				})),
-			};
+			const updatedTask = createTask(newTask)
+			updatedTask.id = oldTask.id
 			
 			if (taskIndexes) {
 				const [targetBoardIndex, targetListIndex, targetTaskIndex] =
@@ -163,14 +120,14 @@ export const boardsSlice = createSlice({
 						draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
 							targetTaskIndex,
 							1,
-							task
+							updatedTask
 						);
 					} else {
 						draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
 							targetTaskIndex,
 							1
 						);
-						draftState[targetBoardIndex].lists[newTask.list].tasks.push(task);
+						draftState[targetBoardIndex].lists[newTask.list].tasks.push(updatedTask);
 					}
 				});
 				return {...state, boards: newState};
@@ -184,7 +141,7 @@ export const boardsSlice = createSlice({
 				targetListIndex,
 				targetTaskIndex,
 				targetSubtaskIndex,
-			] = findSubtaskInexes(state, subtask, task);
+			] = findSubtaskIndexes(state, subtask, task);
 			
 			const newState = produce(state.boards, (draftState) => {
 				draftState[targetBoardIndex].lists[targetListIndex].tasks[
@@ -198,19 +155,8 @@ export const boardsSlice = createSlice({
 		addTask: (state, action) => {
 			const taskData = action.payload;
 			const listIndex = taskData?.list || 0;
-			const task = {
-				id: uuidv4(),
-				title: taskData.title,
-				description: taskData.description,
-				color: taskData.color,
-				status: taskData.status ? 'completed' : 'notCompleted',
-				priority: taskData.priority,
-				subtasks: taskData.subtasks.map((item) => ({
-					id: uuidv4(),
-					title: item.title,
-					status: item.status,
-				})),
-			};
+			
+			const task = createTask(taskData)
 			
 			const currentBoardIndex = state.boards.findIndex(
 				(item) => item.id === state.currentBoardId

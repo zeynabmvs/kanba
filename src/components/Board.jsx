@@ -1,7 +1,7 @@
 import {DragDropContext, Droppable} from "@hello-pangea/dnd";
 import {Button, Container, Stack, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {reorderLists, reorderTask, selectCurrentBoard,} from "../features/boardsSlice";
+import {reorderLists, reorderTask, selectCurrentBoard,} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import BoardList from "./BoardList";
 

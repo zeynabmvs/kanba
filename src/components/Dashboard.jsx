@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import {styled} from "@mui/material/styles";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentBoard} from "../features/boardsSlice.js";
+import {selectCurrentBoard} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import Board from "./Board";
 import OptionsMenu from "./OptionsMenu.jsx";

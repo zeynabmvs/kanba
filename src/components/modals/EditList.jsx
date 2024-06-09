@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {editList} from "../../features/boardsSlice";
+import {editList} from "../../features/boards/boardsSlice.js";
 import {closeModal} from "../../features/modalSlice";
 import ListFrom from "../forms/ListFrom.jsx";
 import ModalTitle from "./partials/modalTitle.jsx";

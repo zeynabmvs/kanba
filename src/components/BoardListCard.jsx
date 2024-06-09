@@ -1,7 +1,7 @@
 import {Draggable} from "@hello-pangea/dnd";
 import {Card, Checkbox, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {editTask} from "../features/boardsSlice";
+import {editTask} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import {useMemo, useState} from "react";
 import {styled} from '@mui/material/styles';
