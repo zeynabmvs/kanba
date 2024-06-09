@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {produce} from "immer";
 import {v4 as uuidv4} from "uuid";
-import {initialData} from "../app/data";
+import {initialData} from "../configs/data.js";
 
 const findTaskIndexById = (state, taskId) => {
 	for (

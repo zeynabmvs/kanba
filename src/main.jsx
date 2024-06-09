@@ -7,7 +7,7 @@ import {persistor, store} from "./app/store.js";
 import "./index.css";
 
 // TODD: remove for deploy
-persistor.purge();
+// persistor.purge();
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
