@@ -24,6 +24,7 @@ const Board = () => {
 				destination.index === source.index
 			)
 				return;
+			
 			dispatch(
 				reorderLists({
 					sourceIndex: source.index,
@@ -48,6 +49,7 @@ const Board = () => {
 			);
 		}
 	};
+	
 	return (
 		<>
 			{!currentBoard && (
@@ -65,6 +67,7 @@ const Board = () => {
 					</Typography>
 				</Container>
 			)}
+			
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Stack direction="row" alignItems={"flex-start"} sx={{margin: "16px"}}>
 					<Droppable

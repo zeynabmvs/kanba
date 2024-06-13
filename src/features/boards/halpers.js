@@ -37,14 +37,21 @@ export const findSubtaskIndexes = (state, subtask, task) => {
 // Helper function to create a new task
 export const createTask = (taskData) => ({
 	id: uuidv4(),
-	title: taskData.title,
-	description: taskData.description,
-	color: taskData.color || "#FFFFFF",
-	status: taskData.status ? 'completed' : 'notCompleted',
-	priority: taskData.priority,
-	subtasks: taskData.subtasks.map((item) => ({
+	title: taskData?.title,
+	description: taskData?.description,
+	color: taskData?.color || "#FFFFFF",
+	status: taskData?.status ? 'completed' : 'notCompleted',
+	priority: taskData?.priority,
+	subtasks: taskData?.subtasks.map((item) => ({
 		id: uuidv4(),
 		title: item.title,
 		status: item.status,
 	})),
 });
+
+
+export const getCurrentBoardIndex = (state) => {
+	return state.boards.findIndex(
+		(item) => item.id === state.currentBoardId
+	);
+}

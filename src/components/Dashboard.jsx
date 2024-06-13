@@ -12,9 +12,8 @@ import {selectCurrentBoard} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import Board from "./Board";
 import OptionsMenu from "./OptionsMenu.jsx";
+import {drawerWidth} from "../configs/constants";
 import Sidebar from "./Sidebar";
-
-const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
 	shouldForwardProp: (prop) => prop !== "open",

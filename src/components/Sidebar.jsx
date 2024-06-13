@@ -15,8 +15,7 @@ import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "../featur
 import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-const drawerWidth = 240;
+import {drawerWidth} from "../configs/constants";
 
 const Drawer = styled(MuiDrawer, {
 	shouldForwardProp: (prop) => prop !== "open",
@@ -45,12 +44,13 @@ const Drawer = styled(MuiDrawer, {
 	},
 }));
 
-const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '600'}
 
 const Sidebar = ({open, toggleDrawer}) => {
 	const boards = useSelector(selectBoards);
 	const currentBoardId = useSelector(selectCurrentBoardId);
 	const dispatch = useDispatch();
+	
+	const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '600'}
 	
 	const onChangeBoardHandler = (board) => {
 		dispatch(changeCurrentBoard(board.id));

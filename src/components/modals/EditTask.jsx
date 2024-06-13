@@ -26,7 +26,6 @@ const EditTask = ({onClose, detail}) => {
 			status: item.status,
 		})),
 	};
-	
 	return (
 		<>
 			<ModalTitle text={`Edit Task: ${task.title}`}/>

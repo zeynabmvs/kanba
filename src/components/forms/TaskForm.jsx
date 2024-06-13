@@ -6,9 +6,7 @@ import {Close} from "@mui/icons-material";
 import {closeModal} from "../../features/modalSlice.js";
 
 const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
-	// const currentBoard = useSelector(selectCurrentBoard);
 	const dispatch = useDispatch()
-	
 	const {
 		register,
 		handleSubmit,
@@ -127,7 +125,7 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 							{...register("priority")}
 							labelId="priority-label"
 							displayEmpty
-							defaultValue=""
+							// defaultValue=""
 							fullWidth
 						>
 							<MenuItem value="" sx={{fontSize: "0.875rem"}} key="none">--</MenuItem>
