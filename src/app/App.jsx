@@ -4,7 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import Dashboard from "../components/Dashboard";
-import BasicModal from "../components/BasicModal"
+import BaseModal from "../components/BaseModal.jsx"
 import {useMemo} from "react";
 import {selectColorMode} from "../features/colorModeSlice.js";
 import {useSelector} from "react-redux";
@@ -20,7 +20,7 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline enableColorScheme>
 					<Dashboard/>
-					<BasicModal/>
+					<BaseModal/>
 				</CssBaseline>
 			</ThemeProvider>
 		</>

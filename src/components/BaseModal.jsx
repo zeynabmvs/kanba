@@ -34,7 +34,7 @@ const ModalContent = ({type, onClose, detail}) => {
 	}
 };
 
-const style = {
+const modalStyle = {
 	position: "absolute",
 	top: "50%",
 	left: "50%",
@@ -43,9 +43,11 @@ const style = {
 	borderRadius: "16px",
 	boxShadow: 24,
 	p: 4,
+	maxHeight: "80%",
+	overflow: "auto",
 };
 
-export default function BasicModal() {
+export default function BaseModal() {
 	const {isOpen, type, detail} = useSelector(selectModal);
 	const dispatch = useDispatch();
 	
@@ -54,21 +56,19 @@ export default function BasicModal() {
 	};
 	
 	return (
-		<div>
-			<Modal
-				open={isOpen}
-				onClose={onHandleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
-			>
-				<Paper sx={style}>
-					<ModalContent
-						detail={detail}
-						onClose={onHandleClose}
-						type={type}
-					></ModalContent>
-				</Paper>
-			</Modal>
-		</div>
+		<Modal
+			open={isOpen}
+			onClose={onHandleClose}
+			aria-labelledby="modal-modal-title"
+			aria-describedby="modal-modal-description"
+		>
+			<Paper sx={modalStyle}>
+				<ModalContent
+					detail={detail}
+					onClose={onHandleClose}
+					type={type}
+				></ModalContent>
+			</Paper>
+		</Modal>
 	);
 }

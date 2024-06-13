@@ -42,7 +42,7 @@ const BoardList = ({list, index}) => {
 						backgroundColor: snapshot.isDragging && onHoverBg,
 						alignSelf: "flex-start",
 						listStyleType: "none",
-						boxShadow: "none"
+						boxShadow: "none",
 					}}
 					className={`${snapshot.isDragging && "is-dragging "}`}
 					ref={provided.innerRef}

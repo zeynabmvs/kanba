@@ -95,7 +95,6 @@ export default function Dashboard() {
 						color="secondary"
 						onClick={onAddTaskHandler}
 						disabled={!board || board?.lists.length === 0}
-						// sx={{color: "primary.contrastText"}}
 					>
 						+ Add Task
 					</Button>
@@ -116,7 +115,7 @@ export default function Dashboard() {
 							: theme.palette.customGrey.darker,
 					flexGrow: 1,
 					height: "100vh",
-					overflow: "auto"
+					// overflow: "auto"
 				}}
 			>
 				<Toolbar/>
