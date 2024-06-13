@@ -1,5 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import {Button, CssBaseline, Stack} from "@mui/material";
+import {Button, CssBaseline} from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -114,14 +114,15 @@ export default function Dashboard() {
 							? theme.palette.customGrey.light
 							: theme.palette.customGrey.darker,
 					flexGrow: 1,
-					height: "100vh",
+					height: "calc(100vh - 65px)",
+					mt: "65px"
 					// overflow: "auto"
 				}}
 			>
-				<Toolbar/>
-				<Stack>
-					<Board/>
-				</Stack>
+				{/*<Toolbar/>*/}
+				{/*<Stack>*/}
+				<Board/>
+				{/*</Stack>*/}
 			</Box>
 		</Box>
 	);

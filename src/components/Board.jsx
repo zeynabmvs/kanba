@@ -77,6 +77,7 @@ const Board = () => {
 					>
 						{(provided) => (
 							<Stack
+								sx={{overflow: "auto"}}
 								// component={"ul"}
 								direction={"row"}
 								ref={provided.innerRef}

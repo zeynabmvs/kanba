@@ -43,6 +43,8 @@ const BoardList = ({list, index}) => {
 						alignSelf: "flex-start",
 						listStyleType: "none",
 						boxShadow: "none",
+						maxHeight: "calc(100vh - 97px)",
+						overflow: "auto",
 					}}
 					className={`${snapshot.isDragging && "is-dragging "}`}
 					ref={provided.innerRef}
