@@ -1,5 +1,5 @@
 import {Box, Button, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
-import {useFieldArray, useForm} from "react-hook-form";
+import {Controller, useFieldArray, useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
@@ -119,20 +119,24 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
 					</div>
 					
 					<div>
-						{/*TODO it's not getting default value */}
 						<InputLabel id="priority-label" sx={{mb: "16px"}}>Priority</InputLabel>
-						<Select
-							{...register("priority")}
-							labelId="priority-label"
-							displayEmpty
-							// defaultValue=""
-							fullWidth
-						>
-							<MenuItem value="" sx={{fontSize: "0.875rem"}} key="none">--</MenuItem>
-							<MenuItem value="low" sx={{fontSize: "0.875rem"}} key={"low"}>Low</MenuItem>
-							<MenuItem value="medium" sx={{fontSize: "0.875rem"}} key={"medium"}>Medium</MenuItem>
-							<MenuItem value="high" sx={{fontSize: "0.875rem"}} key={"high"}>High</MenuItem>
-						</Select>
+						<Controller
+							name="priority"
+							control={control}
+							render={({field}) => (
+								<Select
+									{...field}
+									labelId="priority-label"
+									displayEmpty
+									fullWidth
+								>
+									<MenuItem value="" sx={{fontSize: "0.875rem"}} key="none">--</MenuItem>
+									<MenuItem value="low" sx={{fontSize: "0.875rem"}} key="low">Low</MenuItem>
+									<MenuItem value="medium" sx={{fontSize: "0.875rem"}} key="medium">Medium</MenuItem>
+									<MenuItem value="high" sx={{fontSize: "0.875rem"}} key="high">High</MenuItem>
+								</Select>
+							)}
+						/>
 					</div>
 				
 				</div>

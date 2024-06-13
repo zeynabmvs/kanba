@@ -4,10 +4,6 @@ import {deleteBoard, deleteList, deleteTask,} from "../../features/boards/boards
 import ModalTitle from "./partials/modalTitle.jsx";
 
 const ConfirmDelete = ({type, obj, message, onClose}) => {
-	console.log(obj);
-	console.log(message);
-	console.log(onClose);
-	console.log(type);
 	const dispatch = useDispatch();
 	
 	const onDeleteHandler = () => {

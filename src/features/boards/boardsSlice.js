@@ -62,6 +62,7 @@ export const boardsSlice = createSlice({
 			
 		},
 		editList: (state, action) => {
+			// Edit a list of current board
 			const {list, title} = action.payload;
 			const currentBoardIndex = getCurrentBoardIndex(state)
 			
@@ -76,6 +77,7 @@ export const boardsSlice = createSlice({
 			return {...state, boards: newState};
 		},
 		deleteList: (state, action) => {
+			//Delete list form current board
 			const {list} = action.payload;
 			const currentBoardIndex = getCurrentBoardIndex(state)
 			
@@ -88,6 +90,7 @@ export const boardsSlice = createSlice({
 			return {...state, boards: newState};
 		},
 		deleteTask: (state, action) => {
+			// Delete a task from current board
 			const {task} = action.payload;
 			const taskIndexes = findTaskIndexById(state, task.id);
 			if (taskIndexes) {
@@ -104,7 +107,10 @@ export const boardsSlice = createSlice({
 			throw console.error("on delete task err");
 		},
 		editTask: (state, action) => {
+			// Edit a task from current board
 			const {newTask, oldTask} = action.payload;
+			
+			// 1. find the location (indexes)
 			const taskIndexes = findTaskIndexById(state, oldTask.id);
 			
 			const updatedTask = createTask(newTask)
@@ -113,6 +119,8 @@ export const boardsSlice = createSlice({
 			if (taskIndexes) {
 				const [targetBoardIndex, targetListIndex, targetTaskIndex] =
 					taskIndexes;
+				
+				// 2.remove old task and add a new one at the same location
 				
 				const newState = produce(state.boards, (draftState) => {
 					
@@ -130,6 +138,7 @@ export const boardsSlice = createSlice({
 						);
 						draftState[targetBoardIndex].lists[newTask.list].tasks.push(updatedTask);
 					}
+					
 				});
 				return {...state, boards: newState};
 			}
