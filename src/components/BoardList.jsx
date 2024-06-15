@@ -56,7 +56,7 @@ const BoardList = ({list, index}) => {
 						justifyContent="space-between"
 						sx={{
 							pt: "16px",
-							pl: "16px",
+							px: "16px",
 							mb: "8px",
 							// transition: "all 300ms ease-in-out",
 							alignItems: "center",

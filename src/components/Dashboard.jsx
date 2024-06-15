@@ -1,5 +1,4 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import {Close} from "@mui/icons-material"
 import {Button, useMediaQuery} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,6 +13,7 @@ import Board from "./Board";
 import OptionsMenu from "./OptionsMenu.jsx";
 import Sidebar from "./Sidebar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import {useTheme} from "@mui/material/styles";
 
 
 export default function Dashboard() {
@@ -45,11 +45,12 @@ export default function Dashboard() {
 	};
 	
 	const isSmallScreen = useMediaQuery('(max-width:600px)');
+	const theme = useTheme()
 	
 	return (
 		<Box sx={{display: "flex", overflow: "hidden"}}>
 			<AppBar position="absolute" open={open}>
-				<Toolbar sx={{paddingRight: {xs: 0, md: "16px"}}}
+				<Toolbar sx={{paddingRight: "16px"}}
 				>
 					<IconButton
 						edge="start"
@@ -60,7 +61,8 @@ export default function Dashboard() {
 							marginRight: {xs: "4px", md: "36px"},
 						}}
 					>
-						{open ? <Close/> : <MenuIcon/>}
+						<MenuIcon/>
+						{/*{open ? <Close/> : <MenuIcon/>}*/}
 					</IconButton>
 					<Typography
 						component="h1"
@@ -86,6 +88,7 @@ export default function Dashboard() {
 						text="board"
 						onEdit={onEditBoardHandler}
 						onDelete={onDeleteBoardHandler}
+						sx={{ml: {xs: "4px", md: "16px"}, '& :hover': {color: theme.palette.primary.contrastText}}}
 					></OptionsMenu>
 				</Toolbar>
 			</AppBar>

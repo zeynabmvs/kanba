@@ -62,13 +62,20 @@ export const getDesignTokens = (mode) => ({
 				},
 			}),
 		},
+		MuiListItemIcon: {
+			styleOverrides: {
+				root: {
+					minWidth: "48px"
+				}
+			}
+		},
 		MuiFormLabel: {
 			styleOverrides: {
 				root: ({theme}) => ({
 					fontSize: "14px",
 					marginBottom: "8px",
 					fontWeight: "500",
-					color: mode === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText,
+					color: mode === 'light' ? theme.palette.customGrey.main : theme.palette.customGrey.light,
 				})
 			}
 		},

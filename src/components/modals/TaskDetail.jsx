@@ -76,6 +76,7 @@ const TaskDetail = ({detail}) => {
 											role={undefined}
 											onClick={() => changeSubtaskStatus(subtask, index)}
 											dense
+										
 										>
 											<ListItemIcon>
 												<Checkbox
