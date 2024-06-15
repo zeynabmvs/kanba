@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {reorderLists, reorderTask, selectCurrentBoard,} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import BoardList from "./BoardList";
+import {ListIndexProvider} from "../contexts/listIndexContext.jsx";
 
 const Board = () => {
 	const currentBoard = useSelector(selectCurrentBoard);
@@ -84,7 +85,11 @@ const Board = () => {
 								{...provided.droppableProps}
 							>
 								{currentBoard?.lists?.map((list, index) => (
-									<BoardList key={list.id} list={list} index={index}/>
+									<>
+										<ListIndexProvider listIndex={index} key={list.id}>
+											<BoardList list={list} index={index}/>
+										</ListIndexProvider>
+									</>
 								))}
 								{provided.placeholder}
 							</Stack>

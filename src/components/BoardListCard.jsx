@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from "@mui/material/Box";
 import PriorityChip from "./PriorityChip.jsx";
+import {useListIndex} from "../contexts/listIndexContext.jsx";
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -27,6 +28,7 @@ const ExpandMore = styled((props) => {
 
 const BoardListCard = ({task, index}) => {
 	const [expanded, setExpanded] = useState(false);
+	const listIndex = useListIndex();
 	
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
@@ -36,7 +38,7 @@ const BoardListCard = ({task, index}) => {
 	const dispatch = useDispatch();
 	
 	const onShowTasksDetail = () => {
-		dispatch(openModal({type: "taskDetail", detail: task}));
+		dispatch(openModal({type: "taskDetail", detail: {...task, list: listIndex}}));
 	};
 	
 	const handleStatusChange = () => {

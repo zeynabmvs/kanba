@@ -1,12 +1,14 @@
 import {Box, Button, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {Controller, useFieldArray, useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
 import {closeModal} from "../../features/modalSlice.js";
+import {selectCurrentBoard} from "../../features/boards/boardsSlice.js";
 
-const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low'}}) => {
+const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low', list: '0'}}) => {
 	const dispatch = useDispatch()
+	const currentBoard = useSelector(selectCurrentBoard)
 	const {
 		register,
 		handleSubmit,
@@ -117,6 +119,26 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low'}}) => {
 						</div>
 					
 					</div>
+					
+					<div>
+						<InputLabel id="list-label" sx={{mb: "16px"}}>List</InputLabel>
+						<Controller
+							name="list"
+							control={control}
+							render={({field}) => (
+								<Select
+									{...field}
+									labelId="list-label"
+									displayEmpty
+									fullWidth
+								>
+									{currentBoard.lists?.map((item, index) => <MenuItem value={index} sx={{fontSize: "0.875rem"}}
+																																			key={index}>{item.title}</MenuItem>)}
+								</Select>
+							)}
+						/>
+					</div>
+					
 					
 					<div>
 						<InputLabel id="priority-label" sx={{mb: "16px"}}>Priority</InputLabel>

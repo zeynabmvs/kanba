@@ -10,9 +10,11 @@ import {editSubtask} from "../../features/boards/boardsSlice.js";
 import {openModal} from "../../features/modalSlice";
 import OptionsMenu from "../OptionsMenu";
 import PriorityChip from "../PriorityChip.jsx";
+import {useTheme} from "@mui/material/styles";
 
 const TaskDetail = ({detail}) => {
 	const dispatch = useDispatch();
+	const theme = useTheme()
 	const task = detail;
 	
 	const initialCheckboxes = task?.subtasks.map((i) => i.status === "completed");
@@ -55,6 +57,7 @@ const TaskDetail = ({detail}) => {
 						text="task"
 						onEdit={onEditHandler}
 						onDelete={onDeleteHandler}
+						sx={{'& .MuiSvgIcon-root': {color: theme.palette.mode === 'light' ? theme.palette.customGrey.main : theme.palette.customGrey.light}}}
 					></OptionsMenu>
 				</Stack>
 				<Typography variant="body1" color="text.secondary" sx={{mb: "16px"}}>{task.description}</Typography>

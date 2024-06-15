@@ -21,6 +21,7 @@ const EditTask = ({onClose, detail}) => {
 		color: task.color,
 		status: task.status,
 		priority: task.priority || "",
+		list: task?.list,
 		subtasks: task?.subtasks.map((item) => ({
 			title: item.title,
 			status: item.status,
