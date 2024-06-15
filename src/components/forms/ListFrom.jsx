@@ -1,4 +1,4 @@
-import {Box, Button, Stack, TextField} from "@mui/material";
+import {Box, Button, InputLabel, Stack, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
 
 const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
@@ -19,6 +19,7 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<div style={{marginBottom: "24px"}}>
+				<InputLabel id="title-label">title</InputLabel>
 				<TextField
 					{...register("title", {
 						required: "Required",
@@ -29,7 +30,7 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 					})}
 					error={errors?.title}
 					id="outlined-helperText"
-					label="Title"
+					labelID="title-label"
 					variant="outlined"
 					type="text"
 					helperText={

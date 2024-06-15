@@ -72,7 +72,6 @@ const BoardListCard = ({task, index}) => {
 							sx={{cursor: "pointer"}}
 						>
 							{<Typography component={"h4"} variant={"body1"} sx={{
-								fontWeight: "600",
 								textDecoration: (task.status === 'completed' ? 'line-through' : 'none')
 							}}>{task.title}</Typography>}
 							{<Typography

@@ -50,7 +50,7 @@ const Sidebar = ({open, toggleDrawer}) => {
 	const currentBoardId = useSelector(selectCurrentBoardId);
 	const dispatch = useDispatch();
 	
-	const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '600'}
+	const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '500'}
 	
 	const onChangeBoardHandler = (board) => {
 		dispatch(changeCurrentBoard(board.id));

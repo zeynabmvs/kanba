@@ -62,7 +62,16 @@ export const getDesignTokens = (mode) => ({
 				},
 			}),
 		},
-		
+		MuiFormLabel: {
+			styleOverrides: {
+				root: ({theme}) => ({
+					fontSize: "14px",
+					marginBottom: "8px",
+					fontWeight: "500",
+					color: mode === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText,
+				})
+			}
+		},
 		
 		MuiButton: {
 			styleOverrides: {
