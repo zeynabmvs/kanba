@@ -109,7 +109,6 @@ export const boardsSlice = createSlice({
 		editTask: (state, action) => {
 			// Edit a task from current board
 			const {newTask, oldTask} = action.payload;
-			
 			// 1. find the location (indexes)
 			const taskIndexes = findTaskIndexById(state, oldTask.id);
 			
@@ -119,13 +118,12 @@ export const boardsSlice = createSlice({
 			if (taskIndexes) {
 				const [targetBoardIndex, targetListIndex, targetTaskIndex] =
 					taskIndexes;
-				
 				// 2.remove old task and add a new one at the same location
 				
 				const newState = produce(state.boards, (draftState) => {
 					
 					// TODO: remove list stuff
-					if (!newTask.list) {
+					if (!newTask?.list) {
 						draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
 							targetTaskIndex,
 							1,

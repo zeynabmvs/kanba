@@ -40,7 +40,7 @@ export const createTask = (taskData) => ({
 	title: taskData?.title,
 	description: taskData?.description,
 	color: taskData?.color || "#FFFFFF",
-	status: taskData?.status ? 'completed' : 'notCompleted',
+	status: taskData?.status || 'notCompleted',
 	priority: taskData?.priority,
 	subtasks: taskData?.subtasks.map((item) => ({
 		id: uuidv4(),

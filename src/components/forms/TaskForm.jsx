@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
 import {closeModal} from "../../features/modalSlice.js";
 
-const TaskForm = ({onSubmit, onCancel, defaultValues = {}}) => {
+const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low'}}) => {
 	const dispatch = useDispatch()
 	const {
 		register,
