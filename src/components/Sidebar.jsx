@@ -101,8 +101,8 @@ const Sidebar = ({open, toggleDrawer}) => {
 					</ListItemButton>
 				</Fragment>
 				<Divider sx={{my: 1}}/>
-				<SwitchTheme/>
 			</List>
+			<SwitchTheme/>
 		</Drawer>
 	);
 };

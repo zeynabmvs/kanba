@@ -116,13 +116,9 @@ export default function Dashboard() {
 					flexGrow: 1,
 					height: "calc(100vh - 65px)",
 					mt: "65px"
-					// overflow: "auto"
 				}}
 			>
-				{/*<Toolbar/>*/}
-				{/*<Stack>*/}
 				<Board/>
-				{/*</Stack>*/}
 			</Box>
 		</Box>
 	);

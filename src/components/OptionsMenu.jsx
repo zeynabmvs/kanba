@@ -2,7 +2,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {IconButton, Menu, MenuItem} from "@mui/material";
 import {useState} from "react";
 
-const OptionsMenu = ({text, onEdit, onDelete}) => {
+const OptionsMenu = ({text, onEdit, onDelete, sx}) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	
@@ -30,6 +30,7 @@ const OptionsMenu = ({text, onEdit, onDelete}) => {
 				aria-haspopup="true"
 				aria-expanded={open ? "true" : undefined}
 				onClick={handleClick}
+				sx={sx}
 			>
 				<MoreVertIcon sx={{color: '#fff'}}/>
 			</IconButton>

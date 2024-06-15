@@ -79,6 +79,7 @@ const BoardList = ({list, index}) => {
 							text="list"
 							onEdit={onEditListHandler}
 							onDelete={onDeleteListHandler}
+							sx={{'& .MuiSvgIcon-root': {color: theme.palette.mode === 'light' ? theme.palette.customGrey.main : theme.palette.customGrey.light}}}
 						></OptionsMenu>
 					</Stack>
 					
