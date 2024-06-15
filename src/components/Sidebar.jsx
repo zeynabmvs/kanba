@@ -1,13 +1,10 @@
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Toolbar from "@mui/material/Toolbar";
 import {styled} from "@mui/material/styles";
 import {Fragment} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,6 +13,7 @@ import {openModal} from "../features/modalSlice";
 import SwitchTheme from "./SwitchTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {drawerWidth} from "../configs/constants";
+import {useMediaQuery} from "@mui/material";
 
 const Drawer = styled(MuiDrawer, {
 	shouldForwardProp: (prop) => prop !== "open",
@@ -45,10 +43,11 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 
-const Sidebar = ({open, toggleDrawer}) => {
+const Sidebar = ({open}) => {
 	const boards = useSelector(selectBoards);
 	const currentBoardId = useSelector(selectCurrentBoardId);
 	const dispatch = useDispatch();
+	const isSmallScreen = useMediaQuery('(max-width:600px)');
 	
 	const sidebarMenuItemStyles = {fontSize: '16px', fontWeight: '500'}
 	
@@ -61,20 +60,7 @@ const Sidebar = ({open, toggleDrawer}) => {
 	};
 	
 	return (
-		<Drawer variant="permanent" open={open}>
-			<Toolbar
-				sx={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "flex-end",
-					px: [1],
-				}}
-			>
-				<IconButton onClick={toggleDrawer}>
-					<ChevronLeftIcon/>
-				</IconButton>
-			</Toolbar>
-			<Divider/>
+		<Drawer variant="permanent" open={open} sx={{marginTop: isSmallScreen ? '57px' : '65px'}}>
 			<List component="nav">
 				{boards?.map((item) => (
 					<Fragment key={item.id}>

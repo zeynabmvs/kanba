@@ -45,7 +45,7 @@ const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low', list: '
 				autoComplete="off"
 				onSubmit={handleSubmit(onSubmitHandle)}
 			>
-				<div style={{marginBottom: "24px", display: "flex", flexDirection: "column", gap: "32px"}}>
+				<div style={{marginBottom: "24px", display: "flex", flexDirection: "column", gap: {xs: "16px", md: "32px"}}}>
 					
 					<div>
 						<InputLabel id="title-label">title</InputLabel>

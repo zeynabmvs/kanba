@@ -39,10 +39,10 @@ const modalStyle = {
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	width: 600,
+	width: {xs: "80%", md: "600px"},
 	borderRadius: "16px",
 	boxShadow: 24,
-	p: 4,
+	p: {xs: 2, md: 4},
 	maxHeight: "80%",
 	overflow: "auto",
 };

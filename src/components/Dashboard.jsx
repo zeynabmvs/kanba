@@ -1,37 +1,20 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import {Button, CssBaseline} from "@mui/material";
-import MuiAppBar from "@mui/material/AppBar";
+import {Close} from "@mui/icons-material"
+import {Button, useMediaQuery} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import {styled} from "@mui/material/styles";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentBoard} from "../features/boards/boardsSlice.js";
 import {openModal} from "../features/modalSlice";
 import Board from "./Board";
 import OptionsMenu from "./OptionsMenu.jsx";
-import {drawerWidth} from "../configs/constants";
 import Sidebar from "./Sidebar";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const AppBar = styled(MuiAppBar, {
-	shouldForwardProp: (prop) => prop !== "open",
-})(({theme, open}) => ({
-	zIndex: theme.zIndex.drawer + 1,
-	transition: theme.transitions.create(["width", "margin"], {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.leavingScreen,
-	}),
-	...(open && {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
-		transition: theme.transitions.create(["width", "margin"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	}),
-}));
 
 export default function Dashboard() {
 	const [open, setOpen] = useState(true);
@@ -60,14 +43,13 @@ export default function Dashboard() {
 	const onEditBoardHandler = () => {
 		dispatch(openModal({type: "editBoard"}));
 	};
+	
+	const isSmallScreen = useMediaQuery('(max-width:600px)');
+	
 	return (
 		<Box sx={{display: "flex", overflow: "hidden"}}>
-			<CssBaseline/>
 			<AppBar position="absolute" open={open}>
-				<Toolbar
-					sx={{
-						pr: "24px", // keep right padding when drawer closed
-					}}
+				<Toolbar sx={{paddingRight: {xs: 0, md: "16px"}}}
 				>
 					<IconButton
 						edge="start"
@@ -75,29 +57,31 @@ export default function Dashboard() {
 						aria-label="open drawer"
 						onClick={toggleDrawer}
 						sx={{
-							marginRight: "36px",
-							...(open && {display: "none"}),
+							marginRight: {xs: "4px", md: "36px"},
 						}}
 					>
-						<MenuIcon/>
+						{open ? <Close/> : <MenuIcon/>}
 					</IconButton>
 					<Typography
 						component="h1"
-						variant="h5"
+						variant={isSmallScreen ? "h6" : "h5"}
 						color="inherit"
 						noWrap
 						sx={{flexGrow: 1}}
 					>
 						{board?.title}
 					</Typography>
-					<Button
-						variant="contained"
-						color="secondary"
-						onClick={onAddTaskHandler}
-						disabled={!board || board?.lists.length === 0}
-					>
-						+ Add Task
-					</Button>
+					{isSmallScreen ?
+						<IconButton onClick={onAddTaskHandler} disabled={!board || board?.lists.length === 0}
+												color="secondary"><AddCircleIcon/></IconButton> : <Button
+							variant="contained"
+							color="secondary"
+							onClick={onAddTaskHandler}
+							disabled={!board || board?.lists.length === 0}
+						>
+							+ Add Task
+						</Button>}
+					
 					<OptionsMenu
 						text="board"
 						onEdit={onEditBoardHandler}
@@ -105,7 +89,7 @@ export default function Dashboard() {
 					></OptionsMenu>
 				</Toolbar>
 			</AppBar>
-			<Sidebar open={open} toggleDrawer={toggleDrawer}/>
+			<Sidebar open={open}/>
 			<Box
 				component="main"
 				sx={{
@@ -114,8 +98,8 @@ export default function Dashboard() {
 							? theme.palette.customGrey.light
 							: theme.palette.customGrey.darker,
 					flexGrow: 1,
-					height: "calc(100vh - 65px)",
-					mt: "65px"
+					height: isSmallScreen ? "calc(100vh - 48px)" : "calc(100vh - 65px)",
+					mt: isSmallScreen ? "48px" : "65px",
 				}}
 			>
 				<Board/>
