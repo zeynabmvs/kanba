@@ -39,6 +39,31 @@ export const getDesignTokens = (mode) => ({
 		},
 	},
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: (theme) => ({
+				'*': {
+					scrollbarWidth: 'thin',
+					scrollbarColor: `${theme.palette.secondary.dark} ${theme.palette.background.default}`,
+					'&::-webkit-scrollbar': {
+						width: '12px',
+						height: '12px',
+					},
+					'&::-webkit-scrollbar-track': {
+						background: theme.palette.background.default,
+					},
+					'&::-webkit-scrollbar-thumb': {
+						backgroundColor: theme.palette.primary.main,
+						borderRadius: '10px',
+						border: `3px solid ${theme.palette.background.default}`,
+					},
+					'&::-webkit-scrollbar-thumb:hover': {
+						backgroundColor: theme.palette.primary.dark,
+					},
+				},
+			}),
+		},
+		
+		
 		MuiButton: {
 			styleOverrides: {
 				root: {
