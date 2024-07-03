@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {toggleColorMode} from "../features/colorModeSlice";
+import {toggleColorMode} from "features/colorModeSlice";
 import {useDispatch} from "react-redux";
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';

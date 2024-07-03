@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {produce} from "immer";
 import {v4 as uuidv4} from "uuid";
-import {initialData} from "../../configs/data.js";
-import {createTask, findSubtaskIndexes, findTaskIndexById, getCurrentBoardIndex} from "./halpers.js";
+import {initialData} from "src/configs/data.js";
+import {createTask, findSubtaskIndexes, findTaskIndexById, getCurrentBoardIndex} from "src/features/boards/halpers.js";
 
 // TODO: change error handling
 

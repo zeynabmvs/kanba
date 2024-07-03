@@ -2,9 +2,9 @@ import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { Paper, Stack, Typography, Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
-import { openModal } from "../features/modalSlice";
-import BoardListCard from "./BoardListCard";
-import OptionsMenu from "./OptionsMenu.jsx";
+import { openModal } from "features/modalSlice";
+import BoardListCard from "components/BoardListCard";
+import OptionsMenu from "components/OptionsMenu.jsx";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
@@ -124,7 +124,10 @@ const BoardList = ({ list, index }) => {
             )}
           </Droppable>
 
-          <Button onClick={onAddTaskHandler} sx={{ width: "100%", mb: "8px" }}>
+          <Button
+            onClick={onAddTaskHandler}
+            sx={{ mb: "16px", mx: "16px", width: "calc(100% - 32px)" }}
+          >
             + Add Task
           </Button>
         </Paper>

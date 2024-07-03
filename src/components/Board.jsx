@@ -1,13 +1,13 @@
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   reorderLists,
   reorderTask,
   selectCurrentBoard,
-} from "../features/boards/boardsSlice.js";
-import BoardList from "./BoardList";
-import { ListIndexProvider } from "../contexts/listIndexContext.jsx";
+} from "features/boards/boardsSlice.js";
+import BoardList from "components/BoardList";
+import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);

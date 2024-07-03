@@ -1,8 +1,8 @@
 import {useDispatch} from "react-redux";
-import {addBoard} from "../../features/boards/boardsSlice.js";
-import {closeModal} from "../../features/modalSlice";
-import BoardFrom from "../forms/BoardFrom";
-import ModalTitle from "./partials/modalTitle.jsx";
+import {addBoard} from "features/boards/boardsSlice.js";
+import {closeModal} from "features/modalSlice";
+import BoardFrom from "components/forms/BoardFrom";
+import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const AddBoard = ({onClose}) => {
 	const dispatch = useDispatch();

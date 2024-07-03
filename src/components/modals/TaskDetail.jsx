@@ -6,10 +6,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {editSubtask} from "../../features/boards/boardsSlice.js";
-import {openModal} from "../../features/modalSlice";
-import OptionsMenu from "../OptionsMenu";
-import PriorityChip from "../PriorityChip.jsx";
+import {editSubtask} from "features/boards/boardsSlice.js";
+import {openModal} from "features/modalSlice";
+import OptionsMenu from "components/OptionsMenu";
+import PriorityChip from "components/PriorityChip.jsx";
 import {useTheme} from "@mui/material/styles";
 
 const TaskDetail = ({detail}) => {

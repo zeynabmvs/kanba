@@ -7,11 +7,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentBoard } from "../features/boards/boardsSlice.js";
-import { openModal } from "../features/modalSlice";
-import Board from "./Board";
-import OptionsMenu from "./OptionsMenu.jsx";
-import Sidebar from "./Sidebar";
+import { selectCurrentBoard } from "features/boards/boardsSlice.js";
+import { openModal } from "features/modalSlice";
+import Board from "components/Board";
+import OptionsMenu from "components/OptionsMenu.jsx";
+import Sidebar from "components/Sidebar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useTheme } from "@mui/material/styles";
 

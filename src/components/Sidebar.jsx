@@ -8,11 +8,11 @@ import ListItemText from "@mui/material/ListItemText";
 import {styled} from "@mui/material/styles";
 import {Fragment} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "../features/boards/boardsSlice.js";
-import {openModal} from "../features/modalSlice";
-import SwitchTheme from "./SwitchTheme";
+import {changeCurrentBoard, selectBoards, selectCurrentBoardId,} from "features/boards/boardsSlice.js";
+import {openModal} from "features/modalSlice";
+import SwitchTheme from "components/SwitchTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {drawerWidth} from "../configs/constants";
+import {drawerWidth} from "src/configs/constants";
 import {useMediaQuery} from "@mui/material";
 
 const Drawer = styled(MuiDrawer, {

@@ -1,7 +1,7 @@
 import {Button, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {deleteBoard, deleteList, deleteTask,} from "../../features/boards/boardsSlice.js";
-import ModalTitle from "./partials/modalTitle.jsx";
+import {deleteBoard, deleteList, deleteTask,} from "features/boards/boardsSlice.js";
+import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const ConfirmDelete = ({type, obj, message, onClose}) => {
 	const dispatch = useDispatch();

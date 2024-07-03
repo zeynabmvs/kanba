@@ -1,8 +1,8 @@
 import {useDispatch} from "react-redux";
-import {addList} from "../../features/boards/boardsSlice.js";
-import {closeModal} from "../../features/modalSlice";
-import ListFrom from "../forms/ListFrom";
-import ModalTitle from "./partials/modalTitle.jsx";
+import {addList} from "features/boards/boardsSlice.js";
+import {closeModal} from "features/modalSlice";
+import ListFrom from "components/forms/ListFrom";
+import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const AddList = ({onClose}) => {
 	const dispatch = useDispatch();

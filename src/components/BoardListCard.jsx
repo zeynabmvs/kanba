@@ -1,8 +1,8 @@
 import {Draggable} from "@hello-pangea/dnd";
 import {Card, Checkbox, Stack, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {editTask} from "../features/boards/boardsSlice.js";
-import {openModal} from "../features/modalSlice";
+import {editTask} from "features/boards/boardsSlice.js";
+import {openModal} from "features/modalSlice";
 import {useMemo, useState} from "react";
 import {styled} from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
@@ -11,8 +11,8 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from "@mui/material/Box";
-import PriorityChip from "./PriorityChip.jsx";
-import {useListIndex} from "../contexts/listIndexContext.jsx";
+import PriorityChip from "components/PriorityChip.jsx";
+import {useListIndex} from "src/contexts/listIndexContext.jsx";
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;

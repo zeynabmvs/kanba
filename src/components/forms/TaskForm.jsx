@@ -3,8 +3,8 @@ import {Controller, useFieldArray, useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
-import {closeModal} from "../../features/modalSlice.js";
-import {selectCurrentBoard} from "../../features/boards/boardsSlice.js";
+import {closeModal} from "features/modalSlice.js";
+import {selectCurrentBoard} from "features/boards/boardsSlice.js";
 
 const TaskForm = ({onSubmit, onCancel, defaultValues = {priority: 'low', list: '0'}}) => {
 	const dispatch = useDispatch()

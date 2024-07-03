@@ -1,6 +1,6 @@
 import Modal from "@mui/material/Modal";
 import {useDispatch, useSelector} from "react-redux";
-import {closeModal, selectModal} from "../features/modalSlice";
+import {closeModal, selectModal} from "features/modalSlice";
 import {AddBoard, AddList, AddTask, ConfirmDelete, EditBoard, EditList, EditTask, TaskDetail,} from "./modals";
 import {Paper} from "@mui/material";
 
