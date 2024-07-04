@@ -1,12 +1,19 @@
 import {Box, Button, InputLabel, Stack, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
+const validationSchema = Yup.object().shape({
+	title: Yup.string().required('Title is required').max(50, 'Title must not exceed 50 characters')
+  });
 
 const BoardFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
-	} = useForm({defaultValues: defaultValues});
+	} = useForm({defaultValues: defaultValues, resolver: yupResolver(validationSchema)});
 	
 	return (
 		<Box
@@ -21,13 +28,7 @@ const BoardFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 			<div style={{marginBottom: "24px"}}>
 				<InputLabel id="title-label">title</InputLabel>
 				<TextField
-					{...register("title", {
-						required: "Required",
-						maxLength: {
-							value: 50,
-							message: "Max length is 50",
-						},
-					})}
+					{...register("title")}
 					error={errors?.title}
 					id="outlined-helperText"
 					labelId="title-label"
