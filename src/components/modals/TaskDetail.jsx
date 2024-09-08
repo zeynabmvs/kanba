@@ -103,7 +103,7 @@ const TaskDetail = ({detail}) => {
 											sx={{mr: "16px"}}>Status: {detail.status === 'completed' ? 'Completed' : 'Not completed'}</Typography>
 				</Stack>
 				
-				{detail?.priority ? <Stack direction="row" alignItems="center">
+				{detail?.priority !== 'none' ? <Stack direction="row" alignItems="center">
 					<Typography variant="body2" sx={{mr: "16px"}}>Priority: </Typography>
 					<PriorityChip priority={detail?.priority}/>
 				</Stack> : null}
