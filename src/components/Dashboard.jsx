@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentBoard } from "features/boards/boardsSlice.js";
@@ -49,52 +48,71 @@ export default function Dashboard() {
   return (
     <Box sx={{ display: "flex", overflow: "hidden" }}>
       <AppBar position="absolute" open={open}>
-        <Toolbar sx={{ paddingRight: "16px" }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
+        <Toolbar
+          sx={{
+            paddingRight: "16px",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box
             sx={{
-              marginRight: { xs: "4px", md: "36px" },
+              display: "flex",
             }}
           >
-            <MenuIcon />
-            {/*{open ? <Close/> : <MenuIcon/>}*/}
-          </IconButton>
-          <Typography
-            component="h1"
-            variant={isSmallScreen ? "h6" : "h5"}
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
-            {board?.title}
-          </Typography>
-          {isSmallScreen ? (
-            <IconButton onClick={onAddListHandler} color="secondary">
-              <AddCircleIcon />
-            </IconButton>
-          ) : (
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={onAddListHandler}
-              disabled={board?.lists.length > 5}
+            {" "}
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: { xs: "4px", md: "16px" },
+              }}
             >
-              + new List
-            </Button>
-          )}
+              <MenuIcon />
+              {/*{open ? <Close/> : <MenuIcon/>}*/}
+            </IconButton>
+            {/* Logo */}
+            <Box
+              component="img"
+              sx={{
+                height: 48,
+                width: 176,
+                maxHeight: { xs: 40, md: 48 },
+                maxWidth: { xs: 150, md: 176 },
+              }}
+              alt="Logo"
+              src="/logo.svg"
+            />
+          </Box>
 
-          <OptionsMenu
-            text="board"
-            onEdit={onEditBoardHandler}
-            onDelete={onDeleteBoardHandler}
-            sx={{
-              ml: { xs: "4px", md: "16px" },
-              "& :hover": { color: theme.palette.primary.contrastText },
-            }}
-          ></OptionsMenu>
+          <Box>
+            {isSmallScreen ? (
+              <IconButton onClick={onAddListHandler} color="secondary">
+                <AddCircleIcon />
+              </IconButton>
+            ) : (
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={onAddListHandler}
+                disabled={board?.lists.length > 5}
+              >
+                + new List
+              </Button>
+            )}
+
+            <OptionsMenu
+              text="board"
+              onEdit={onEditBoardHandler}
+              onDelete={onDeleteBoardHandler}
+              sx={{
+                ml: { xs: "4px", md: "16px" },
+                "& :hover": { color: theme.palette.primary.contrastText },
+              }}
+            ></OptionsMenu>
+          </Box>
         </Toolbar>
       </AppBar>
       <Sidebar open={open} />
