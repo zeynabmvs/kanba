@@ -15,6 +15,8 @@ import PriorityChip from "components/PriorityChip.jsx";
 import {useListIndex} from "src/contexts/listIndexContext.jsx";
 import useSound from 'use-sound';
 import tickSound from "src/assets/tick.wav"
+import {displayDate} from "src/utils/index.js"
+
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -36,7 +38,6 @@ const BoardListCard = ({task, index}) => {
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-	
 	
 	const dispatch = useDispatch();
 	
@@ -92,6 +93,8 @@ const BoardListCard = ({task, index}) => {
 					</Stack>
 					
 					<CardActions disableSpacing>
+						<Typography variant="body2" sx={{mr: "8px",}}>{displayDate(task?.date)}</Typography>
+						
 						<PriorityChip priority={task?.priority}/>
 						
 						{task.description ? <ExpandMore
