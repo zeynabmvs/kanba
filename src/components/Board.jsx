@@ -8,6 +8,7 @@ import {
 } from "features/boards/boardsSlice.js";
 import BoardList from "components/BoardList";
 import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
+import { Box } from "@mui/material";
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);
@@ -61,7 +62,25 @@ const Board = () => {
       )}
 
       {currentBoard?.lists?.length < 1 && (
-        <Container sx={{ py: "64px" }}>
+        <Container
+          sx={{
+            py: "64px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            component="img"
+            sx={{
+              height: 300,
+              width: 300,
+              marginBottom: "24px",
+            }}
+            alt=""
+            src="src/assets/images/empty-state.svg"
+          />
           <Typography component="p" variant="h6" textAlign="center">
             This Board is empty, create a new List to get started
           </Typography>
@@ -79,20 +98,24 @@ const Board = () => {
             droppableId="lists-container"
             direction={"horizontal"}
             type={"LIST"}
-            sx={{ overflow: "hidden"}}
+            sx={{ overflow: "hidden" }}
           >
             {(provided) => (
               <Stack
-                sx={{ overflow: "auto", px: {xs: "8px", md: "16px"}, pt: {xs: "8px", md: "16px"} }}
+                sx={{
+                  overflow: "auto",
+                  px: { xs: "8px", md: "16px" },
+                  pt: { xs: "8px", md: "16px" },
+                }}
                 // component={"ul"}
                 direction={"row"}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 {currentBoard?.lists?.map((list, index) => (
-                    <ListIndexProvider listIndex={index} key={list.id}>
-                      <BoardList list={list} index={index} />
-                    </ListIndexProvider>
+                  <ListIndexProvider listIndex={index} key={list.id}>
+                    <BoardList list={list} index={index} />
+                  </ListIndexProvider>
                 ))}
                 {provided.placeholder}
               </Stack>
