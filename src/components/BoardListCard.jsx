@@ -79,9 +79,10 @@ const BoardListCard = ({task, index}) => {
 							{<Typography component={"h4"} variant={"body1"} sx={{
 								textDecoration: (task.status === 'completed' ? 'line-through' : 'none')
 							}}>{task.title}</Typography>}
-							{<Typography
+							{subtasksCount > 0 && (
+								<Typography
 								variant="caption"
-								color="text.secondary">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>}
+								color="text.secondary">{`${subtasksCompletedCount} of ${subtasksCount} is completed`}</Typography>)}
 						</Box>
 						
 						<Checkbox
