@@ -107,6 +107,7 @@ const Board = () => {
                   px: { xs: "8px", md: "16px" },
                   pt: { xs: "8px", md: "16px" },
                   height: "100%",
+                  width: "100%"
                 }}
                 // component={"ul"}
                 direction={"row"}
