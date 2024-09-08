@@ -13,17 +13,23 @@ import OptionsMenu from "components/OptionsMenu.jsx";
 import Sidebar from "components/Sidebar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useTheme } from "@mui/material/styles";
+import { selectDrawerState } from "src/features/appSettingsSlice";
+import { toggleDrawer } from "src/features/appSettingsSlice";
 
 export default function Dashboard() {
-  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+  // const [open, setOpen] = useState(true);
+
+  const isOpen = useSelector(selectDrawerState);
+
   const dispatch = useDispatch();
   const board = useSelector(selectCurrentBoard);
 
   const onAddListHandler = () => {
     dispatch(openModal({ type: "addList" }));
+  };
+
+  const toggleDrawerState = () => {
+    dispatch(toggleDrawer());
   };
 
   const onDeleteBoardHandler = () => {
@@ -47,7 +53,7 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ display: "flex", overflow: "hidden" }}>
-      <AppBar position="absolute" open={open}>
+      <AppBar position="absolute" open={isOpen}>
         <Toolbar
           sx={{
             paddingRight: "16px",
@@ -60,12 +66,11 @@ export default function Dashboard() {
               display: "flex",
             }}
           >
-            {" "}
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              onClick={toggleDrawer}
+              onClick={toggleDrawerState}
               sx={{
                 marginRight: { xs: "4px", md: "16px" },
               }}
@@ -115,7 +120,7 @@ export default function Dashboard() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Sidebar open={open} />
+      <Sidebar open={isOpen} />
       <Box
         component="main"
         sx={{
