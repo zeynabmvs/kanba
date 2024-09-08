@@ -13,6 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from "@mui/material/Box";
 import PriorityChip from "components/PriorityChip.jsx";
 import {useListIndex} from "src/contexts/listIndexContext.jsx";
+import useSound from 'use-sound';
+import tickSound from "src/assets/tick.wav"
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -29,7 +31,8 @@ const ExpandMore = styled((props) => {
 const BoardListCard = ({task, index}) => {
 	const [expanded, setExpanded] = useState(false);
 	const listIndex = useListIndex();
-	
+	const [play] = useSound(tickSound);
+
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
@@ -44,6 +47,8 @@ const BoardListCard = ({task, index}) => {
 	const handleStatusChange = () => {
 		const newStatus =
 			task.status === "completed" ? "notCompleted" : "completed";
+		newStatus === 'completed' && play()
+
 		dispatch(
 			editTask({newTask: {...task, status: newStatus}, oldTask: task})
 		);
