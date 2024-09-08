@@ -74,8 +74,8 @@ const Board = () => {
           <Box
             component="img"
             sx={{
-              height: 300,
-              width: 300,
+              height: {xs: 150, md: 300},
+              width: {xs: 150, md: 300},
               marginBottom: "24px",
             }}
             alt=""
@@ -92,7 +92,7 @@ const Board = () => {
           id="xyz"
           direction="row"
           alignItems={"flex-start"}
-          // sx={{ margin: "16px" }}
+          sx={{ height: "100%" }}
         >
           <Droppable
             droppableId="lists-container"
@@ -106,6 +106,7 @@ const Board = () => {
                   overflow: "auto",
                   px: { xs: "8px", md: "16px" },
                   pt: { xs: "8px", md: "16px" },
+                  height: "100%",
                 }}
                 // component={"ul"}
                 direction={"row"}
