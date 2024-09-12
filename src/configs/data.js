@@ -9,6 +9,8 @@ export const initialData = {
         {
           id: uuidv4(),
           title: "Todo List",
+          sort: "priority",
+          direction: "asc",
           tasks: [
             {
               id: uuidv4(),
@@ -119,6 +121,8 @@ export const initialData = {
         {
           id: uuidv4(),
           title: "Doing List",
+          sort: "date",
+          direction: "desc",
           tasks: [],
         },
       ],
@@ -130,6 +134,8 @@ export const initialData = {
         {
           id: uuidv4(),
           title: "BackLog",
+          sort: "priority",
+          direction: "asc",
           tasks: [
             {
               id: uuidv4(),
@@ -185,6 +191,8 @@ export const initialData = {
         {
           id: uuidv4(),
           title: "Done",
+          sort: "date",
+          direction: "asc",
           tasks: [
             {
               id: uuidv4(),
@@ -205,158 +213,6 @@ export const initialData = {
                   id: uuidv4(),
                   title: "Test functionality",
                   status: "notCompleted",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: uuidv4(),
-      title: "Office Management",
-      lists: [
-        {
-          id: uuidv4(),
-          title: "ToDo",
-          tasks: [
-            {
-              id: uuidv4(),
-              title: "Schedule meeting",
-              description: "Set up a meeting with the team.",
-              color: "#ffffff",
-              status: "notCompleted",
-              priority: "high",
-              tags: ["meeting", "work", "urgent"],
-              date: new Date(),
-              subtasks: [
-                { id: uuidv4(), title: "Send invites", status: "completed" },
-                {
-                  id: uuidv4(),
-                  title: "Prepare agenda",
-                  status: "notCompleted",
-                },
-              ],
-            },
-            {
-              id: uuidv4(),
-              title: "Review documents",
-              description: "Review documents before submission.",
-              color: "#ffffff",
-              status: "notCompleted",
-              priority: "medium",
-              tags: ["documents", "review", "work"],
-              date: new Date(),
-              subtasks: [
-                {
-                  id: uuidv4(),
-                  title: "Check for errors",
-                  status: "completed",
-                },
-                {
-                  id: uuidv4(),
-                  title: "Provide feedback",
-                  status: "notCompleted",
-                },
-              ],
-            },
-            {
-              id: uuidv4(),
-              title: "Submit report",
-              description: "Submit the quarterly report.",
-              color: "#ffffff",
-              status: "notCompleted",
-              priority: "high",
-              tags: ["report", "submission", "priority"],
-              date: new Date(),
-              subtasks: [],
-            },
-          ],
-        },
-        {
-          id: uuidv4(),
-          title: "BackLog",
-          tasks: [
-            {
-              id: uuidv4(),
-              title: "Prepare presentation",
-              description:
-                "Prepare a presentation for the upcoming conference.",
-              color: "#ffffff",
-              status: "notCompleted",
-              priority: "medium",
-              tags: ["presentation", "conference", "important"],
-              date: new Date(),
-              subtasks: [
-                { id: uuidv4(), title: "Create slides", status: "completed" },
-                {
-                  id: uuidv4(),
-                  title: "Practice delivery",
-                  status: "notCompleted",
-                },
-              ],
-            },
-            {
-              id: uuidv4(),
-              title: "Plan event",
-              description: "Plan an event for the company anniversary.",
-              color: "#ffffff",
-              status: "notCompleted",
-              priority: "low",
-              tags: ["event", "planning", "company"],
-              date: new Date(),
-              subtasks: [
-                { id: uuidv4(), title: "Choose venue", status: "notCompleted" },
-                {
-                  id: uuidv4(),
-                  title: "Send invitations",
-                  status: "notCompleted",
-                },
-              ],
-            },
-            {
-              id: uuidv4(),
-              title: "Review code",
-              description: "Review code before deployment.",
-              color: "#ffffff",
-              status: "completed",
-              priority: "medium",
-              tags: ["code", "review", "deployment"],
-              date: new Date(),
-              subtasks: [
-                { id: uuidv4(), title: "Check for bugs", status: "completed" },
-                {
-                  id: uuidv4(),
-                  title: "Optimize performance",
-                  status: "completed",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: uuidv4(),
-          title: "Done",
-          tasks: [
-            {
-              id: uuidv4(),
-              title: "Set up new software",
-              description: "Install and configure new software for the team.",
-              color: "#ffffff",
-              status: "completed",
-              priority: "none",
-              tags: ["software", "setup", "work"],
-              date: new Date(),
-              subtasks: [
-                {
-                  id: uuidv4(),
-                  title: "Install software",
-                  status: "completed",
-                },
-                {
-                  id: uuidv4(),
-                  title: "Configure settings",
-                  status: "completed",
                 },
               ],
             },
