@@ -5,6 +5,7 @@ import {
   reorderLists,
   reorderTask,
   selectCurrentBoard,
+  changeListSort
 } from "features/boards/boardsSlice.js";
 import BoardList from "components/BoardList";
 import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
@@ -20,6 +21,7 @@ const Board = () => {
     if (!destination) return;
 
     if (dropResult.type === "LIST") {
+
       if (
         destination.droppableId === source.droppableId &&
         destination.index === source.index
@@ -39,6 +41,13 @@ const Board = () => {
         destination.droppableId.split("-").pop(),
         10
       );
+
+      dispatch(changeListSort({
+        sortBy: "manualReorder",
+        list: currentBoard.lists[destinationListIndex],
+        direction: "asc"
+      }))
+
       dispatch(
         reorderTask({
           sourceIndex: source.index,

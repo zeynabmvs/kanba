@@ -9,7 +9,7 @@ export const initialData = {
         {
           id: uuidv4(),
           title: "Todo List",
-          sort: "priority",
+          sort: "manualReorder",
           direction: "asc",
           tasks: [
             {

@@ -7,7 +7,7 @@ import BoardListCard from "components/BoardListCard";
 import ListActions from "components/ListActions.jsx";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import { useMemo } from "react";
+import { useMemo} from "react";
 
 const BoardList = ({ list, index }) => {
   const dispatch = useDispatch();
@@ -23,9 +23,12 @@ const BoardList = ({ list, index }) => {
     dispatch(openModal({ type: "addTask", detail: index }));
   };
 
+  
   const sortedTasks = useMemo(() => {
 
     const sorted = [...list.tasks];
+    if (list.sort === "manualReorder") return sorted;
+
     sorted.sort((a, b) => {
       let comparison = 0;
       if (list.sort === 'date') {

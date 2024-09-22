@@ -214,7 +214,6 @@ export const boardsSlice = createSlice({
           task
         );
       });
-
       return { ...state, boards: nextState };
     },
     changeListSort: (state, action) => {
