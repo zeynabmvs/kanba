@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import App from "src/app/App.jsx";
 import {persistor, store} from "src/app/store.js";
-import "src/index.css";
+import "./index.css";
 
 // TODD: remove for deploy
 // persistor.purge();

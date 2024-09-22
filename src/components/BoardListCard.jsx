@@ -47,7 +47,7 @@ const BoardListCard = ({ task, index }) => {
         <Card
           sx={{ mb: "16px", borderRadius: "12px", boxShadow: "none" }}
           variant="outlined"
-          className={`${snapshot.isDragging && "is-dragging-card "}`}
+          className={`${snapshot.isDragging && "is-dragging-card "} card-${task.color}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
         >

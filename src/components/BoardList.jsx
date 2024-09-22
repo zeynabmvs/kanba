@@ -90,7 +90,7 @@ const BoardList = ({ list, index }) => {
               }}
               {...provided.dragHandleProps}
             >
-              {list.title}-{list.sort}-{list.direction}
+              {list.title}
             </Typography>
             <ListActions list={list}></ListActions>
           </Stack>

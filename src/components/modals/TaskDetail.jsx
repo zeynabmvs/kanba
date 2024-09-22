@@ -98,10 +98,10 @@ const TaskDetail = ({detail}) => {
 				
 				)}
 				
-				<Stack direction="row" alignItems="center" sx={{mb: "8px"}}>
+				{/* <Stack direction="row" alignItems="center" sx={{mb: "8px"}}>
 					<Typography variant="body2"
 											sx={{mr: "16px"}}>Status: {detail.status === 'completed' ? 'Completed' : 'Not completed'}</Typography>
-				</Stack>
+				</Stack> */}
 				
 				{detail?.priority !== 'none' ? <Stack direction="row" alignItems="center">
 					<Typography variant="body2" sx={{mr: "16px"}}>Priority: </Typography>

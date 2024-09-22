@@ -1,3 +1,20 @@
 .line-through {
-    text-decoration-line: line-through;
+  text-decoration-line: line-through;
+}
+
+.card-pink {
+  background-color: #ffc1c1 !important;
+}
+
+.card-yellow {
+  background-color: #ffe6c1 !important;
+}
+.card-green {
+  background-color: #c1ffcf !important;
+}
+.card-pink {
+  background-color: #c1f4ff !important;
+}
+.card-pink {
+  background-color: #e4c1ff !important;
 }
