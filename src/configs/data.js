@@ -133,7 +133,7 @@ export const initialData = {
       lists: [
         {
           id: uuidv4(),
-          title: "BackLog",
+          title: "To Do",
           sort: "priority",
           direction: "asc",
           tasks: [
@@ -186,6 +186,26 @@ export const initialData = {
                 },
               ],
             },
+          ],
+        },        {
+          id: uuidv4(),
+          title: "Doing",
+          sort: "priority",
+          direction: "asc",
+          tasks: [
+            {
+              id: uuidv4(),
+              title: "Write project report",
+              description: "Write a report on the latest project.",
+              color: "",
+              status: "notCompleted",
+              priority: "medium",
+              tags: ["report", "work", "priority"],
+              date: new Date(),
+              subtasks: [
+                { id: uuidv4(), title: "Research", status: "completed" },
+              ],
+            }
           ],
         },
         {
