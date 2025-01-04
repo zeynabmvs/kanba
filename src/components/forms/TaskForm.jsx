@@ -36,7 +36,7 @@ const validationSchema = Yup.object().shape({
 const TaskForm = ({
   onSubmit,
   onCancel,
-  defaultValues = { priority: "low", list: "0" },
+  defaultValues = { priority: "none", list: "0" },
 }) => {
   const dispatch = useDispatch();
   const currentBoard = useSelector(selectCurrentBoard);
@@ -147,9 +147,9 @@ const TaskForm = ({
                   displayEmpty
                   fullWidth
                 >
-                  {/* <MenuItem value="" sx={{ fontSize: "0.875rem" }} key="none">
+                  <MenuItem value="none" sx={{ fontSize: "0.875rem" }} key="none">
                     --
-                  </MenuItem> */}
+                  </MenuItem>
                   <MenuItem value="low" sx={{ fontSize: "0.875rem" }} key="low">
                     Low
                   </MenuItem>

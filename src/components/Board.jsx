@@ -5,9 +5,11 @@ import {
   reorderLists,
   reorderTask,
   selectCurrentBoard,
+  changeListSort
 } from "features/boards/boardsSlice.js";
 import BoardList from "components/BoardList";
 import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
+import { Box } from "@mui/material";
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);
@@ -19,6 +21,7 @@ const Board = () => {
     if (!destination) return;
 
     if (dropResult.type === "LIST") {
+
       if (
         destination.droppableId === source.droppableId &&
         destination.index === source.index
@@ -38,6 +41,13 @@ const Board = () => {
         destination.droppableId.split("-").pop(),
         10
       );
+
+      dispatch(changeListSort({
+        sortBy: "manualReorder",
+        list: currentBoard.lists[destinationListIndex],
+        direction: "asc"
+      }))
+
       dispatch(
         reorderTask({
           sourceIndex: source.index,
@@ -52,54 +62,83 @@ const Board = () => {
 
   return (
     <>
-      {!currentBoard && (
-        <Container sx={{ py: "64px" }}>
-          <Typography component="p" variant="h6" textAlign="center">
-            There is no board yet, create one from sidebar
-          </Typography>
-        </Container>
-      )}
+      {/* Board Title */}
+      <Box m="16px">
+        <Typography variant="h4" component="h2" mb="8px" ml="8px">
+          {currentBoard?.title}
+        </Typography>
 
-      {currentBoard?.lists?.length < 1 && (
-        <Container sx={{ py: "64px" }}>
-          <Typography component="p" variant="h6" textAlign="center">
-            This Board is empty, create a new List to get started
-          </Typography>
-        </Container>
-      )}
+        {!currentBoard && (
+          <Container sx={{ py: "64px" }}>
+            <Typography component="p" variant="h6" textAlign="center">
+              There is no board yet, create one from sidebar
+            </Typography>
+          </Container>
+        )}
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Stack
-          id="xyz"
-          direction="row"
-          alignItems={"flex-start"}
-          // sx={{ margin: "16px" }}
-        >
-          <Droppable
-            droppableId="lists-container"
-            direction={"horizontal"}
-            type={"LIST"}
-            sx={{ overflow: "hidden"}}
+        {currentBoard?.lists?.length < 1 && (
+          <Container
+            sx={{
+              py: "64px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            {(provided) => (
-              <Stack
-                sx={{ overflow: "auto", px: {xs: "8px", md: "16px"}, pt: {xs: "8px", md: "16px"} }}
-                // component={"ul"}
-                direction={"row"}
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {currentBoard?.lists?.map((list, index) => (
+            <Box
+              component="img"
+              sx={{
+                height: { xs: 150, md: 300 },
+                width: { xs: 150, md: 300 },
+                marginBottom: "24px",
+              }}
+              alt=""
+              src="src/assets/images/empty-state.svg"
+            />
+            <Typography component="p" variant="h6" textAlign="center">
+              This Board is empty, create a new List to get started
+            </Typography>
+          </Container>
+        )}
+
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Stack
+            id="xyz"
+            direction="row"
+            alignItems={"flex-start"}
+            sx={{ height: "100%" }}
+          >
+            <Droppable
+              droppableId="lists-container"
+              direction={"horizontal"}
+              type={"LIST"}
+              sx={{ overflow: "hidden" }}
+            >
+              {(provided) => (
+                <Stack
+                  sx={{
+                    overflow: "auto",
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  // component={"ul"}
+                  direction={"row"}
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {currentBoard?.lists?.map((list, index) => (
                     <ListIndexProvider listIndex={index} key={list.id}>
                       <BoardList list={list} index={index} />
                     </ListIndexProvider>
-                ))}
-                {provided.placeholder}
-              </Stack>
-            )}
-          </Droppable>
-        </Stack>
-      </DragDropContext>
+                  ))}
+                  {provided.placeholder}
+                </Stack>
+              )}
+            </Droppable>
+          </Stack>
+        </DragDropContext>
+      </Box>
     </>
   );
 };

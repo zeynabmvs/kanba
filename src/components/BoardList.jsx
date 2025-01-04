@@ -4,9 +4,10 @@ import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
 import { openModal } from "features/modalSlice";
 import BoardListCard from "components/BoardListCard";
-import OptionsMenu from "components/OptionsMenu.jsx";
+import ListActions from "components/ListActions.jsx";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+import { useMemo} from "react";
 
 const BoardList = ({ list, index }) => {
   const dispatch = useDispatch();
@@ -18,24 +19,32 @@ const BoardList = ({ list, index }) => {
       ? theme.palette.secondary.light
       : theme.palette.customGrey.darkest;
 
-  const onDeleteListHandler = () => {
-    dispatch(
-      openModal({
-        type: "confirmDelete",
-        detail: {
-          type: "list",
-          obj: list,
-          message: `Are you sure you want to delete list ${list.title} and all of its tasks?`,
-        },
-      })
-    );
-  };
-  const onEditListHandler = () => {
-    dispatch(openModal({ type: "editList", detail: list }));
-  };
   const onAddTaskHandler = () => {
     dispatch(openModal({ type: "addTask", detail: index }));
   };
+
+  
+  const sortedTasks = useMemo(() => {
+
+    const sorted = [...list.tasks];
+    if (list.sort === "manualReorder") return sorted;
+
+    sorted.sort((a, b) => {
+      let comparison = 0;
+      if (list.sort === 'date') {
+        comparison = new Date(a.date) - new Date(b.date);
+      } else if (list.sort === 'priority') {
+        const priorityOrder = { high: 1, medium: 2, low: 3, none: 4 };
+        comparison = (priorityOrder[a.priority] || 5) - (priorityOrder[b.priority] || 5);
+      } else if (list.sort === 'title') {
+        comparison = a.title.localeCompare(b.title);
+      }
+      return list.direction === 'asc' ? comparison : -comparison;
+    });
+    return sorted;
+
+  }, [list.tasks, list.sort, list.direction]);
+
   return (
     <Draggable draggableId={list.id} index={index}>
       {(provided, snapshot) => (
@@ -64,9 +73,8 @@ const BoardList = ({ list, index }) => {
             justifyContent="space-between"
             sx={{
               pt: "16px",
-              px: "16px",
+              px: "12px",
               mb: "8px",
-              // transition: "all 300ms ease-in-out",
               alignItems: "center",
               "&:hover": {
                 bgcolor: onHoverBg,
@@ -87,19 +95,7 @@ const BoardList = ({ list, index }) => {
             >
               {list.title}
             </Typography>
-            <OptionsMenu
-              text="list"
-              onEdit={onEditListHandler}
-              onDelete={onDeleteListHandler}
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  color:
-                    theme.palette.mode === "light"
-                      ? theme.palette.customGrey.main
-                      : theme.palette.customGrey.light,
-                },
-              }}
-            ></OptionsMenu>
+            <ListActions list={list}></ListActions>
           </Stack>
 
           <Droppable
@@ -113,10 +109,10 @@ const BoardList = ({ list, index }) => {
                 {...provided.droppableProps}
                 sx={{
                   minHeight: "60px",
-                  mx: "16px",
+                  mx: "12px",
                 }}
               >
-                {list.tasks?.map((item, index) => (
+                {sortedTasks?.map((item, index) => (
                   <BoardListCard key={item.id} task={item} index={index} />
                 ))}
                 {provided.placeholder}
