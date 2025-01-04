@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import PriorityChip from "components/PriorityChip.jsx";
 import { useListIndex } from "src/contexts/listIndexContext.jsx";
 import useSound from "use-sound";
-import tickSound from "src/assets/tick.wav";
+import tickSound from "/tick.wav";
 import { displayDate } from "src/utils/index.js";
 import TimelineIcon from "@mui/icons-material/Timeline";
 

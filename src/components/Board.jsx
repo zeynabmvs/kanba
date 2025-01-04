@@ -94,7 +94,7 @@ const Board = () => {
                 marginBottom: "24px",
               }}
               alt=""
-              src="src/assets/images/empty-state.svg"
+              src="/empty-state.svg"
             />
             <Typography component="p" variant="h6" textAlign="center">
               This Board is empty, create a new List to get started
