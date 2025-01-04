@@ -44,7 +44,7 @@ Here are some screenshots of Kanba in action:
 
 ## Explore the App
 
-Check out the live demo: [Kanba on Vercel](https://mini-trello-hazel.vercel.app/)
+Check out the live demo: [Kanba on Vercel](https://kanba-hazel.vercel.app/)
 
 ---
 
