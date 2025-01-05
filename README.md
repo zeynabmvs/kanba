@@ -30,17 +30,10 @@ Kanba is perfect for individuals or small teams looking for a lightweight, no-fr
 
 Here are some screenshots of Kanba in action:
 
-### Dashboard View
-![Dashboard](screenshots/dashboard.png)  
+### Screenshot
+![Dashboard](./public/screenshot.jpg)  
 *The main dashboard where users can view and manage their boards.*
 
-### Task Management
-![Task Management](screenshots/task-management.png)  
-*Drag-and-drop interface for managing tasks across columns.*
-
-### Mobile View
-![Mobile View](screenshots/mobile-view.png)  
-*Fully responsive design for seamless use on mobile devices.*
 
 ## Explore the App
 
