@@ -19,10 +19,9 @@ import { useTheme } from "@mui/material/styles";
 export default function Dashboard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   const [isOpen, setIsOpen] = useState(isSmallScreen ? false : true);
   // const isOpen = useSelector(selectDrawerState);
-
+  console.log(isSmallScreen);
   const dispatch = useDispatch();
   const board = useSelector(selectCurrentBoard);
 
@@ -51,16 +50,20 @@ export default function Dashboard() {
     dispatch(openModal({ type: "editBoard" }));
   };
 
-
-
   return (
     <Box sx={{ display: "flex", overflow: "hidden" }}>
-      <AppBar position="absolute" open={isOpen}>
+
+    <AppBar position="absolute" open={isOpen}>
         <Toolbar
           sx={{
             paddingRight: "16px",
             justifyContent: "space-between",
             alignItems: "center",
+            // height: isSmallScreen ? "56px" : "64px"
+            // maxHeight: "60px",
+            minHeight: isSmallScreen ? "56px !important" : "64px !important",
+            height: isSmallScreen ? "56px" : "64px",
+            maxHeight: isSmallScreen ? "56px" : "64px"
           }}
         >
           <Box
@@ -132,12 +135,13 @@ export default function Dashboard() {
               : theme.palette.customGrey.darker,
           flexGrow: 1,
           overflowY: "auto",
-          height: isSmallScreen ? "calc(100vh - 48px)" : "calc(100vh - 65px)",
+          height: isSmallScreen ? "calc(100vh - 57px)" : "calc(100vh - 65px)",
           mt: isSmallScreen ? "57px" : "65px",
+
         }}
       >
         <Board />
       </Box>
-    </Box>
+  </Box>
   );
 }

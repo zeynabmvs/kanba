@@ -12,7 +12,7 @@ import { useMemo} from "react";
 const BoardList = ({ list, index }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const onHoverBg =
     theme.palette.mode === "light"
@@ -23,7 +23,6 @@ const BoardList = ({ list, index }) => {
     dispatch(openModal({ type: "addTask", detail: index }));
   };
 
-  
   const sortedTasks = useMemo(() => {
 
     const sorted = [...list.tasks];
@@ -59,7 +58,7 @@ const BoardList = ({ list, index }) => {
             listStyleType: "none",
             boxShadow: "none",
             maxHeight: isSmallScreen
-              ? "calc(100vh - 48px)"
+              ? "calc(100vh - 57px)"
               : "calc(100vh - 65px)",
             overflow: "auto",
           }}

@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   reorderLists,
@@ -10,11 +10,13 @@ import {
 import BoardList from "components/BoardList";
 import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
 import { Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
-
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const onDragEnd = (dropResult) => {
     const { destination, source } = dropResult;
 
@@ -61,85 +63,104 @@ const Board = () => {
   };
 
   return (
-    <>
+    <Box 
+      sx={{
+        height: isSmallScreen ? "calc(100vh - 57px)" : "calc(100vh - 65px)", // Adjust based on your header height
+        display: 'flex',
+        flexDirection: 'column',
+        pt: "16px",
+        pl: "8px",
+      }}
+    >
       {/* Board Title */}
-      <Box m="16px">
-        <Typography variant="h4" component="h2" mb="8px" ml="8px">
-          {currentBoard?.title}
-        </Typography>
+      <Typography variant="h4" component="h2" mb="8px" ml="8px">
+        {currentBoard?.title}
+      </Typography>
 
-        {!currentBoard && (
-          <Container sx={{ py: "64px" }}>
-            <Typography component="p" variant="h6" textAlign="center">
-              There is no board yet, create one from sidebar
-            </Typography>
-          </Container>
-        )}
+      {!currentBoard && (
+        <Container sx={{ py: "64px" }}>
+          <Typography component="p" variant="h6" textAlign="center">
+            There is no board yet, create one from sidebar
+          </Typography>
+        </Container>
+      )}
 
-        {currentBoard?.lists?.length < 1 && (
-          <Container
+      {currentBoard?.lists?.length < 1 && (
+        <Container
+          sx={{
+            py: "64px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            component="img"
             sx={{
-              py: "64px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              height: { xs: 150, md: 300 },
+              width: { xs: 150, md: 300 },
+              marginBottom: "24px",
             }}
-          >
-            <Box
-              component="img"
-              sx={{
-                height: { xs: 150, md: 300 },
-                width: { xs: 150, md: 300 },
-                marginBottom: "24px",
-              }}
-              alt=""
-              src="/empty-state.svg"
-            />
-            <Typography component="p" variant="h6" textAlign="center">
-              This Board is empty, create a new List to get started
-            </Typography>
-          </Container>
-        )}
+            alt=""
+            src="/empty-state.svg"
+          />
+          <Typography component="p" variant="h6" textAlign="center">
+            This Board is empty, create a new List to get started
+          </Typography>
+        </Container>
+      )}
 
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Stack
-            id="xyz"
-            direction="row"
-            alignItems={"flex-start"}
-            sx={{ height: "100%" }}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Stack
+          direction="row"
+          alignItems="flex-start"
+          sx={{ 
+            flex: 1,
+            minHeight: 0,
+            overflow: 'hidden'
+          }}
+        >
+          <Droppable
+            droppableId="lists-container"
+            direction="horizontal"
+            type="LIST"
           >
-            <Droppable
-              droppableId="lists-container"
-              direction={"horizontal"}
-              type={"LIST"}
-              sx={{ overflow: "hidden" }}
-            >
-              {(provided) => (
-                <Stack
-                  sx={{
-                    overflow: "auto",
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  // component={"ul"}
-                  direction={"row"}
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {currentBoard?.lists?.map((list, index) => (
-                    <ListIndexProvider listIndex={index} key={list.id}>
-                      <BoardList list={list} index={index} />
-                    </ListIndexProvider>
-                  ))}
-                  {provided.placeholder}
-                </Stack>
-              )}
-            </Droppable>
-          </Stack>
-        </DragDropContext>
-      </Box>
-    </>
+            {(provided) => (
+              <Stack
+                sx={{
+                  overflowX: "auto",
+                  overflowY: "auto",
+                  width: "100%",
+                  height: "100%",
+                  pb: 2, // Add padding to show scrollbar
+                  '&::-webkit-scrollbar': {
+                    height: '8px',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    backgroundColor: 'rgba(0,0,0,0.05)',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'rgba(0,0,0,0.2)',
+                    borderRadius: '4px',
+                  }
+                }}
+                direction="row"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {currentBoard?.lists?.map((list, index) => (
+                  <ListIndexProvider listIndex={index} key={list.id}>
+                    <BoardList list={list} index={index} />
+                  </ListIndexProvider>
+                ))}
+                {provided.placeholder}
+              </Stack>
+            )}
+          </Droppable>
+        </Stack>
+      </DragDropContext>
+    </Box>
   );
 };
 

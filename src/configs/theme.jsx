@@ -46,7 +46,7 @@ export const getDesignTokens = (mode) => ({
           scrollbarWidth: "thin",
           scrollbarColor:
             theme.palette.mode === "dark"
-              ? `${theme.palette.primary.dark} ${theme.palette.customGrey.darker}`
+              ? `${theme.palette.customGrey.main} ${theme.palette.customGrey.darker}`
               : `${theme.palette.secondary.dark} ${theme.palette.customGrey.light}`,
           "&::-webkit-scrollbar-track": {
             background:

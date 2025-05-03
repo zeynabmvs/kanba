@@ -18,6 +18,7 @@ import SwitchTheme from "components/SwitchTheme";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { drawerWidth } from "src/configs/constants";
 import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -48,10 +49,11 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const Sidebar = ({ open }) => {
+  const theme = useTheme();
   const boards = useSelector(selectBoards);
   const currentBoardId = useSelector(selectCurrentBoardId);
   const dispatch = useDispatch();
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const sidebarMenuItemStyles = { fontSize: "16px", fontWeight: "500" };
 
@@ -62,7 +64,7 @@ const Sidebar = ({ open }) => {
   const onAddBoardHandler = () => {
     dispatch(openModal({ type: "addBoard" }));
   };
-
+  console.log(isSmallScreen);
   return (
     <Drawer
       variant="permanent"
