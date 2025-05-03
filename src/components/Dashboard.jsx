@@ -13,13 +13,15 @@ import OptionsMenu from "components/OptionsMenu.jsx";
 import Sidebar from "components/Sidebar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useTheme } from "@mui/material/styles";
-import { selectDrawerState } from "src/features/appSettingsSlice";
-import { toggleDrawer } from "src/features/appSettingsSlice";
+// import { selectDrawerState } from "src/features/appSettingsSlice";
+// import { toggleDrawer } from "src/features/appSettingsSlice";
 
 export default function Dashboard() {
-  // const [open, setOpen] = useState(true);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  const isOpen = useSelector(selectDrawerState);
+  const [isOpen, setIsOpen] = useState(isSmallScreen ? false : true);
+  // const isOpen = useSelector(selectDrawerState);
 
   const dispatch = useDispatch();
   const board = useSelector(selectCurrentBoard);
@@ -29,7 +31,8 @@ export default function Dashboard() {
   };
 
   const toggleDrawerState = () => {
-    dispatch(toggleDrawer());
+    setIsOpen(prev=>!prev)
+    // dispatch(toggleDrawer());
   };
 
   const onDeleteBoardHandler = () => {
@@ -48,8 +51,7 @@ export default function Dashboard() {
     dispatch(openModal({ type: "editBoard" }));
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
-  const theme = useTheme();
+
 
   return (
     <Box sx={{ display: "flex", overflow: "hidden" }}>
@@ -131,7 +133,7 @@ export default function Dashboard() {
           flexGrow: 1,
           overflowY: "auto",
           height: isSmallScreen ? "calc(100vh - 48px)" : "calc(100vh - 65px)",
-          mt: isSmallScreen ? "48px" : "65px",
+          mt: isSmallScreen ? "57px" : "65px",
         }}
       >
         <Board />
