@@ -290,7 +290,7 @@ export const getDesignTokens = (mode) => ({
     // },
   },
   typography: {
-    fontFamily: ["Plus Jakarta Sans", "sans-serif"].join(","),
+    // fontFamily: ["Plus Jakarta Sans", "sans-serif"].join(","),
     allVariants: {
       color: mode === "dark" ? "#fff" : "#2F2E2E",
     },
