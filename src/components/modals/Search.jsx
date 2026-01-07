@@ -223,7 +223,7 @@ const Search = () => {
         {!searchQuery.trim() && (
           <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Typography variant="body2" color="text.secondary" textAlign="center">
-              Start typing to search boards, tasks, and descriptions
+              Start typing to search boards and tasks
             </Typography>
           </Box>
         )}

@@ -25,7 +25,7 @@ const BoardList = ({ boards, currentBoardId }) => {
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary={item.title} primaryTypographyProps={sidebarMenuItemStyles} />
+            <ListItemText primary={item.title} slotProps={{ primary: sidebarMenuItemStyles }} />
           </ListItemButton>
         </Fragment>
       ))}

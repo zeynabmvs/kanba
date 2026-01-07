@@ -26,7 +26,7 @@ const SidebarActions = () => {
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
-          <ListItemText primary="Search" primaryTypographyProps={sidebarMenuItemStyles} />
+          <ListItemText primary="Search" slotProps={{ primary: sidebarMenuItemStyles }} />
         </ListItemButton>
       </Fragment>
 
@@ -37,9 +37,7 @@ const SidebarActions = () => {
           </ListItemIcon>
           <ListItemText
             primary="Create New Board"
-            primaryTypographyProps={{
-              ...sidebarMenuItemStyles,
-            }}
+            slotProps={{ primary: sidebarMenuItemStyles }}
           />
         </ListItemButton>
       </Fragment>
