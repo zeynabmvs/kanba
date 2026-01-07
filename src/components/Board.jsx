@@ -1,5 +1,4 @@
-import { DragDropContext, Droppable } from '@hello-pangea/dnd';
-import { Container, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   reorderLists,
@@ -7,17 +6,19 @@ import {
   selectCurrentBoard,
   changeListSort,
 } from 'features/boards/boardsSlice.js';
-import BoardList from 'components/BoardList';
-import { ListIndexProvider } from 'src/contexts/listIndexContext';
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { headerHeights } from 'src/configs/constants';
+import { extractListIndex } from 'src/utils/dragAndDrop';
+import BoardEmptyState from 'components/board/BoardEmptyState';
+import BoardDragContext from 'components/board/BoardDragContext';
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+
   const onDragEnd = (dropResult) => {
     const { destination, source } = dropResult;
 
@@ -35,8 +36,8 @@ const Board = () => {
         }),
       );
     } else if (dropResult.type === 'CARD') {
-      const sourceListIndex = parseInt(source.droppableId.split('-').pop(), 10);
-      const destinationListIndex = parseInt(destination.droppableId.split('-').pop(), 10);
+      const sourceListIndex = extractListIndex(source.droppableId);
+      const destinationListIndex = extractListIndex(destination.droppableId);
 
       dispatch(
         changeListSort({
@@ -64,7 +65,7 @@ const Board = () => {
       sx={{
         height: isSmallScreen
           ? `calc(100vh - ${headerHeights.xs}px)`
-          : `calc(100vh - ${headerHeights.md}px)`, // Adjust based on your header height
+          : `calc(100vh - ${headerHeights.md}px)`,
         display: 'flex',
         flexDirection: 'column',
         pt: '16px',
@@ -77,85 +78,13 @@ const Board = () => {
         {currentBoard?.title}
       </Typography>
 
-      {!currentBoard && (
-        <Container sx={{ py: '64px' }}>
-          <Typography component="p" variant="h6" textAlign="center">
-            There is no board yet, create one from sidebar
-          </Typography>
-        </Container>
+      {(!currentBoard || currentBoard?.lists?.length < 1) && (
+        <BoardEmptyState hasBoard={!!currentBoard} boardTitle={currentBoard?.title} />
       )}
 
-      {currentBoard?.lists?.length < 1 && (
-        <Container
-          sx={{
-            py: '64px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Box
-            component="img"
-            sx={{
-              height: { xs: 150, md: 300 },
-              width: { xs: 150, md: 300 },
-              marginBottom: '24px',
-            }}
-            alt=""
-            src="/empty-state.svg"
-          />
-          <Typography component="p" variant="h6" textAlign="center">
-            This Board is empty, create a new List to get started
-          </Typography>
-        </Container>
+      {currentBoard?.lists?.length > 0 && (
+        <BoardDragContext lists={currentBoard.lists} onDragEnd={onDragEnd} />
       )}
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Stack
-          direction="row"
-          alignItems="flex-start"
-          sx={{
-            flex: 1,
-            minHeight: 0,
-            overflow: 'hidden',
-          }}
-        >
-          <Droppable droppableId="lists-container" direction="horizontal" type="LIST">
-            {(provided) => (
-              <Stack
-                sx={{
-                  overflowX: 'auto',
-                  overflowY: 'auto',
-                  width: '100%',
-                  height: '100%',
-                  pb: 2, // Add padding to show scrollbar
-                  '&::-webkit-scrollbar': {
-                    height: '8px',
-                  },
-                  '&::-webkit-scrollbar-track': {
-                    backgroundColor: 'rgba(0,0,0,0.05)',
-                  },
-                  '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: 'rgba(0,0,0,0.2)',
-                    borderRadius: '4px',
-                  },
-                }}
-                direction="row"
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {currentBoard?.lists?.map((list, index) => (
-                  <ListIndexProvider listIndex={index} key={list.id}>
-                    <BoardList list={list} index={index} />
-                  </ListIndexProvider>
-                ))}
-                {provided.placeholder}
-              </Stack>
-            )}
-          </Droppable>
-        </Stack>
-      </DragDropContext>
     </Box>
   );
 };

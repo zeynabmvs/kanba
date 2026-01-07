@@ -5,6 +5,8 @@ import { useTheme } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modalSlice';
 import { changeListSort } from 'features/boards/boardsSlice';
+import SortMenu from './SortMenu';
+import DirectionMenu from './DirectionMenu';
 
 const ListActions = ({ list }) => {
   const theme = useTheme();
@@ -46,11 +48,13 @@ const ListActions = ({ list }) => {
   const onSortHandler = (newSort) => {
     if (newSort === list.sort) return;
     dispatch(changeListSort({ sortBy: newSort, direction: list.direction, list: list }));
+    setSubmenuAnchorEl(null);
   };
 
   const onDirectionHandler = (newDirection) => {
     if (newDirection === list.direction) return;
     dispatch(changeListSort({ sortBy: list.sort, direction: newDirection, list: list }));
+    setSubmenu2AnchorEl(null);
   };
 
   return (
@@ -97,24 +101,12 @@ const ListActions = ({ list }) => {
         >
           Sort
         </MenuItem>
-        <Menu
-          id="sortSubmenu"
+        <SortMenu
           anchorEl={submenuAnchorEl}
           open={submenuOpen}
-          anchorOrigin={{
-            vertical: 'center',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
           onClose={() => setSubmenuAnchorEl(null)}
-        >
-          <MenuItem onClick={() => onSortHandler('date')}>Date</MenuItem>
-          <MenuItem onClick={() => onSortHandler('priority')}>Priority</MenuItem>
-          <MenuItem onClick={() => onSortHandler('title')}>Title</MenuItem>
-        </Menu>
+          onSort={onSortHandler}
+        />
 
         <MenuItem
           onClick={(e) => setSubmenu2AnchorEl(e.currentTarget)}
@@ -123,23 +115,12 @@ const ListActions = ({ list }) => {
           Direction
         </MenuItem>
 
-        <Menu
-          id="directionSubmenu"
+        <DirectionMenu
           anchorEl={submenu2AnchorEl}
           open={submenu2Open}
-          anchorOrigin={{
-            vertical: 'center',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
           onClose={() => setSubmenu2AnchorEl(null)}
-        >
-          <MenuItem onClick={() => onDirectionHandler('asc')}>Ascending</MenuItem>
-          <MenuItem onClick={() => onDirectionHandler('desc')}>Descending</MenuItem>
-        </Menu>
+          onDirection={onDirectionHandler}
+        />
 
         <MenuItem sx={{ color: 'red' }} onClick={onDeleteHandler}>
           Delete list
@@ -150,3 +131,4 @@ const ListActions = ({ list }) => {
 };
 
 export default ListActions;
+

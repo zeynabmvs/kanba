@@ -15,3 +15,4 @@ const PriorityChip = ({ priority, size = 'small', variant = 'outlined' }) => {
 };
 
 export default PriorityChip;
+
