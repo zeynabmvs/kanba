@@ -117,7 +117,12 @@ const BoardList = ({ list, index }) => {
 
           <Button
             onClick={onAddTaskHandler}
-            sx={{ mb: '16px', mx: '16px', width: 'calc(100% - 32px)' }}
+            sx={{
+              mb: '16px',
+              mx: '16px',
+              width: 'calc(100% - 32px)',
+              color: theme.palette.mode === 'dark' ? 'primary.contrastText' : undefined,
+            }}
           >
             + Add Task
           </Button>

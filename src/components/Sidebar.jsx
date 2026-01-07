@@ -93,7 +93,6 @@ const Sidebar = ({ open }) => {
               primary="Create New Board"
               primaryTypographyProps={{
                 ...sidebarMenuItemStyles,
-                color: 'primary',
               }}
             />
           </ListItemButton>

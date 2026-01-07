@@ -107,6 +107,12 @@ export default function Dashboard() {
                 color="secondary"
                 onClick={onAddListHandler}
                 disabled={board?.lists.length > 5}
+                sx={{
+                  backgroundColor: '#fff',
+                  '&:hover': {
+                    backgroundColor: 'secondary.main',
+                  },
+                }}
               >
                 + new List
               </Button>
