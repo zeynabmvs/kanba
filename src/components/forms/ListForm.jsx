@@ -8,7 +8,7 @@ const validationSchema = Yup.object().shape({
 	title: Yup.string().required('Title is required').max(50, 'Title must not exceed 50 characters')
   });
 
-const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
+const ListForm = ({onSubmit, onClose, defaultValues = {}}) => {
 	const {
 		register,
 		handleSubmit,
@@ -31,7 +31,7 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 					{...register("title")}
 					error={errors?.title}
 					id="outlined-helperText"
-					labelID="title-label"
+					labelId="title-label"
 					variant="outlined"
 					type="text"
 					helperText={
@@ -51,4 +51,5 @@ const ListFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 	);
 };
 
-export default ListFrom;
+export default ListForm;
+

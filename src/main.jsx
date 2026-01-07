@@ -6,7 +6,7 @@ import App from "src/app/App.jsx";
 import {persistor, store} from "src/app/store.js";
 import "./index.css";
 
-// TODD: remove for deploy
+// TODO: remove for deploy
 // persistor.purge();
 
 

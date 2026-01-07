@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {editBoard, selectCurrentBoard} from "features/boards/boardsSlice.js";
 import {closeModal} from "features/modalSlice";
-import BoardFrom from "components/forms/BoardFrom";
+import BoardForm from "components/forms/BoardForm";
 import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const EditBoard = ({onClose}) => {
@@ -20,7 +20,7 @@ const EditBoard = ({onClose}) => {
 	return (
 		<>
 			<ModalTitle text={`Edit Board ${currentBoard.title}`}/>
-			<BoardFrom
+			<BoardForm
 				onClose={onClose}
 				onSubmit={onSubmit}
 				defaultValues={defaultValues}

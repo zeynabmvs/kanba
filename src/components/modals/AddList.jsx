@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 import {addList} from "features/boards/boardsSlice.js";
 import {closeModal} from "features/modalSlice";
-import ListFrom from "components/forms/ListFrom";
+import ListForm from "components/forms/ListForm";
 import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const AddList = ({onClose}) => {
@@ -15,7 +15,7 @@ const AddList = ({onClose}) => {
 	return (
 		<>
 			<ModalTitle text="Add New List"/>
-			<ListFrom onClose={onClose} onSubmit={onSubmit}/>
+			<ListForm onClose={onClose} onSubmit={onSubmit}/>
 		</>
 	);
 };

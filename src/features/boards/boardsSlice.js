@@ -7,7 +7,7 @@ import {
   findSubtaskIndexes,
   findTaskIndexById,
   getCurrentBoardIndex,
-} from "src/features/boards/halpers.js";
+} from "src/features/boards/helpers.js";
 
 // TODO: change error handling
 

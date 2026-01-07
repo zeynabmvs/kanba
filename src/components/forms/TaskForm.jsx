@@ -186,7 +186,7 @@ const TaskForm = ({
                   >
                     <TextField
                       {...register(`subtasks.${index}.title`)}
-                      error={errors?.title}
+                      error={errors?.subtasks?.[index]?.title}
                       id="outlined-helperText"
                       variant="outlined"
                       type="text"

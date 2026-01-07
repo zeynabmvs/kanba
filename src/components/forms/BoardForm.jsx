@@ -8,7 +8,7 @@ const validationSchema = Yup.object().shape({
 	title: Yup.string().required('Title is required').max(50, 'Title must not exceed 50 characters')
   });
 
-const BoardFrom = ({onSubmit, onClose, defaultValues = {}}) => {
+const BoardForm = ({onSubmit, onClose, defaultValues = {}}) => {
 	const {
 		register,
 		handleSubmit,
@@ -51,4 +51,5 @@ const BoardFrom = ({onSubmit, onClose, defaultValues = {}}) => {
 	);
 };
 
-export default BoardFrom;
+export default BoardForm;
+

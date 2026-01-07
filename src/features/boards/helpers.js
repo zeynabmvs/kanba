@@ -56,3 +56,4 @@ export const getCurrentBoardIndex = (state) => {
 		(item) => item.id === state.currentBoardId
 	);
 }
+

@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 import {editList} from "features/boards/boardsSlice.js";
 import {closeModal} from "features/modalSlice";
-import ListFrom from "components/forms/ListFrom.jsx";
+import ListForm from "components/forms/ListForm.jsx";
 import ModalTitle from "components/modals/partials/modalTitle.jsx";
 
 const EditList = ({onClose, detail}) => {
@@ -17,7 +17,7 @@ const EditList = ({onClose, detail}) => {
 		<>
 			<ModalTitle text={`Edit List ${detail.title}`}/>
 			
-			<ListFrom
+			<ListForm
 				onClose={onClose}
 				onSubmit={onSubmit}
 				defaultValues={{title: detail.title}}
