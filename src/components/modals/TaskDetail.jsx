@@ -38,16 +38,16 @@ const TaskDetail = ({ detail }) => {
   };
 
   const changeSubtaskStatus = (subtask, index) => {
-    const newStatus = [...subtasksStatus];
-    newStatus[index] = !subtasksStatus[index];
-    setSubtasksStatus(newStatus);
+    const cpy = subtasksStatus;
+    cpy[index] = !subtasksStatus[index];
+    setSubtasksStatus({ ...subtasksStatus, cpy });
 
     dispatch(
       editSubtask({
         task: task,
         subtask: {
           ...subtask,
-          status: newStatus[index] ? 'completed' : 'notCompleted',
+          status: subtasksStatus[index] ? 'completed' : 'notCompleted',
         },
       }),
     );
@@ -65,9 +65,7 @@ const TaskDetail = ({ detail }) => {
           <Typography
             variant="h5"
             component="h3"
-            sx={{
-              textDecoration: task.status === 'completed' ? 'line-through' : 'none',
-            }}
+            sx={{ textDecoration: task.status === 'completed' ? 'line-through' : 'none' }}
           >
             {task.title}
           </Typography>

@@ -78,7 +78,7 @@ const TaskForm = ({ onSubmit, onCancel, defaultValues = { priority: 'none', list
               {...register('title')}
               error={errors?.title}
               id="outlined-helperText"
-              labelId="title-label"
+              labelid="title-label"
               variant="outlined"
               type="text"
               helperText={errors?.title && errors?.title?.message}

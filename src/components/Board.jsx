@@ -60,6 +60,7 @@ const Board = () => {
 
   return (
     <Box
+      id="board"
       sx={{
         height: isSmallScreen
           ? `calc(100vh - ${headerHeights.xs}px)`
@@ -68,6 +69,7 @@ const Board = () => {
         flexDirection: 'column',
         pt: '16px',
         pl: '8px',
+        backgroundColor: theme.palette.mode === 'dark' ? '#1a1d2a' : 'transparent',
       }}
     >
       {/* Board Title */}

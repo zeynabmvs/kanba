@@ -4,39 +4,39 @@ export const getDesignTokens = (mode) => ({
   palette: {
     mode,
     primary: {
-      darkest: darken('#635fc7', 0.6),
-      dark: darken('#635fc7', 0.2),
-      main: '#635fc7',
-      light: '#A8A4FF',
+      darkest: '#10197a', // primary-900
+      dark: '#3d53db', // primary-600
+      main: '#546fff', // primary-500
+      light: '#7e95ff', // primary-400
       contrastText: '#fff',
     },
     error: {
-      dark: darken('#EA5555', 0.2),
-      main: '#EA5555',
-      light: '#FF9898',
+      dark: '#db2719', // error-600
+      main: '#ff4423', // error-500
+      light: '#ff7f59', // error-400
       contrastText: '#fff',
     },
     secondary: {
-      main: mode === 'dark' ? '#fff' : '#f0effa',
-      dark: mode === 'dark' ? '#fff' : '#d8d7f1',
-      contrastText: '#635fc7',
+      main: mode === 'dark' ? '#fff' : '#dfe1f3', // secondary-100
+      dark: mode === 'dark' ? '#fff' : '#c2c6e8', // secondary-200
+      contrastText: '#546fff', // primary-500
     },
     black: {
-      dark: darken('#000112', 0.2),
-      main: '#000112',
+      dark: '#030410', // secondary-900
+      main: '#141522', // secondary-500
       contrastText: '#fff',
     },
     customGrey: {
-      dark: '#2B2C37',
-      main: '#828FA3',
-      light: '#F4F7FD',
-      darker: '#20212C',
-      darkest: darken('#20212C', 0.2),
+      dark: '#0e0f1d', // secondary-600
+      main: '#54577a', // secondary-400
+      light: '#f5f5f7', // n-1
+      darker: '#0a0a18', // secondary-700
+      darkest: '#060713', // secondary-800
     },
     lines: {
-      dark: '#3E3F4E',
-      main: '#828FA3',
-      light: '#E4EBFA',
+      dark: '#0e0f1d', // secondary-600
+      main: '#54577a', // secondary-400
+      light: '#dfe1f3', // secondary-100
     },
   },
   components: {
@@ -256,7 +256,7 @@ export const getDesignTokens = (mode) => ({
       styleOverrides: {
         root: {
           padding: '0',
-          color: mode === 'light' ? '#40455250' : '#404552',
+          color: mode === 'light' ? '#54577a50' : '#54577a', // secondary-400 with opacity
           zIndex: 1,
           '&::after': {
             content: '""',
@@ -287,10 +287,10 @@ export const getDesignTokens = (mode) => ({
   typography: {
     // fontFamily: ["Plus Jakarta Sans", "sans-serif"].join(","),
     allVariants: {
-      color: mode === 'dark' ? '#fff' : '#2F2E2E',
+      color: mode === 'dark' ? '#fff' : '#141522', // secondary-500
     },
     subtitle2: {
-      color: mode === 'dark' ? '#fff' : '#828FA3',
+      color: mode === 'dark' ? '#fff' : '#54577a', // secondary-400
     },
     body2: {
       fontWeight: 500,
