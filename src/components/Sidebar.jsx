@@ -16,6 +16,7 @@ import {
 import { openModal } from 'features/modalSlice';
 import SwitchTheme from 'components/SwitchTheme';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SearchIcon from '@mui/icons-material/Search';
 import { drawerWidth, headerHeights } from 'src/configs/constants';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -64,6 +65,10 @@ const Sidebar = ({ open }) => {
   const onAddBoardHandler = () => {
     dispatch(openModal({ type: 'addBoard' }));
   };
+
+  const onSearchHandler = () => {
+    dispatch(openModal({ type: 'search' }));
+  };
   return (
     <Drawer
       variant="permanent"
@@ -71,6 +76,15 @@ const Sidebar = ({ open }) => {
       sx={{ marginTop: isSmallScreen ? `${headerHeights.xs}px` : `${headerHeights.md}px` }}
     >
       <List component="nav">
+        <Fragment key="searchBtn">
+          <ListItemButton onClick={onSearchHandler}>
+            <ListItemIcon>
+              <SearchIcon />
+            </ListItemIcon>
+            <ListItemText primary="Search" primaryTypographyProps={sidebarMenuItemStyles} />
+          </ListItemButton>
+        </Fragment>
+
         {boards?.map((item) => (
           <Fragment key={item.id}>
             <ListItemButton
@@ -84,6 +98,7 @@ const Sidebar = ({ open }) => {
             </ListItemButton>
           </Fragment>
         ))}
+
         <Fragment key="createBoardBtn">
           <ListItemButton onClick={onAddBoardHandler}>
             <ListItemIcon>

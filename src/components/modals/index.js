@@ -6,3 +6,4 @@ export { default as EditBoard } from './EditBoard';
 export { default as EditList } from './EditList';
 export { default as EditTask } from './EditTask';
 export { default as TaskDetail } from './TaskDetail';
+export { default as Search } from './Search';

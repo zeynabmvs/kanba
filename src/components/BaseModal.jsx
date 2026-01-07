@@ -10,6 +10,7 @@ import {
   EditList,
   EditTask,
   TaskDetail,
+  Search,
 } from './modals';
 import { Paper, Zoom, Box } from '@mui/material';
 
@@ -38,6 +39,8 @@ const ModalContent = ({ type, onClose, detail }) => {
       );
     case 'taskDetail':
       return <TaskDetail detail={detail} />;
+    case 'search':
+      return <Search />;
     default:
       return null;
   }
