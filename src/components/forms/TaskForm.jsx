@@ -78,7 +78,6 @@ const TaskForm = ({ onSubmit, onCancel, defaultValues = { priority: 'none', list
               {...register('title')}
               error={errors?.title}
               id="outlined-helperText"
-              labelid="title-label"
               variant="outlined"
               type="text"
               helperText={errors?.title && errors?.title?.message}
@@ -94,7 +93,6 @@ const TaskForm = ({ onSubmit, onCancel, defaultValues = { priority: 'none', list
               maxRows={7}
               error={errors?.description}
               id="outlined-helperText"
-              labelId="description-label"
               helperText={errors?.description && errors?.description?.message}
             />
           </div>
@@ -105,7 +103,7 @@ const TaskForm = ({ onSubmit, onCancel, defaultValues = { priority: 'none', list
               name="list"
               control={control}
               render={({ field }) => (
-                <Select {...field} labelId="list-label" displayEmpty fullWidth>
+                <Select {...field} displayEmpty fullWidth>
                   {currentBoard.lists?.map((item, index) => (
                     <MenuItem value={index} sx={{ fontSize: '0.875rem' }} key={index}>
                       {item.title}
@@ -122,7 +120,7 @@ const TaskForm = ({ onSubmit, onCancel, defaultValues = { priority: 'none', list
               name="priority"
               control={control}
               render={({ field }) => (
-                <Select {...field} labelId="priority-label" displayEmpty fullWidth>
+                <Select {...field} displayEmpty fullWidth>
                   <MenuItem value="none" sx={{ fontSize: '0.875rem' }} key="none">
                     --
                   </MenuItem>

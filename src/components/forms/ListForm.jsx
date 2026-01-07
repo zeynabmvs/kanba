@@ -30,7 +30,6 @@ const ListForm = ({ onSubmit, onClose, defaultValues = {} }) => {
           {...register('title')}
           error={errors?.title}
           id="outlined-helperText"
-          labelId="title-label"
           variant="outlined"
           type="text"
           helperText={errors?.title && errors?.title?.message}
