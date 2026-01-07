@@ -11,7 +11,7 @@ import {
   EditTask,
   TaskDetail,
 } from './modals';
-import { Paper } from '@mui/material';
+import { Paper, Zoom, Box } from '@mui/material';
 
 const ModalContent = ({ type, onClose, detail }) => {
   switch (type) {
@@ -43,19 +43,6 @@ const ModalContent = ({ type, onClose, detail }) => {
   }
 };
 
-const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: { xs: '80%', md: '600px' },
-  borderRadius: '16px',
-  boxShadow: 24,
-  p: { xs: 2, md: 4 },
-  maxHeight: '80%',
-  overflow: 'auto',
-};
-
 export default function BaseModal() {
   const { isOpen, type, detail } = useSelector(selectModal);
   const dispatch = useDispatch();
@@ -70,10 +57,32 @@ export default function BaseModal() {
       onClose={onHandleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      closeAfterTransition
     >
-      <Paper sx={modalStyle}>
-        <ModalContent detail={detail} onClose={onHandleClose} type={type}></ModalContent>
-      </Paper>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: { xs: '80%', md: '600px' },
+          maxHeight: '80%',
+        }}
+      >
+        <Zoom in={isOpen} timeout={{ enter: 300, exit: 200 }}>
+          <Paper
+            sx={{
+              borderRadius: '16px',
+              boxShadow: 24,
+              p: { xs: 2, md: 4 },
+              maxHeight: '80%',
+              overflow: 'auto',
+            }}
+          >
+            <ModalContent detail={detail} onClose={onHandleClose} type={type}></ModalContent>
+          </Paper>
+        </Zoom>
+      </Box>
     </Modal>
   );
 }
