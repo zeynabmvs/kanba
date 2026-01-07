@@ -32,16 +32,16 @@ const TaskDetail = ({detail}) => {
 	};
 	
 	const changeSubtaskStatus = (subtask, index) => {
-		const cpy = subtasksStatus;
-		cpy[index] = !subtasksStatus[index];
-		setSubtasksStatus({...subtasksStatus, cpy});
+		const newStatus = [...subtasksStatus];
+		newStatus[index] = !subtasksStatus[index];
+		setSubtasksStatus(newStatus);
 		
 		dispatch(
 			editSubtask({
 				task: task,
 				subtask: {
 					...subtask,
-					status: subtasksStatus[index] ? "completed" : "notCompleted",
+					status: newStatus[index] ? "completed" : "notCompleted",
 				},
 			})
 		);

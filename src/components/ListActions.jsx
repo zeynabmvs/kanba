@@ -1,6 +1,6 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { IconButton, Menu, MenuItem } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { openModal } from "features/modalSlice";

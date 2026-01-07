@@ -1,21 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {Provider} from "react-redux";
-import {PersistGate} from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import App from "src/app/App.jsx";
-import {persistor, store} from "src/app/store.js";
+import { persistor, store } from "src/app/store.js";
 import "./index.css";
 
 // TODO: remove for deploy
 // persistor.purge();
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<App/>
-			</PersistGate>
-		</Provider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );

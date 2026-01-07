@@ -23,9 +23,21 @@ export const initialData = {
               tags: ["work", "planning", "stakeholders"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Gather inputs from leads", status: "completed" },
-                { id: uuidv4(), title: "Write first draft", status: "notCompleted" },
-                { id: uuidv4(), title: "Get feedback + revise", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Gather inputs from leads",
+                  status: "completed",
+                },
+                {
+                  id: uuidv4(),
+                  title: "Write first draft",
+                  status: "notCompleted",
+                },
+                {
+                  id: uuidv4(),
+                  title: "Get feedback + revise",
+                  status: "notCompleted",
+                },
               ],
             },
             {
@@ -67,7 +79,11 @@ export const initialData = {
                   title: "Collect highlights from PRs",
                   status: "completed",
                 },
-                { id: uuidv4(), title: "Write + share draft", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Write + share draft",
+                  status: "notCompleted",
+                },
               ],
             },
             {
@@ -86,7 +102,11 @@ export const initialData = {
                   title: "Confirm time + agenda",
                   status: "completed",
                 },
-                { id: uuidv4(), title: "Prepare questions", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Prepare questions",
+                  status: "notCompleted",
+                },
               ],
             },
             {
@@ -105,7 +125,11 @@ export const initialData = {
                   title: "Audit current events",
                   status: "completed",
                 },
-                { id: uuidv4(), title: "Update + verify in dev", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Update + verify in dev",
+                  status: "notCompleted",
+                },
               ],
             },
             {
@@ -151,7 +175,11 @@ export const initialData = {
               date: new Date(),
               subtasks: [
                 { id: uuidv4(), title: "Update styles", status: "completed" },
-                { id: uuidv4(), title: "Check responsive breakpoints", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Check responsive breakpoints",
+                  status: "notCompleted",
+                },
               ],
             },
           ],
@@ -165,14 +193,19 @@ export const initialData = {
             {
               id: uuidv4(),
               title: "Triage support inbox",
-              description: "Close out quick wins and tag longer issues for the next sprint.",
+              description:
+                "Close out quick wins and tag longer issues for the next sprint.",
               color: "",
               status: "completed",
               priority: "medium",
               tags: ["support", "ops"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Reply to 5 threads", status: "completed" },
+                {
+                  id: uuidv4(),
+                  title: "Reply to 5 threads",
+                  status: "completed",
+                },
                 { id: uuidv4(), title: "Log 2 bugs", status: "completed" },
               ],
             },
@@ -203,13 +236,18 @@ export const initialData = {
               subtasks: [
                 { id: uuidv4(), title: "Make a list", status: "completed" },
                 { id: uuidv4(), title: "Check pantry", status: "notCompleted" },
-                { id: uuidv4(), title: "Pick up groceries", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Pick up groceries",
+                  status: "notCompleted",
+                },
               ],
             },
             {
               id: uuidv4(),
               title: "Book dentist appointment",
-              description: "Schedule a cleaning and update insurance info if needed.",
+              description:
+                "Schedule a cleaning and update insurance info if needed.",
               color: "",
               status: "notCompleted",
               priority: "high",
@@ -221,7 +259,11 @@ export const initialData = {
                   title: "Find next available slot",
                   status: "completed",
                 },
-                { id: uuidv4(), title: "Confirm appointment", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Confirm appointment",
+                  status: "notCompleted",
+                },
               ],
             },
             {
@@ -235,8 +277,16 @@ export const initialData = {
               tags: ["home", "declutter"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Fill donation bag", status: "completed" },
-                { id: uuidv4(), title: "Organize hangers", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Fill donation bag",
+                  status: "completed",
+                },
+                {
+                  id: uuidv4(),
+                  title: "Organize hangers",
+                  status: "notCompleted",
+                },
               ],
             },
           ],
@@ -262,7 +312,7 @@ export const initialData = {
                 { id: uuidv4(), title: "Day 1", status: "notCompleted" },
                 { id: uuidv4(), title: "Day 2", status: "notCompleted" },
               ],
-            }
+            },
           ],
         },
         {
@@ -317,22 +367,39 @@ export const initialData = {
               tags: ["friends", "city", "relax"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Shortlist 3 places", status: "completed" },
-                { id: uuidv4(), title: "Choose one + go", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Shortlist 3 places",
+                  status: "completed",
+                },
+                {
+                  id: uuidv4(),
+                  title: "Choose one + go",
+                  status: "notCompleted",
+                },
               ],
             },
             {
               id: uuidv4(),
               title: "Make homemade pizza night",
-              description: "Do a simple dough or use store-bought; focus on fun toppings.",
+              description:
+                "Do a simple dough or use store-bought; focus on fun toppings.",
               color: "",
               status: "notCompleted",
               priority: "low",
               tags: ["food", "fun", "home"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Pick toppings", status: "notCompleted" },
-                { id: uuidv4(), title: "Invite a friend", status: "notCompleted" },
+                {
+                  id: uuidv4(),
+                  title: "Pick toppings",
+                  status: "notCompleted",
+                },
+                {
+                  id: uuidv4(),
+                  title: "Invite a friend",
+                  status: "notCompleted",
+                },
               ],
             },
           ],
@@ -346,14 +413,19 @@ export const initialData = {
             {
               id: uuidv4(),
               title: "Photo walk (golden hour)",
-              description: "Go for a 45-min walk and snap 10 photos (no pressure, just practice).",
+              description:
+                "Go for a 45-min walk and snap 10 photos (no pressure, just practice).",
               color: "",
               status: "notCompleted",
               priority: "medium",
               tags: ["hobby", "outdoors", "creative"],
               date: new Date(),
               subtasks: [
-                { id: uuidv4(), title: "Charge phone/camera", status: "completed" },
+                {
+                  id: uuidv4(),
+                  title: "Charge phone/camera",
+                  status: "completed",
+                },
                 { id: uuidv4(), title: "Pick a route", status: "notCompleted" },
               ],
             },
@@ -374,7 +446,9 @@ export const initialData = {
               priority: "low",
               tags: ["reading", "relax"],
               date: new Date(),
-              subtasks: [{ id: uuidv4(), title: "Read 30 minutes", status: "completed" }],
+              subtasks: [
+                { id: uuidv4(), title: "Read 30 minutes", status: "completed" },
+              ],
             },
           ],
         },

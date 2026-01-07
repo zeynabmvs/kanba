@@ -246,7 +246,7 @@ export const getDesignTokens = (mode) => ({
         icon: ({ theme }) => ({
           color: theme.palette.primary.main,
         }),
-        root: ({ theme }) => ({
+        root: () => ({
           "& .MuiSelect-select": {
             padding: ".6rem .8rem",
             fontSize: "0.875rem",

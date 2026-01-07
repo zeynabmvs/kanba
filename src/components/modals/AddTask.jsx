@@ -7,7 +7,7 @@ import ModalTitle from "components/modals/partials/modalTitle.jsx";
 const AddTask = ({ onClose, detail }) => {
   const dispatch = useDispatch();
 
-  const onSubmitHandler = (data, e) => {
+  const onSubmitHandler = (data) => {
     dispatch(addTask(data));
     dispatch(closeModal());
   };
