@@ -31,9 +31,9 @@ Kanba is perfect for individuals or small teams looking for a lightweight, no-fr
 Here are some screenshots of Kanba in action:
 
 ### Screenshot
-![Dashboard](./public/screenshot.jpg)  
-*The main dashboard where users can view and manage their boards.*
 
+![Dashboard](./public/screenshot.jpg)  
+_The main dashboard where users can view and manage their boards._
 
 ## Explore the App
 

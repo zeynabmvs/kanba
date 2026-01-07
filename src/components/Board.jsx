@@ -1,16 +1,17 @@
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
-import { Container, Stack, Typography, useMediaQuery } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+import { Container, Stack, Typography, useMediaQuery } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   reorderLists,
   reorderTask,
   selectCurrentBoard,
-  changeListSort
-} from "features/boards/boardsSlice.js";
-import BoardList from "components/BoardList";
-import { ListIndexProvider } from "src/contexts/listIndexContext.jsx";
-import { Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+  changeListSort,
+} from 'features/boards/boardsSlice.js';
+import BoardList from 'components/BoardList';
+import { ListIndexProvider } from 'src/contexts/listIndexContext';
+import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { headerHeights } from 'src/configs/constants';
 
 const Board = () => {
   const currentBoard = useSelector(selectCurrentBoard);
@@ -22,12 +23,8 @@ const Board = () => {
 
     if (!destination) return;
 
-    if (dropResult.type === "LIST") {
-
-      if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-      )
+    if (dropResult.type === 'LIST') {
+      if (destination.droppableId === source.droppableId && destination.index === source.index)
         return;
 
       dispatch(
@@ -35,20 +32,19 @@ const Board = () => {
           sourceIndex: source.index,
           destinationIndex: destination.index,
           sourceList: currentBoard.lists[source.index],
-        })
+        }),
       );
-    } else if (dropResult.type === "CARD") {
-      const sourceListIndex = parseInt(source.droppableId.split("-").pop(), 10);
-      const destinationListIndex = parseInt(
-        destination.droppableId.split("-").pop(),
-        10
-      );
+    } else if (dropResult.type === 'CARD') {
+      const sourceListIndex = parseInt(source.droppableId.split('-').pop(), 10);
+      const destinationListIndex = parseInt(destination.droppableId.split('-').pop(), 10);
 
-      dispatch(changeListSort({
-        sortBy: "manualReorder",
-        list: currentBoard.lists[destinationListIndex],
-        direction: "asc"
-      }))
+      dispatch(
+        changeListSort({
+          sortBy: 'manualReorder',
+          list: currentBoard.lists[destinationListIndex],
+          direction: 'asc',
+        }),
+      );
 
       dispatch(
         reorderTask({
@@ -57,19 +53,21 @@ const Board = () => {
           sourceListIndex: sourceListIndex,
           destinationListIndex: destinationListIndex,
           task: currentBoard.lists[sourceListIndex].tasks[source.index],
-        })
+        }),
       );
     }
   };
 
   return (
-    <Box 
+    <Box
       sx={{
-        height: isSmallScreen ? "calc(100vh - 57px)" : "calc(100vh - 65px)", // Adjust based on your header height
+        height: isSmallScreen
+          ? `calc(100vh - ${headerHeights.xs}px)`
+          : `calc(100vh - ${headerHeights.md}px)`, // Adjust based on your header height
         display: 'flex',
         flexDirection: 'column',
-        pt: "16px",
-        pl: "8px",
+        pt: '16px',
+        pl: '8px',
       }}
     >
       {/* Board Title */}
@@ -78,7 +76,7 @@ const Board = () => {
       </Typography>
 
       {!currentBoard && (
-        <Container sx={{ py: "64px" }}>
+        <Container sx={{ py: '64px' }}>
           <Typography component="p" variant="h6" textAlign="center">
             There is no board yet, create one from sidebar
           </Typography>
@@ -88,11 +86,11 @@ const Board = () => {
       {currentBoard?.lists?.length < 1 && (
         <Container
           sx={{
-            py: "64px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            py: '64px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Box
@@ -100,7 +98,7 @@ const Board = () => {
             sx={{
               height: { xs: 150, md: 300 },
               width: { xs: 150, md: 300 },
-              marginBottom: "24px",
+              marginBottom: '24px',
             }}
             alt=""
             src="/empty-state.svg"
@@ -115,24 +113,20 @@ const Board = () => {
         <Stack
           direction="row"
           alignItems="flex-start"
-          sx={{ 
+          sx={{
             flex: 1,
             minHeight: 0,
-            overflow: 'hidden'
+            overflow: 'hidden',
           }}
         >
-          <Droppable
-            droppableId="lists-container"
-            direction="horizontal"
-            type="LIST"
-          >
+          <Droppable droppableId="lists-container" direction="horizontal" type="LIST">
             {(provided) => (
               <Stack
                 sx={{
-                  overflowX: "auto",
-                  overflowY: "auto",
-                  width: "100%",
-                  height: "100%",
+                  overflowX: 'auto',
+                  overflowY: 'auto',
+                  width: '100%',
+                  height: '100%',
                   pb: 2, // Add padding to show scrollbar
                   '&::-webkit-scrollbar': {
                     height: '8px',
@@ -143,7 +137,7 @@ const Board = () => {
                   '&::-webkit-scrollbar-thumb': {
                     backgroundColor: 'rgba(0,0,0,0.2)',
                     borderRadius: '4px',
-                  }
+                  },
                 }}
                 direction="row"
                 ref={provided.innerRef}

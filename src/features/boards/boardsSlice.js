@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { produce } from "immer";
-import { v4 as uuidv4 } from "uuid";
-import { initialData } from "src/configs/data.js";
+import { createSlice } from '@reduxjs/toolkit';
+import { produce } from 'immer';
+import { v4 as uuidv4 } from 'uuid';
+import { initialData } from 'src/configs/data.js';
 import {
   createTask,
   findSubtaskIndexes,
   findTaskIndexById,
   getCurrentBoardIndex,
-} from "src/features/boards/helpers.js";
+} from 'src/features/boards/helpers.js';
 
 // TODO: change error handling
 
 export const boardsSlice = createSlice({
-  name: "boards",
+  name: 'boards',
   initialState: {
     currentBoardId: initialData.boards.length ? initialData.boards[0].id : null,
     boards: initialData.boards,
@@ -26,9 +26,7 @@ export const boardsSlice = createSlice({
       });
     },
     editBoard: (state, action) => {
-      const exists = state.boards.find(
-        (board) => board.id === action.payload.id
-      );
+      const exists = state.boards.find((board) => board.id === action.payload.id);
       if (exists) {
         exists.title = action.payload.title;
       }
@@ -63,7 +61,7 @@ export const boardsSlice = createSlice({
           boards: newState,
         };
       }
-      throw console.error("on add list err");
+      throw console.error('on add list err');
     },
     editList: (state, action) => {
       // Edit a list of current board
@@ -71,7 +69,7 @@ export const boardsSlice = createSlice({
       const currentBoardIndex = getCurrentBoardIndex(state);
 
       const listIndex = state.boards[currentBoardIndex].lists.findIndex(
-        (item) => item.id === list.id
+        (item) => item.id === list.id,
       );
       const newList = { ...list, title: title };
       const newState = produce(state.boards, (draftState) => {
@@ -86,7 +84,7 @@ export const boardsSlice = createSlice({
       const currentBoardIndex = getCurrentBoardIndex(state);
 
       const listIndex = state.boards[currentBoardIndex].lists.findIndex(
-        (item) => item.id === list.id
+        (item) => item.id === list.id,
       );
       const newState = produce(state.boards, (draftState) => {
         draftState[currentBoardIndex].lists.splice(listIndex, 1);
@@ -98,17 +96,13 @@ export const boardsSlice = createSlice({
       const { task } = action.payload;
       const taskIndexes = findTaskIndexById(state, task.id);
       if (taskIndexes) {
-        const [targetBoardIndex, targetListIndex, targetTaskIndex] =
-          taskIndexes;
+        const [targetBoardIndex, targetListIndex, targetTaskIndex] = taskIndexes;
         const newState = produce(state.boards, (draftState) => {
-          draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
-            targetTaskIndex,
-            1
-          );
+          draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(targetTaskIndex, 1);
         });
         return { ...state, boards: newState };
       }
-      throw console.error("on delete task err");
+      throw console.error('on delete task err');
     },
     editTask: (state, action) => {
       // Edit a task from current board
@@ -120,8 +114,7 @@ export const boardsSlice = createSlice({
       updatedTask.id = oldTask.id;
 
       if (taskIndexes) {
-        const [targetBoardIndex, targetListIndex, targetTaskIndex] =
-          taskIndexes;
+        const [targetBoardIndex, targetListIndex, targetTaskIndex] = taskIndexes;
         // 2.remove old task and add a new one at the same location
 
         const newState = produce(state.boards, (draftState) => {
@@ -130,35 +123,28 @@ export const boardsSlice = createSlice({
             draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
               targetTaskIndex,
               1,
-              updatedTask
+              updatedTask,
             );
           } else {
-            draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(
-              targetTaskIndex,
-              1
-            );
-            draftState[targetBoardIndex].lists[newTask.list].tasks.push(
-              updatedTask
-            );
+            draftState[targetBoardIndex].lists[targetListIndex].tasks.splice(targetTaskIndex, 1);
+            draftState[targetBoardIndex].lists[newTask.list].tasks.push(updatedTask);
           }
         });
         return { ...state, boards: newState };
       }
-      throw console.error("on edit task err");
+      throw console.error('on edit task err');
     },
     editSubtask: (state, action) => {
       const { task, subtask } = action.payload;
-      const [
-        targetBoardIndex,
-        targetListIndex,
-        targetTaskIndex,
-        targetSubtaskIndex,
-      ] = findSubtaskIndexes(state, subtask, task);
+      const [targetBoardIndex, targetListIndex, targetTaskIndex, targetSubtaskIndex] =
+        findSubtaskIndexes(state, subtask, task);
 
       const newState = produce(state.boards, (draftState) => {
-        draftState[targetBoardIndex].lists[targetListIndex].tasks[
-          targetTaskIndex
-        ].subtasks.splice(targetSubtaskIndex, 1, subtask);
+        draftState[targetBoardIndex].lists[targetListIndex].tasks[targetTaskIndex].subtasks.splice(
+          targetSubtaskIndex,
+          1,
+          subtask,
+        );
       });
 
       return { ...state, boards: newState };
@@ -184,34 +170,22 @@ export const boardsSlice = createSlice({
 
       const nextState = produce(state.boards, (draftState) => {
         draftState[currentBoardIndex].lists.splice(sourceIndex, 1);
-        draftState[currentBoardIndex].lists.splice(
-          destinationIndex,
-          0,
-          sourceList
-        );
+        draftState[currentBoardIndex].lists.splice(destinationIndex, 0, sourceList);
       });
 
       return { ...state, boards: nextState };
     },
     reorderTask: (state, action) => {
-      const {
-        sourceIndex,
-        destinationIndex,
-        sourceListIndex,
-        destinationListIndex,
-        task,
-      } = action.payload;
+      const { sourceIndex, destinationIndex, sourceListIndex, destinationListIndex, task } =
+        action.payload;
       const currentBoardIndex = getCurrentBoardIndex(state);
 
       const nextState = produce(state.boards, (draftState) => {
-        draftState[currentBoardIndex].lists[sourceListIndex].tasks.splice(
-          sourceIndex,
-          1
-        );
+        draftState[currentBoardIndex].lists[sourceListIndex].tasks.splice(sourceIndex, 1);
         draftState[currentBoardIndex].lists[destinationListIndex].tasks.splice(
           destinationIndex,
           0,
-          task
+          task,
         );
       });
       return { ...state, boards: nextState };
@@ -226,7 +200,7 @@ export const boardsSlice = createSlice({
         return state;
       }
       const listIndex = state.boards[currentBoardIndex].lists.findIndex(
-        (item) => item.id === list.id
+        (item) => item.id === list.id,
       );
       if (listIndex === -1) {
         return state;

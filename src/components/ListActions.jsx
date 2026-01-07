@@ -1,10 +1,10 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { IconButton, Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import { useDispatch } from "react-redux";
-import { openModal } from "features/modalSlice";
-import { changeListSort } from "features/boards/boardsSlice";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { IconButton, Menu, MenuItem } from '@mui/material';
+import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { openModal } from 'features/modalSlice';
+import { changeListSort } from 'features/boards/boardsSlice';
 
 const ListActions = ({ list }) => {
   const theme = useTheme();
@@ -25,61 +25,58 @@ const ListActions = ({ list }) => {
   };
 
   const onEditHandler = () => {
-    dispatch(openModal({ type: "editList", detail: list }));
+    dispatch(openModal({ type: 'editList', detail: list }));
     handleClose();
   };
 
   const onDeleteHandler = () => {
     dispatch(
       openModal({
-        type: "confirmDelete",
+        type: 'confirmDelete',
         detail: {
-          type: "list",
+          type: 'list',
           obj: list,
           message: `Are you sure you want to delete list ${list.title} and all of its tasks?`,
         },
-      })
+      }),
     );
     handleClose();
   };
 
   const onSortHandler = (newSort) => {
     if (newSort === list.sort) return;
-    dispatch(
-      changeListSort({ sortBy: newSort, direction: list.direction, list: list })
-    );
+    dispatch(changeListSort({ sortBy: newSort, direction: list.direction, list: list }));
   };
 
   const onDirectionHandler = (newDirection) => {
     if (newDirection === list.direction) return;
-    dispatch(
-      changeListSort({ sortBy: list.sort, direction: newDirection, list: list })
-    );
+    dispatch(changeListSort({ sortBy: list.sort, direction: newDirection, list: list }));
   };
 
   return (
     <>
       <IconButton
         id="listButton1"
-        aria-controls={open ? "listMenu1" : undefined}
+        aria-controls={open ? 'listMenu1' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-label="open list options"
         onClick={(e) => setAnchorEl(e.currentTarget)}
         sx={{
-          "& .MuiSvgIcon-root": {
+          '& .MuiSvgIcon-root': {
             color:
-              theme.palette.mode === "light"
+              theme.palette.mode === 'light'
                 ? theme.palette.customGrey.main
                 : theme.palette.customGrey.light,
           },
           p: 0,
-          "&:hover": { background: "none" },
+          '&:hover': { background: 'none' },
         }}
       >
         <MoreVertIcon
           sx={{
-            color: "#fff",
-            "&:hover": { color: theme.palette.primary.main },
+            color: '#fff',
+            '&:hover': { color: theme.palette.primary.main },
           }}
         />
       </IconButton>
@@ -90,7 +87,7 @@ const ListActions = ({ list }) => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "listButton1",
+          'aria-labelledby': 'listButton1',
         }}
       >
         <MenuItem onClick={onEditHandler}>Edit list</MenuItem>
@@ -105,20 +102,18 @@ const ListActions = ({ list }) => {
           anchorEl={submenuAnchorEl}
           open={submenuOpen}
           anchorOrigin={{
-            vertical: "center",
-            horizontal: "left",
+            vertical: 'center',
+            horizontal: 'left',
           }}
           transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           }}
           onClose={() => setSubmenuAnchorEl(null)}
         >
-          <MenuItem onClick={() => onSortHandler("date")}>Date</MenuItem>
-          <MenuItem onClick={() => onSortHandler("priority")}>
-            Priority
-          </MenuItem>
-          <MenuItem onClick={() => onSortHandler("title")}>Title</MenuItem>
+          <MenuItem onClick={() => onSortHandler('date')}>Date</MenuItem>
+          <MenuItem onClick={() => onSortHandler('priority')}>Priority</MenuItem>
+          <MenuItem onClick={() => onSortHandler('title')}>Title</MenuItem>
         </Menu>
 
         <MenuItem
@@ -133,24 +128,20 @@ const ListActions = ({ list }) => {
           anchorEl={submenu2AnchorEl}
           open={submenu2Open}
           anchorOrigin={{
-            vertical: "center",
-            horizontal: "left",
+            vertical: 'center',
+            horizontal: 'left',
           }}
           transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           }}
           onClose={() => setSubmenu2AnchorEl(null)}
         >
-          <MenuItem onClick={() => onDirectionHandler("asc")}>
-            Assending
-          </MenuItem>
-          <MenuItem onClick={() => onDirectionHandler("desc")}>
-            Descending
-          </MenuItem>
+          <MenuItem onClick={() => onDirectionHandler('asc')}>Ascending</MenuItem>
+          <MenuItem onClick={() => onDirectionHandler('desc')}>Descending</MenuItem>
         </Menu>
 
-        <MenuItem sx={{ color: "red" }} onClick={onDeleteHandler}>
+        <MenuItem sx={{ color: 'red' }} onClick={onDeleteHandler}>
           Delete list
         </MenuItem>
       </Menu>
